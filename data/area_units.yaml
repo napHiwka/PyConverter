@@ -1,0 +1,168 @@
+area_units:
+  - name: Square Meters
+    symbol: m²
+    to_square_centimeters: "${val} * 10000"
+    to_square_inches: "${val} * 1550.0031"
+    to_square_feet: "${val} * 10.763910417"
+    to_square_feet_us_survey: "${val} * 10.00000000"
+    to_square_millimeters: "${val} * 1000000"
+    to_hectares: "${val} * 0.0001"
+    to_square_kilometers: "${val} * 0.000001"
+    to_square_yards: "${val} * 1.1959900463"
+    to_square_miles: "${val} * 3.8610215859e-7"
+    to_acres: "${val} * 0.00024710538"
+    to_are: "${val} * 0.01"
+
+  - name: Square Centimeters
+    symbol: cm²
+    to_square_meters: "${val} * 0.0001"
+    to_square_inches: "${val} * 0.15500031"
+    to_square_feet: "${val} * 0.0010763910417"
+    to_square_feet_us_survey: "${val} * 0.001"
+    to_square_millimeters: "${val} * 100"
+    to_hectares: "${val} * 1e-8"
+    to_square_kilometers: "${val} * 1e-10"
+    to_square_yards: "${val} * 0.00011959900463"
+    to_square_miles: "${val} * 3.8610215859e-11"
+    to_acres: "${val} * 2.4710538e-8"
+    to_are: "${val} * 0.000001"
+
+  - name: Square Inches
+    symbol: in²
+    to_square_meters: "${val} * 0.00064516"
+    to_square_centimeters: "${val} * 6.4516"
+    to_square_feet: "${val} * 0.0069444444444"
+    to_square_feet_us_survey: "${val} * 0.0064516"
+    to_square_millimeters: "${val} * 645.16"
+    to_hectares: "${val} * 6.4516e-8"
+    to_square_kilometers: "${val} * 6.4516e-10"
+    to_square_yards: "${val} * 0.00077160493827"
+    to_square_miles: "${val} * 2.490976686e-10"
+    to_acres: "${val} * 1.59422508e-7"
+    to_are: "${val} * 6.4516e-6"
+
+  - name: Square Feet
+    symbol: ft²
+    to_square_meters: "${val} * 0.09290304"
+    to_square_centimeters: "${val} * 929.0304"
+    to_square_inches: "${val} * 144"
+    to_square_feet_us_survey: "${val} * 0.1111111111"
+    to_square_millimeters: "${val} * 92903.04"
+    to_hectares: "${val} * 9.290304e-6"
+    to_square_kilometers: "${val} * 9.290304e-8"
+    to_square_yards: "${val} * 0.1111111111"
+    to_square_miles: "${val} * 3.5870064279e-8"
+    to_acres: "${val} * 0.000022956841138"
+    to_are: "${val} * 0.0009290304"
+
+  - name: Square Feet (US survey)
+    symbol: ft² (US survey)
+    to_square_meters: "${val} * 0.0929034116"
+    to_square_centimeters: "${val} * 929.03041667"
+    to_square_inches: "${val} * 144"
+    to_square_feet: "${val} * 9"
+    to_square_millimeters: "${val} * 92903.0416667"
+    to_hectares: "${val} * 9.2903041667e-6"
+    to_square_kilometers: "${val} * 9.2903041667e-8"
+    to_square_yards: "${val} * 0.1111111111"
+    to_square_miles: "${val} * 3.5870064279e-8"
+    to_acres: "${val} * 0.000022956841138"
+    to_are: "${val} * 0.00092903041667"
+
+  - name: Square Millimeters
+    symbol: mm²
+    to_square_meters: "${val} * 0.000001"
+    to_square_centimeters: "${val} * 0.01"
+    to_square_inches: "${val} * 0.0015500031"
+    to_square_feet: "${val} * 0.000010763910417"
+    to_square_feet_us_survey: "${val} * 0.00001"
+    to_hectares: "${val} * 1e-10"
+    to_square_kilometers: "${val} * 1e-12"
+    to_square_yards: "${val} * 0.0000011959900463"
+    to_square_miles: "${val} * 3.8610215859e-13"
+    to_acres: "${val} * 2.4710538e-10"
+    to_are: "${val} * 1e-8"
+
+  - name: Hectares
+    symbol: ha
+    to_square_meters: "${val} * 10000"
+    to_square_centimeters: "${val} * 100000000"
+    to_square_inches: "${val} * 15500031"
+    to_square_feet: "${val} * 107639.1041671"
+    to_square_feet_us_survey: "${val} * 100000"
+    to_square_millimeters: "${val} * 10000000000"
+    to_square_kilometers: "${val} * 0.01"
+    to_square_yards: "${val} * 11959.900463"
+    to_square_miles: "${val} * 0.0038610215859"
+    to_acres: "${val} * 2.4710538"
+    to_are: "${val} * 100"
+
+  - name: Square kilometers
+    symbol: km²
+    to_square_meters: "${val} * 1000000"
+    to_square_centimeters: "${val} * 10000000000"
+    to_square_inches: "${val} * 1550003100"
+    to_square_feet: "${val} * 10763910.41671"
+    to_square_feet_us_survey: "${val} * 10000000"
+    to_square_millimeters: "${val} * 1000000000000"
+    to_hectares: "${val} * 100"
+    to_square_yards: "${val} * 1195990.0463"
+    to_square_miles: "${val} * 0.38610215859"
+    to_acres: "${val} * 247.10538147"
+    to_are: "${val} * 10000"
+
+  - name: Square Yard
+    symbol: yd²
+    to_square_meters: "${val} * 0.83612736"
+    to_square_centimeters: "${val} * 8361.2736"
+    to_square_inches: "${val} * 1296"
+    to_square_feet: "${val} * 9"
+    to_square_feet_us_survey: "${val} * 8.3612736"
+    to_square_millimeters: "${val} * 836127.36"
+    to_hectares: "${val} * 8.3612736e-5"
+    to_square_kilometers: "${val} * 8.3612736e-7"
+    to_square_miles: "${val} * 2.690611726e-7"
+    to_acres: "${val} * 0.00020661157025"
+    to_are: "${val} * 0.0083612736"
+
+  - name: Square Miles
+    symbol: mi²
+    to_square_meters: "${val} * 2589988.110336"
+    to_square_centimeters: "${val} * 2.589988110336e+10"
+    to_square_inches: "${val} * 4.01448959984e+9"
+    to_square_feet: "${val} * 2.788198008e+7"
+    to_square_feet_us_survey: "${val} * 2.589988110336e+7"
+    to_square_millimeters: "${val} * 2.589988110336e+13"
+    to_hectares: "${val} * 258.9988110336"
+    to_square_kilometers: "${val} * 2.589988110336"
+    to_square_yards: "${val} * 3.0976000000307e+6"
+    to_acres: "${val} * 640"
+    to_are: "${val} * 25899.88110336"
+
+  - name: Acres
+    symbol: ac
+    to_square_meters: "${val} * 4046.8564224"
+    to_square_centimeters: "${val} * 40468564.224"
+    to_square_inches: "${val} * 627264"
+    to_square_feet: "${val} * 43560"
+    to_square_feet_us_survey: "${val} * 40468.564224"
+    to_square_millimeters: "${val} * 40468564224"
+    to_hectares: "${val} * 0.40468564224"
+    to_square_kilometers: "${val} * 0.0040468564224"
+    to_square_yards: "${val} * 4840"
+    to_square_miles: "${val} * 0.0015625"
+    to_are: "${val} * 40.468564224"
+
+  - name: Are
+    symbol: a
+    to_square_meters: "${val} * 100"
+    to_square_centimeters: "${val} * 1000000"
+    to_square_inches: "${val} * 155000.31"
+    to_square_feet: "${val} * 1076.3910417"
+    to_square_feet_us_survey: "${val} * 1000"
+    to_square_millimeters: "${val} * 100000000"
+    to_hectares: "${val} * 0.01"
+    to_square_kilometers: "${val} * 0.0001"
+    to_square_yards: "${val} * 119.59900463"
+    to_square_miles: "${val} * 3.8610215859e-5"
+    to_acres: "${val} * 0.024710538138"
