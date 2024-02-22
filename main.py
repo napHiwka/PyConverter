@@ -119,7 +119,7 @@ class RightPanel(ctk.CTkScrollableFrame):
                     text_color=("gray52", "gray62"),
                 )
                 entry_text.grid(
-                    row=row, column=column, padx=(0, 15), pady=10, sticky="se"
+                    row=row, column=column, padx=(0, 5), pady=10, sticky="se"
                 )
 
                 # Create entry field
@@ -151,9 +151,11 @@ class UnitDataHandler:
 
     def update_entries_with_units(self, entries, unit_formulas):
         unit_names = list(unit_formulas.keys())
-        for (row, column), (entry, entry_unit, entry_text) in entries.items():
-            if row * 2 + column < len(unit_names):
-                unit_name = unit_names[row * 2 + column]
+        for index, ((row, column), (entry, entry_unit, entry_text)) in enumerate(
+            entries.items()
+        ):
+            if index < len(unit_names):
+                unit_name = unit_names[index]
                 entry_text.configure(text=unit_name)
                 entry_unit.configure(text=unit_formulas[unit_name]["symbol"])
             else:
