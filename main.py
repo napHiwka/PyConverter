@@ -110,6 +110,9 @@ class RightPanel(ctk.CTkScrollableFrame):
         for row in range(0, 16, 2):
             # Iterate through columns, every alternate column
             for column in [0, 2]:
+                # Create entry variable
+                entry_var = ctk.StringVar()
+
                 # Create label for entry text
                 entry_text = ctk.CTkLabel(
                     self,
@@ -123,8 +126,13 @@ class RightPanel(ctk.CTkScrollableFrame):
                 )
 
                 # Create entry field
-                entry = ctk.CTkEntry(self, width=220, height=40, justify="right")
+                entry = ctk.CTkEntry(
+                    self, width=220, height=40, justify="right", textvariable=entry_var
+                )
                 entry.grid(row=row + 1, column=column, sticky="nse")
+                entry.bind(
+                    "<KeyRelease>", lambda e, var=entry_var: print(var.get())
+                )  # TODO: Remove
 
                 # Create label for entry symbol
                 entry_symbol = ctk.CTkLabel(self, text="", font=SMALL_FONT, width=10)
@@ -137,6 +145,7 @@ class RightPanel(ctk.CTkScrollableFrame):
                     entry,
                     entry_symbol,
                     entry_text,
+                    entry_var,
                 )  # Use row // 2 to keep the row index consistent with the original layout
 
         return entries_dict
@@ -151,17 +160,32 @@ class UnitDataHandler:
 
     def update_entries_with_units(self, entries, unit_formulas):
         unit_names = list(unit_formulas.keys())
-        for index, ((row, column), (entry, entry_unit, entry_text)) in enumerate(
-            entries.items()
+
+        for index, (entry, entry_unit, entry_text, entry_var) in enumerate(
+            entries.values()
         ):
             if index < len(unit_names):
+                entry.delete(0, ctk.END)  # Cleaning prev result from prev category
+
                 unit_name = unit_names[index]
+                entry.bind(
+                    "<KeyRelease>",
+                    lambda e, unit_name=unit_name: self._entry_key_release_handler(
+                        e, unit_name, unit_formulas
+                    ),
+                )
+
                 entry_text.configure(text=unit_name)
                 entry_unit.configure(text=unit_formulas[unit_name]["symbol"])
             else:
-                entry.configure(placeholder_text="")
                 entry_text.configure(text="")
                 entry_unit.configure(text="")
+
+    def _entry_key_release_handler(self, event, unit_name, unit_formulas):
+        formula = unit_formulas.get(unit_name, {}).get("to_celsius")
+        print(
+            f"Unit formula for {unit_name}: {formula}"
+        )  # Replace with actual logic to use formula
 
 
 class MainConverter(ctk.CTk):
