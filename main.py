@@ -74,7 +74,7 @@ class LeftPanel(ctk.CTkFrame):
         self.right_panel.right_panel_events(unit_formulas)
 
 
-class RightPanel(ctk.CTkFrame):
+class RightPanel(ctk.CTkScrollableFrame):
     def __init__(self, parent, default_category="temperature"):
         super().__init__(parent)
         self._configure_grid()
@@ -105,15 +105,40 @@ class RightPanel(ctk.CTkFrame):
 
     def _create_entries(self):
         entries_dict = {}
-        for row in range(8):
+
+        # Iterate through rows, starting from 0 and incrementing by 2
+        for row in range(0, 16, 2):
+            # Iterate through columns, every alternate column
             for column in [0, 2]:
-                entry = ctk.CTkEntry(self, width=220, height=40, justify="right")
-                entry_symbol = ctk.CTkLabel(self, text="", font=SMALL_FONT, width=10)
-                entry.grid(row=row, column=column, padx=(10, 0), pady=10)
-                entry_symbol.grid(
-                    row=row, column=column + 1, padx=(0, 10), pady=10, sticky="w"
+                # Create label for entry text
+                entry_text = ctk.CTkLabel(
+                    self,
+                    text="",
+                    height=20,
+                    font=SMALLEST_FONT,
+                    text_color=("gray52", "gray62"),
                 )
-                entries_dict[(row, column)] = entry, entry_symbol
+                entry_text.grid(
+                    row=row, column=column, padx=(0, 15), pady=10, sticky="se"
+                )
+
+                # Create entry field
+                entry = ctk.CTkEntry(self, width=220, height=40, justify="right")
+                entry.grid(row=row + 1, column=column, sticky="nse")
+
+                # Create label for entry symbol
+                entry_symbol = ctk.CTkLabel(self, text="", font=SMALL_FONT, width=10)
+                entry_symbol.grid(
+                    row=row + 1, column=column + 1, sticky="w", padx=(5, 0)
+                )
+
+                # Add entry, entry symbol, and entry text to entries_dict
+                entries_dict[(row // 2, column)] = (
+                    entry,
+                    entry_symbol,
+                    entry_text,
+                )  # Use row // 2 to keep the row index consistent with the original layout
+
         return entries_dict
 
 
@@ -126,13 +151,14 @@ class UnitDataHandler:
 
     def update_entries_with_units(self, entries, unit_formulas):
         unit_names = list(unit_formulas.keys())
-        for (row, column), (entry, entry_unit) in entries.items():
+        for (row, column), (entry, entry_unit, entry_text) in entries.items():
             if row * 2 + column < len(unit_names):
                 unit_name = unit_names[row * 2 + column]
-                entry.configure(justify="right", placeholder_text=unit_name)
+                entry_text.configure(text=unit_name)
                 entry_unit.configure(text=unit_formulas[unit_name]["symbol"])
             else:
                 entry.configure(placeholder_text="")
+                entry_text.configure(text="")
                 entry_unit.configure(text="")
 
 
