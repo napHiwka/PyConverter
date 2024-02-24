@@ -11,9 +11,15 @@ class UnitConverter:
             "time": "data/time_units.yaml",
             "weight": "data/weight_units.yaml",
         }
+        self.default_category = next(
+            iter(self.unit_files)
+        )  # Getting first key from dict
 
-    def get_unit_formulas(self, category):
-        """Get the unit data in a given category for easier work."""
+    def get_unit_formulas(self, category=None):
+        """Get the unit data in a given category for easier work and set default category."""
+        if category is None:
+            category = self.default_category
+
         category_key = self._translate_category(category)
         unit_data = self._load_unit_data(category_key)
         units = unit_data.get(f"{category_key}_units", [])
@@ -53,5 +59,4 @@ if __name__ == "__main__":
     import pprint
 
     converter = UnitConverter()
-    category = "температура"
-    pprint.pprint(converter.get_unit_formulas(category))
+    pprint.pprint(converter.get_unit_formulas())
