@@ -5,7 +5,7 @@ temperature_units:
     to_kelvin: "${val} + 273.15"
     to_rankine: "(${val} + 273.15) * 9/5"
     to_reaumur: "${val} * 4/5"
-    to_roemer: "(${val} / 1.9047619) + 7.5"   # Celsius to Rømer
+    to_romer: "(${val} * 21/40) + 7.5"   # Celsius to Rømer
     to_newton: "${val} * 33/100"
     to_delisle: "(100 - ${val}) * 3/2"
 
@@ -15,8 +15,7 @@ temperature_units:
     to_kelvin: "(${val} + 459.67) * 5/9"
     to_rankine: "${val} + 459.67"
     to_reaumur: "(${val} - 32) * 4/9"
-    to_reomer: "(${val} + 459.67 - 32) * 5/4"
-    to_roemer: "((${val} - 32) * 5/9 / 1.9047619) + 7.5"   # Fahrenheit to Rømer
+    to_romer: "((${val} + 32) * 7/24) - (7.5 * 40/21)"   # Fahrenheit to Rømer
     to_newton: "(${val} - 32) * 11/60"
     to_delisle: "(212 - ${val}) * 5/6"
 
@@ -26,8 +25,7 @@ temperature_units:
     to_fahrenheit: "(${val} * 9/5) - 459.67"
     to_rankine: "${val} * 9/5"
     to_reaumur: "(${val} - 273.15) * 4/5"
-    to_reomer: "(${val} - 273.15) * 5/4"
-    to_roemer: "(${val} / 1.9047619) + 7.5"   # Kelvin to Rømer
+    to_romer: "(${val} * 21/40) + 7.5"   # Kelvin to Rømer
     to_newton: "(${val} - 273.15) * 33/100"
     to_delisle: "(373.15 - ${val}) * 3/2"
 
@@ -37,23 +35,21 @@ temperature_units:
     to_fahrenheit: "${val} - 459.67"
     to_kelvin: "${val} * 5/9"
     to_reaumur: "(${val} - 491.67) * 4/9"
-    to_reomer: "(${val} - 491.67) * 5/4"
-    to_roemer: "(${val} / 1.9047619) + 7.5"   # Rankine to Rømer
+    to_romer: "(${val} * 21/40) + 7.5"   # Rankine to Rømer
     to_newton: "(${val} - 491.67) * 11/60"
     to_delisle: "(671.67 - ${val}) * 5/6"
 
-  - name: Réaumur
+  - name: Reaumur
     symbol: Ré
     to_celsius: "${val} * 5/4"
     to_fahrenheit: "(${val} * 9/4) + 32"
     to_kelvin: "(${val} * 5/4) + 273.15"
     to_rankine: "(${val} * 9/4) + 491.67"
-    to_reaumur: "${val} * 4/5"
-    to_roemer: "(${val} / 1.9047619) + 7.5"   # Réaumur to Rømer
+    to_romer: "(${val} * 32/35) + 7.5"   # Reaumur to Rømer
     to_newton: "${val} * 33/80"
     to_delisle: "(80 - ${val}) * 15/8"
 
-  - name: Rømer
+  - name: Romer
     symbol: °Rø
     to_celsius: "(${val} - 7.5) * 40/21"
     to_fahrenheit: "(${val} - 7.5) * 24/7 + 32"
@@ -70,7 +66,7 @@ temperature_units:
     to_kelvin: "(${val} * 100/33) + 273.15"
     to_rankine: "(${val} * 60/11) + 491.67"
     to_reaumur: "${val} * 80/33"
-    to_reomer: "${val} * 33/80"
+    to_romer: "(${val} * 80/33 * 35/32) + 7.5"   # Newton to Rømer
     to_delisle: "(33 - ${val}) * 11/50"
 
   - name: Delisle
@@ -80,5 +76,5 @@ temperature_units:
     to_kelvin: "(373.15 - ${val}) * 2/3 + 273.15"
     to_rankine: "(671.67 - ${val}) * 6/5 + 491.67"
     to_reaumur: "(80 - ${val}) * 8/15"
-    to_reomer: "(80 - ${val}) * 3/2"
+    to_romer: "(80 - ${val}) * 3/2"
     to_newton: "(33 - ${val}) * 11/50"

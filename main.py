@@ -56,9 +56,6 @@ class RightPanel(ctk.CTkScrollableFrame):
                     textvariable=entry_var,
                 )
                 entry.grid(row=row + 1, column=column, sticky="nse")
-                entry.bind(
-                    "<KeyRelease>", lambda e, var=entry_var: print(var.get())
-                )  # TODO: Remove
 
                 # Create label for entry symbol
                 entry_symbol = ctk.CTkLabel(self, text="", font=SMALL_FONT, width=10)
@@ -166,48 +163,97 @@ class UnitDataHandler:
         self.unit_formulas = self.converter.get_unit_formulas(category)
         self._refresh_entries_with_current_units()
 
-    def _refresh_entries_with_current_units(self):
-        """Refresh the entry fields with the units from the current selected category."""
-        unit_names = list(self.unit_formulas.keys())
+    def _assign_unit_names_to_entries(self):
+        """Assign unit names to entry components and store them as attributes for access."""
+        self.unit_names = tuple(self.unit_formulas.keys())
+        self.entry_components = []
+
         for index, components in enumerate(self.entries.values()):
-            self._update_entry_with_unit_data(
-                index, unit_names, components, self.unit_formulas
+            entry_widget, unit_symbol_label, unit_name_label, entry_string_var = (
+                components
+            )
+            unit_name = self.unit_names[index] if index < len(self.unit_names) else None
+            self.entry_components.append(
+                (
+                    entry_widget,
+                    unit_symbol_label,
+                    unit_name_label,
+                    entry_string_var,
+                    unit_name,
+                )
             )
 
-    def _update_entry_with_unit_data(
-        self, index, unit_names, components, unit_formulas
-    ):
-        """Update the entry fields with unit data based on the selected category.
+    def _refresh_entries_with_current_units(self):
+        self._assign_unit_names_to_entries()  # Ensure unit names are assigned to entries
+
+        """Refresh and update the entry fields with unit data from the current category."""
+        for (
+            entry_widget,
+            unit_symbol_label,
+            unit_name_label,
+            entry_string_var,
+            unit_name,
+        ) in self.entry_components:
+            if unit_name:
+                entry_widget.delete(0, ctk.END)
+                entry_widget.bind(
+                    "<KeyRelease>",
+                    lambda e, unit=unit_name, entry_var=entry_string_var: self.update_related_unit_entries(
+                        e, unit, entry_var
+                    ),
+                )
+                unit_name_label.configure(text=unit_name)
+                unit_symbol_label.configure(
+                    text=self.unit_formulas[unit_name]["symbol"]
+                )
+            else:
+                entry_widget.unbind("<KeyRelease>")
+                unit_name_label.configure(text="")
+                unit_symbol_label.configure(text="")
+
+    def update_related_unit_entries(self, event, source_unit, source_entry_var):
+        """
+        Update all related unit entry fields based on the value of the source entry.
 
         Args:
-            index (int): The index of the current entry in the unit_names list.
-            unit_names (list): List of unit names corresponding to the current category.
-            components (tuple): Tuple containing the entry widgets and variable.
-            unit_formulas (dict): Dictionary of unit formulas and symbols.
+            event: The key release event triggering the update.
+            source_unit: The unit of the source entry that was updated.
+            source_entry_var: The tkinter variable associated with the source entry.
+
+        This method is called when a key is released in any of the unit entry widgets.
+        It reads the value from the source entry and calculates the corresponding
+        values for all other unit entries using the conversion formulas defined in
+        `self.unit_formulas`. If the value in the source entry is not a valid float,
+        it clears the non-source entries.
         """
-        entry_widget, unit_symbol_label, unit_name_label, entry_string_var = components
-        if index < len(
-            unit_names
-        ):  # Check if the index is within the bounds of the unit_names list
-            entry_widget.delete(0, ctk.END)  # Clear the entry field from previous data
-            entry_string_var = 0
+        try:
+            # Attempt to parse the value as a float
+            value = float(source_entry_var.get())
 
-            unit_name = unit_names[index]  # Get the unit name at the current index
-            entry_widget.bind(
-                "<KeyRelease>",
-                lambda e, unit=unit_name: self._entry_key_release_handler(
-                    e, unit, unit_formulas
-                ),
-            )
-            unit_name_label.configure(text=unit_name)
-            unit_symbol_label.configure(text=unit_formulas[unit_name]["symbol"])
-            print("Hi")
-        else:  # If the index is out of bounds, clear the entry field
-            unit_name_label.configure(text="")
-            unit_symbol_label.configure(text="")
+            for _, _, _, target_var, target_unit in self.entry_components:
+                if target_unit in (source_unit, None):
+                    # Skip the source unit entry or if the target unit is not defined
+                    continue
 
-    def _entry_key_release_handler(self, event, unit, unit_formulas):
-        pass
+                # Get the conversion formula from source unit to target unit
+                conversion_key = "to_" + target_unit.lower()
+                conversion_formula = self.unit_formulas[source_unit].get(conversion_key)
+
+                if conversion_formula is not None:
+                    # Evaluate the conversion formula to get the new value
+                    converted_value = eval(
+                        conversion_formula.replace("${val}", str(value))
+                    )
+                    target_var.set(str(converted_value))
+                else:
+                    # Clear the target entry if no conversion formula is available
+                    target_var.set("")
+
+        except ValueError:
+            # If the input is not a valid number, clear all non-source entries
+            for _, _, _, target_var, target_unit in self.entry_components:
+                if target_unit != source_unit:
+                    target_var.set("")
 
 
 class MainConverter(ctk.CTk):
