@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "converter"
+version = "0.1.0"
+description = ""
+authors = ["napHiwka <napHiwka@gmail.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+customtkinter = "^5.2.2"
+pyyaml = "^6.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
