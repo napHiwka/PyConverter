@@ -186,6 +186,10 @@ class UnitDataHandler:
     def _refresh_entries_with_current_units(self):
         self._assign_unit_names_to_entries()  # Ensure unit names are assigned to entries
 
+        # Unbind from all prev related unit entry fields
+        for entry_widget, _, _, _, _ in self.entry_components:
+            entry_widget.unbind("<KeyRelease>")
+
         """Refresh and update the entry fields with unit data from the current category."""
         for (
             entry_widget,
