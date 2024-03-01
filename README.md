@@ -22,7 +22,7 @@ _At present, the following units are supported:_
 - Length
 - Volume
 - Time
-- WSeight
+- Weight
 
 ---
 

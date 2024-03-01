@@ -1,8 +1,12 @@
 import yaml
 
 
-class UnitConverter:
+class UnitConversionParser:
     def __init__(self):
+        """
+        Initializes the UnitConversionParser with a dictionary of unit files and
+        sets the default category to the first key in the dictionary.
+        """
         self.unit_files = {
             "temperature": "data/temperature_units.yaml",
             "area": "data/area_units.yaml",
@@ -16,7 +20,15 @@ class UnitConverter:
         )  # Getting first key from dict
 
     def get_unit_formulas(self, category=None):
-        """Get the unit data in a given category for easier work and set default category."""
+        """
+        Fetches the unit data in a given category for easier work and sets default category.
+
+        Args:
+            category (str): The category of units to fetch formulas for. If not provided, uses default category.
+
+        Returns:
+            dict: A dictionary of units in the category with their conversion formulas.
+        """
         if category is None:
             category = self.default_category
 
@@ -30,8 +42,16 @@ class UnitConverter:
             for unit in units
         }
 
-    def _translate_category(self, category):
-        """Translate category name to English equivalent if in Russian."""
+    def _translate_category(self, category):  # TODO: implement
+        """
+        Translates category name to English equivalent if in Russian. Temporary solution.
+
+        Args:
+            category (str): The category name to translate.
+
+        Returns:
+            str: The English equivalent of the category name.
+        """
         translation_map = {
             "температура": "temperature",
             "площадь": "area",
@@ -43,7 +63,19 @@ class UnitConverter:
         return translation_map.get(category.lower(), category.lower())
 
     def _load_unit_data(self, category_key):
-        """Load and return the conversion table for a given unit type."""
+        """
+        Loads unit data from the file corresponding to the given category key.
+
+        Args:
+            category_key (str): The key representing the category of units.
+
+        Raises:
+            FileNotFoundError: If no file path is found for the given category key.
+            ValueError: If there is an error parsing the YAML file.
+
+        Returns:
+            dict: A dictionary containing the unit data.
+        """
         file_path = self.unit_files.get(category_key)
         if not file_path:
             raise FileNotFoundError(f"No file path found for '{category_key}'.")
@@ -58,5 +90,5 @@ class UnitConverter:
 if __name__ == "__main__":
     import pprint
 
-    converter = UnitConverter()
+    converter = UnitConversionParser()
     pprint.pprint(converter.get_unit_formulas())
