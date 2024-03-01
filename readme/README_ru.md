@@ -67,6 +67,7 @@ cd PyConverter
 ```
 pip install customtkinter
 pip install pyyaml
+pip install numexpr
 ```
 
 ## Шаг 4: Запустите проект

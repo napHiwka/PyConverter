@@ -1,3 +1,4 @@
+import numexpr
 import customtkinter as ctk
 from scripts.unit_conversion_parser import UnitConversionParser
 
@@ -90,10 +91,11 @@ class UnitConversionUpdater:
 
     def _update_target_entry(self, value, source_unit, target_var, target_unit):
         """Update a target entry with the converted value."""
+        target_unit = target_unit.replace(" ", "_")
         conversion_key = "to_" + target_unit.lower()
         conversion_formula = self.unit_formulas[source_unit].get(conversion_key)
         if conversion_formula:
-            converted_value = eval(conversion_formula.replace("${val}", str(value)))
+            converted_value = numexpr.evaluate(conversion_formula.format(val=value))
             target_var.set(str(converted_value))
         else:
             target_var.set("")

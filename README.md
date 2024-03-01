@@ -65,6 +65,7 @@ Run the commands below to do so:
 ```
 pip install customtkinter
 pip install pyyaml
+pip install numexpr
 ```
 
 ## Step 4: Launch the Project
