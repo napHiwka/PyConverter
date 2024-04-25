@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from scripts.settings import *
 from scripts.unit_conversion_updater import UnitConversionUpdater
+from scripts.ctk_stuff import CTkWindowSeparator
 
 
 class LeftPanel(ctk.CTkFrame):
@@ -17,7 +18,7 @@ class LeftPanel(ctk.CTkFrame):
 
     def _create_widgets(self):
         """Create widgets for the LeftPanel."""
-        self._create_label("Тип конвертации", LARGE_FONT)  # Title creation
+        self._create_label("PyConverter", LARGE_FONT)  # Title creation
         self._add_conversion_buttons()
         self._create_appearance_mode_optionmenu()
 
@@ -26,17 +27,18 @@ class LeftPanel(ctk.CTkFrame):
         ctk.CTkLabel(self, text=text, font=font).grid(
             row=row, column=column, **grid_kwargs
         )
+        CTkWindowSeparator(self, size=3, color="#89ca5a").grid(row=1, column=0)
 
     def _add_conversion_buttons(self):
         """Add buttons for each conversion type."""
         conversion_types = (
-            "Температура",
-            "Площадь",
-            "Длина",
-            "Объём",
-            "Время",
-            "Вес",
-        )  # TODO: Remove hardcoded values in the code
+            (_("Temperature")),
+            (_("Area")),
+            (_("Length")),
+            (_("Volume")),
+            (_("Time")),
+            (_("Weight")),
+        )
 
         for row, conversion_type in enumerate(conversion_types, start=1):
             self._create_button(conversion_type, row)
@@ -52,12 +54,12 @@ class LeftPanel(ctk.CTkFrame):
 
     def _create_appearance_mode_optionmenu(self):
         """Create an option menu for appearance mode."""
-        self._create_label("Внешний вид:", SMALL_FONT, row=9, pady=(0, 0))
+        self._create_label((_("Appearance:")), SMALL_FONT, row=9, pady=(0, 0))
         appearance_options = (
-            "Светлый",
-            "Тёмный",
-            "Системный",
-        )  # TODO: Remove hardcoded values in the code
+            (_("Light")),
+            (_("Dark")),
+            (_("System")),
+        )
 
         self.appearance_variable = ctk.StringVar(value=appearance_options[2])
         ctk.CTkOptionMenu(
@@ -74,7 +76,7 @@ class LeftPanel(ctk.CTkFrame):
             "Светлый": "Light",
             "Тёмный": "Dark",
             "Системный": "System",
-        }  # TODO: Remove hardcoded values in the code
+        }
         ctk.set_appearance_mode(mode_mapping.get(new_mode, "System"))
 
     def _button_event(self, category_type):
