@@ -4,7 +4,7 @@ from scripts.unit_conversion_updater import UnitConversionUpdater
 from scripts.ctk_stuff import CTkWindowSeparator
 
 
-class LeftPanel(ctk.CTkFrame):
+class LeftPanel(ctk.CTkScrollableFrame):
     def __init__(self, parent, right_panel_entries):
         super().__init__(parent)
         self._configure_grid()
@@ -14,20 +14,32 @@ class LeftPanel(ctk.CTkFrame):
     def _configure_grid(self):
         """Configure the grid for the LeftPanel."""
         self.grid_columnconfigure(0, weight=1, uniform="A")
-        self.grid_rowconfigure(tuple(range(11)), weight=1, uniform="A")
+        self.grid_rowconfigure(tuple(range(12)), weight=1, uniform="A")
 
     def _create_widgets(self):
         """Create widgets for the LeftPanel."""
-        self._create_label("PyConverter", LARGE_FONT)  # Title creation
+        self._create_label("PyConverter", LARGE_FONT, pady=0)  # Title creation
+        self._create_settings_button()
         self._add_conversion_buttons()
-        self._create_appearance_mode_optionmenu()
+        # self._create_appearance_mode_optionmenu()
 
     def _create_label(self, text, font=SMALL_FONT, row=0, column=0, **grid_kwargs):
         """Create a label with given text, font, row, column and grid_kwargs."""
         ctk.CTkLabel(self, text=text, font=font).grid(
             row=row, column=column, **grid_kwargs
         )
-        CTkWindowSeparator(self, size=3, color="#89ca5a").grid(row=1, column=0)
+
+    def _create_settings_button(self):
+        """Create a settings button."""
+        ctk.CTkButton(
+            self,
+            text=(_("Settings")),
+            font=SMALL_FONT,
+            command=lambda: self._open_settings(),
+        ).grid(row=1, column=0, padx=0, pady=0)
+        CTkWindowSeparator(self, size=3, length=80, color="#878787").grid(
+            row=2, column=0, pady=0
+        )
 
     def _add_conversion_buttons(self):
         """Add buttons for each conversion type."""
@@ -38,23 +50,74 @@ class LeftPanel(ctk.CTkFrame):
             (_("Volume")),
             (_("Time")),
             (_("Weight")),
+            (_("Speed")),
+            (_("Force")),
+            (_("Fuel Consumption")),
+            (_("Numeral System")),
+            (_("Pressure")),
+            (_("Energy")),
+            (_("Power")),
+            (_("Angles")),
+            (_("Shoe size")),
+            (_("Digital data")),
         )
 
-        for row, conversion_type in enumerate(conversion_types, start=1):
-            self._create_button(conversion_type, row)
+        for row, conversion_type in enumerate(conversion_types, start=3):
+            self._create_button(row, conversion_type)
 
-    def _create_button(self, text, row):
+    def _create_button(self, row, text):
         """Create a button with given text and row."""
         ctk.CTkButton(
             self,
             text=text,
             font=SMALL_FONT,
             command=lambda: self._button_event(text),
-        ).grid(row=row, column=0, padx=20, pady=0)
+        ).grid(row=row, column=0, padx=20, pady=3)
+
+    def _button_event(self, category_type):
+        """Handle button event for the given category_type."""
+        self.unit_updater.load_category_from_button(category_type)
+
+    def _open_settings(self):
+        """Toggle between the settings window and the right panel."""
+        if self.master.settings_panel.winfo_ismapped():
+            # If the settings panel is currently visible, destroy it and show the right panel
+            self.master.settings_panel.destroy()
+            self.master.right_panel.grid(row=0, column=1, padx=5, sticky="nsew")
+        else:
+            # If the settings panel is not visible, destroy the right panel and show the settings panel
+            self.master.right_panel.destroy()
+            self.master.settings_panel = SettingsPanel(self.master)
+            self.master.settings_panel.grid(row=0, column=0, padx=5, sticky="nsew")
+
+
+class SettingsPanel(ctk.CTkFrame):
+    def __init__(self, parent):
+        super().__init__(parent)
+        self._configure_grid()
+        self._create_widgets()
+        self.state = False
+
+    def _configure_grid(self):
+        self.grid_columnconfigure(0, weight=1, uniform="B")
+        self.grid_columnconfigure(1, weight=2, uniform="B")
+        self.grid_rowconfigure(tuple(range(5)), weight=1, uniform="B")
+
+    def _create_widgets(self):
+        # self._create_language(self)
+        # self._crete_rm_trailing_zeros(self)
+        # self._create_about(self)
+        self._create_appearance_mode_optionmenu()
+
+    def _create_label(self, text, font=SMALL_FONT, row=0, column=0, **grid_kwargs):
+        """Create a label with given text, font, row, column and grid_kwargs."""
+        ctk.CTkLabel(self, text=text, font=font).grid(
+            row=row, column=column, **grid_kwargs
+        )
 
     def _create_appearance_mode_optionmenu(self):
         """Create an option menu for appearance mode."""
-        self._create_label((_("Appearance:")), SMALL_FONT, row=9, pady=(0, 0))
+        self._create_label((_("Appearance:")), SMALL_FONT, row=0, pady=(0, 0))
         appearance_options = (
             (_("Light")),
             (_("Dark")),
@@ -68,7 +131,7 @@ class LeftPanel(ctk.CTkFrame):
             variable=self.appearance_variable,
             dropdown_font=SMALLEST_FONT,
             command=self._change_appearance_mode,
-        ).grid(row=10, column=0, sticky="s", pady=(0, 10))
+        ).grid(row=0, column=0, sticky="s", pady=(0, 10))
 
     def _change_appearance_mode(self, new_mode):
         """Change the appearance mode to the new_mode."""
@@ -78,10 +141,6 @@ class LeftPanel(ctk.CTkFrame):
             "Системный": "System",
         }
         ctk.set_appearance_mode(mode_mapping.get(new_mode, "System"))
-
-    def _button_event(self, category_type):
-        """Handle button event for the given category_type."""
-        self.unit_updater.load_category_from_button(category_type)
 
 
 class RightPanel(ctk.CTkScrollableFrame):
@@ -93,11 +152,11 @@ class RightPanel(ctk.CTkScrollableFrame):
 
     def _configure_grid(self):
         """Configures the grid for the RightPanel with specified weights and uniform."""
-        self.grid_columnconfigure(0, weight=25, uniform="A")
-        self.grid_columnconfigure(1, weight=5, uniform="A")
-        self.grid_columnconfigure(2, weight=25, uniform="A")
-        self.grid_columnconfigure(3, weight=5, uniform="A")
-        self.grid_rowconfigure(tuple(range(8)), weight=1, uniform="A")
+        self.grid_columnconfigure(0, weight=25, uniform="C")
+        self.grid_columnconfigure(1, weight=5, uniform="C")
+        self.grid_columnconfigure(2, weight=25, uniform="C")
+        self.grid_columnconfigure(3, weight=5, uniform="C")
+        self.grid_rowconfigure(tuple(range(8)), weight=1, uniform="C")
 
     def _create_entries(self):
         """Creates entries for the RightPanel and returns them as a list of tuples.
@@ -174,6 +233,10 @@ class MainConverter(ctk.CTk):
 
         self.right_panel = RightPanel(self)
         self.right_panel.grid(row=0, column=1, padx=5, sticky="nsew")
+
+        self.settings_panel = SettingsPanel(self)
+        self.settings_panel.grid(row=0, column=0, padx=5, sticky="nsew")
+        self.settings_panel.destroy()
 
         self.left_panel = LeftPanel(self, self.right_panel.entries)
         self.left_panel.grid(row=0, column=0, sticky="nsw")
