@@ -5,10 +5,11 @@ from scripts.ctk_stuff import CTkWindowSeparator
 
 
 class LeftPanel(ctk.CTkScrollableFrame):
-    def __init__(self, parent, right_panel_entries):
+    def __init__(self, parent, right_panel_entries, main_window):
         super().__init__(parent)
         self._configure_grid()
         self._create_widgets()
+        self.main_window = main_window
         self.unit_updater = UnitConversionUpdater(right_panel_entries)
 
     def _configure_grid(self):
@@ -80,67 +81,87 @@ class LeftPanel(ctk.CTkScrollableFrame):
 
     def _open_settings(self):
         """Toggle between the settings window and the right panel."""
-        if self.master.settings_panel.winfo_ismapped():
-            # If the settings panel is currently visible, destroy it and show the right panel
-            self.master.settings_panel.destroy()
-            self.master.right_panel.grid(row=0, column=1, padx=5, sticky="nsew")
-        else:
-            # If the settings panel is not visible, destroy the right panel and show the settings panel
-            self.master.right_panel.destroy()
-            self.master.settings_panel = SettingsPanel(self.master)
-            self.master.settings_panel.grid(row=0, column=0, padx=5, sticky="nsew")
+        self.main_window.toggle_settings()
 
 
 class SettingsPanel(ctk.CTkFrame):
     def __init__(self, parent):
         super().__init__(parent)
+        self.configure(fg_color="transparent")
         self._configure_grid()
         self._create_widgets()
-        self.state = False
 
     def _configure_grid(self):
-        self.grid_columnconfigure(0, weight=1, uniform="B")
-        self.grid_columnconfigure(1, weight=2, uniform="B")
-        self.grid_rowconfigure(tuple(range(5)), weight=1, uniform="B")
+        self.grid_columnconfigure(0, uniform="B")
+        self.grid_columnconfigure(1, uniform="B")
+        self.grid_rowconfigure(tuple(range(5)), weight=0)
 
     def _create_widgets(self):
-        # self._create_language(self)
-        # self._crete_rm_trailing_zeros(self)
-        # self._create_about(self)
+        self._create_settings_label()
+        self._create_language_optionmenu()
+        # self._crete_rm_trailing_zeros()  # TODO: Implement
         self._create_appearance_mode_optionmenu()
+        self._create_about()
 
-    def _create_label(self, text, font=SMALL_FONT, row=0, column=0, **grid_kwargs):
-        """Create a label with given text, font, row, column and grid_kwargs."""
-        ctk.CTkLabel(self, text=text, font=font).grid(
-            row=row, column=column, **grid_kwargs
+    def _create_settings_label(self):
+        ctk.CTkLabel(
+            self,
+            text=(_("Settings")),
+            font=LARGE_FONT,
+        ).grid(row=0, column=0, sticky="nw", pady=(40, 0), padx=(20, 0))
+
+    def _create_language_optionmenu(self):
+        ctk.CTkLabel(
+            self,
+            text=(_("Language:")),
+            font=SMALL_FONT,
+        ).grid(row=1, column=0, sticky="nw", pady=(10, 0), padx=(20, 0))
+
+        language_options = (
+            _("English"),
+            _("German"),
+            _("French"),
+            _("Spanish"),
+            _("Italian"),
+            _("Russian"),
         )
+        self.language_variable = ctk.StringVar(value=language_options[0])
+
+        ctk.CTkOptionMenu(
+            self,
+            values=language_options,
+            variable=self.language_variable,
+            dropdown_font=SMALLEST_FONT,
+        ).grid(row=1, column=1, sticky="nw", pady=(5, 0), padx=(20, 0))
 
     def _create_appearance_mode_optionmenu(self):
         """Create an option menu for appearance mode."""
-        self._create_label((_("Appearance:")), SMALL_FONT, row=0, pady=(0, 0))
-        appearance_options = (
-            (_("Light")),
-            (_("Dark")),
-            (_("System")),
+        ctk.CTkLabel(self, text=_("Appearance:"), font=SMALL_FONT).grid(
+            row=2, column=0, sticky="nw", pady=(10, 0), padx=(20, 0)
         )
 
+        appearance_options = (_("Light"), (_("Dark")), (_("System")))
         self.appearance_variable = ctk.StringVar(value=appearance_options[2])
+
         ctk.CTkOptionMenu(
             self,
             values=appearance_options,
             variable=self.appearance_variable,
             dropdown_font=SMALLEST_FONT,
             command=self._change_appearance_mode,
-        ).grid(row=0, column=0, sticky="s", pady=(0, 10))
+        ).grid(row=2, column=1, sticky="nw", pady=(5, 0), padx=(20, 0))
 
     def _change_appearance_mode(self, new_mode):
         """Change the appearance mode to the new_mode."""
         mode_mapping = {
-            "Светлый": "Light",
-            "Тёмный": "Dark",
-            "Системный": "System",
+            _("Light"): "Light",
+            _("Dark"): "Dark",
+            _("System"): "System",
         }
         ctk.set_appearance_mode(mode_mapping.get(new_mode, "System"))
+
+    def _create_about(self):
+        pass
 
 
 class RightPanel(ctk.CTkScrollableFrame):
@@ -228,18 +249,29 @@ class MainConverter(ctk.CTk):
     def _layout_panels(self):
         """Configure the layout of panels with specific grid settings and positions."""
         self.grid_columnconfigure(0, weight=0)
-        self.grid_columnconfigure(1, weight=1)
+        self.grid_columnconfigure(1, weight=3)
         self.grid_rowconfigure(0, weight=1)
 
         self.right_panel = RightPanel(self)
         self.right_panel.grid(row=0, column=1, padx=5, sticky="nsew")
 
         self.settings_panel = SettingsPanel(self)
-        self.settings_panel.grid(row=0, column=0, padx=5, sticky="nsew")
-        self.settings_panel.destroy()
+        self.settings_panel.grid(row=0, column=1, padx=5, sticky="nsew")
+        self.settings_panel.grid_remove()
 
-        self.left_panel = LeftPanel(self, self.right_panel.entries)
+        self.left_panel = LeftPanel(self, self.right_panel.entries, self)
         self.left_panel.grid(row=0, column=0, sticky="nsw")
+
+    def toggle_settings(self):
+        """Toggle between the settings window and the right panel."""
+        if self.settings_panel.winfo_ismapped():
+            # If the settings panel is currently visible, hide it and show the right panel
+            self.settings_panel.grid_remove()
+            self.right_panel.grid()
+        else:
+            # If the settings panel is not visible, hide the right panel and show the settings panel
+            self.right_panel.grid_remove()
+            self.settings_panel.grid()
 
 
 if __name__ == "__main__":
