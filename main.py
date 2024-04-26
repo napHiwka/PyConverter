@@ -1,4 +1,5 @@
 import customtkinter as ctk
+import gettext
 from scripts.settings import *
 from scripts.unit_conversion_updater import UnitConversionUpdater
 from scripts.ctk_stuff import CTkWindowSeparator
@@ -90,6 +91,7 @@ class SettingsPanel(ctk.CTkFrame):
         self.configure(fg_color="transparent")
         self._configure_grid()
         self._create_widgets()
+        self.change_language()  # Set the initial language based on the default value
         self.about_window = None
 
     def _configure_grid(self):
@@ -119,21 +121,45 @@ class SettingsPanel(ctk.CTkFrame):
         ).grid(row=1, column=0, sticky="nw", pady=(10, 0), padx=(20, 0))
 
         language_options = (
-            _("English"),
-            _("German"),
-            _("French"),
-            _("Spanish"),
-            _("Italian"),
-            _("Russian"),
+            ("en", _("English")),
+            ("de", _("German")),
+            ("fr", _("French")),
+            ("es", _("Spanish")),
+            ("it", _("Italian")),
+            ("ru", _("Russian")),
         )
-        self.language_variable = ctk.StringVar(value=language_options[0])
+        self.language_variable = ctk.StringVar(value=language_options[0][0])
+
+        # Create a dictionary to map language names to codes
+        self.language_name_to_code = {name: code for code, name in language_options}
 
         ctk.CTkOptionMenu(
             self,
-            values=language_options,
+            values=[name for code, name in language_options],
             variable=self.language_variable,
             dropdown_font=SMALLEST_FONT,
+            command=lambda name: self.change_language(self.language_name_to_code[name]),
         ).grid(row=1, column=1, sticky="nw", pady=(5, 0), padx=(20, 0))
+
+    def change_language(self, lang_code=None):
+        """Change the language to the selected language."""
+        if lang_code is None:
+            lang_code = self.language_variable.get()
+        print("Changing language to", lang_code)
+
+        localedir = "locales"  # Path to locales directory
+        domain = "base"  # Name of the .po/.mo files
+        translation = gettext.translation(
+            domain, localedir=localedir, languages=[lang_code], fallback=False
+        )
+        translation.install()
+        global _
+        _ = translation.gettext
+        self.update_ui()  # Call a method to update the UI with the new language
+
+    def update_ui(self):
+        """Update the UI with the new language."""
+        pass
 
     def _create_appearance_mode_optionmenu(self):
         """Create an option menu for appearance mode."""
@@ -289,8 +315,23 @@ class MainConverter(ctk.CTk):
     def __init__(self):
         super().__init__()
         self.title("Converter")
+        self.setup_gettext()
         self._setup_ui()
         self.mainloop()
+
+    def setup_gettext(self):
+        # Set the default language to English or retrieve it from a config file
+        default_lang = "en"
+        localedir = "locales"  # Path to locales directory
+        domain = "base"  # Name of the .po/.mo files
+        gettext.bindtextdomain(domain, localedir)
+        gettext.textdomain(domain)
+        lang = gettext.translation(
+            domain, localedir, languages=[default_lang], fallback=True
+        )
+        lang.install()
+        global _  # Make the _ function global so it can be used throughout the file
+        _ = lang.gettext
 
     def _setup_ui(self):
         """Setup the user interface by setting up the window, appearance and layout."""
