@@ -5,11 +5,11 @@ from scripts.ctk_stuff import CTkWindowSeparator
 
 
 class LeftPanel(ctk.CTkScrollableFrame):
-    def __init__(self, parent, right_panel_entries, main_window):
+    def __init__(self, parent, right_panel_entries, setting_toggle):
         super().__init__(parent)
         self._configure_grid()
         self._create_widgets()
-        self.main_window = main_window
+        self.setting_toggle = setting_toggle
         self.unit_updater = UnitConversionUpdater(right_panel_entries)
 
     def _configure_grid(self):
@@ -81,7 +81,7 @@ class LeftPanel(ctk.CTkScrollableFrame):
 
     def _open_settings(self):
         """Toggle between the settings window and the right panel."""
-        self.main_window.toggle_settings()
+        self.setting_toggle()
 
 
 class SettingsPanel(ctk.CTkFrame):
@@ -90,6 +90,7 @@ class SettingsPanel(ctk.CTkFrame):
         self.configure(fg_color="transparent")
         self._configure_grid()
         self._create_widgets()
+        self.about_window = None
 
     def _configure_grid(self):
         self.grid_columnconfigure(0, uniform="B")
@@ -161,7 +162,68 @@ class SettingsPanel(ctk.CTkFrame):
         ctk.set_appearance_mode(mode_mapping.get(new_mode, "System"))
 
     def _create_about(self):
-        pass
+        """Create an about button."""
+        ctk.CTkButton(
+            self,
+            text=(_("About")),
+            font=SMALL_FONT,
+            command=self._open_about,
+        ).grid(row=3, column=0, sticky="nw", pady=(10, 0), padx=(20, 0))
+
+    def _open_about(self):
+        if self.about_window is None or not self.about_window.winfo_exists():
+            self.about_window = AboutWindow(self)
+            self.about_window.transient(
+                self
+            )  # Make the About window transient to the main window
+            self.about_window.grab_set()  # Set input focus to the About window
+            self.about_window.lift()  # Bring the About window to the top
+        else:
+            self.about_window.lift()  # Bring the About window to the top if it already exists
+            self.about_window.focus()  # Focus the About window if it already exists
+
+
+class AboutWindow(ctk.CTkToplevel):
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.geometry("550x400")
+        self.title("About")
+        self._configure_grid()
+        self._create_info()
+
+    def _configure_grid(self):
+        self.grid_columnconfigure(0, weight=1)
+        self.grid_rowconfigure(0, weight=1)
+
+    def _create_info(self):
+        contact_info = _("For any inquiries or issues, please contact:\n")
+        license_text = (
+            (
+                "MIT License\n\n"
+                "Copyright (c) 2024 napHiwka\n\n"
+                "Permission is hereby granted, free of charge, to any person obtaining a copy"
+                'of this software and associated documentation files (the "Software"), to deal'
+                "in the Software without restriction, including without limitation the rights"
+                "to use, copy, modify, merge, publish, distribute, sublicense, and/or sell"
+                "copies of the Software, and to permit persons to whom the Software is"
+                "furnished to do so, subject to the following conditions:\n\n"
+                "The above copyright notice and this permission notice shall be included in all"
+                "copies or substantial portions of the Software.\n\n"
+                'THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR'
+                "IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,"
+                "FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE"
+                "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER"
+                "LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,"
+                "OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE"
+                "SOFTWARE.\n\n"
+            )
+            + contact_info
+            + "napHiwka@example.com"
+        )
+
+        ctk.CTkLabel(self, text=license_text, wraplength=500, justify="left").grid(
+            row=0, column=0, padx=10, pady=10, sticky="nsew"
+        )
 
 
 class RightPanel(ctk.CTkScrollableFrame):
@@ -259,7 +321,9 @@ class MainConverter(ctk.CTk):
         self.settings_panel.grid(row=0, column=1, padx=5, sticky="nsew")
         self.settings_panel.grid_remove()
 
-        self.left_panel = LeftPanel(self, self.right_panel.entries, self)
+        self.left_panel = LeftPanel(
+            self, self.right_panel.entries, self.toggle_settings
+        )
         self.left_panel.grid(row=0, column=0, sticky="nsw")
 
     def toggle_settings(self):
