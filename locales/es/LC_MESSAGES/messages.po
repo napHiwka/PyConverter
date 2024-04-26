@@ -1,4 +1,4 @@
-# Translations template for PROJECT.
+# Spanish translations for PROJECT.
 # Copyright (C) 2024 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
@@ -8,133 +8,133 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-26 18:34+0300\n"
-"PO-Revision-Date: 2024-04-26 18:46+0300\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2024-04-26 18:36+0300\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: es\n"
+"Language-Team: es <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.14.0\n"
-"X-Generator: Poedit 2.2\n"
-"Last-Translator: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: en\n"
 
 #: main.py:39 main.py:123
 msgid "Settings"
-msgstr "Settings"
+msgstr ""
 
 #: main.py:50
 msgid "Temperature"
-msgstr "Temperature"
+msgstr ""
 
 #: main.py:51
 msgid "Area"
-msgstr "Area"
+msgstr ""
 
 #: main.py:52
 msgid "Length"
-msgstr "Length"
+msgstr ""
 
 #: main.py:53
 msgid "Volume"
-msgstr "Volume"
+msgstr ""
 
 #: main.py:54
 msgid "Time"
-msgstr "Time"
+msgstr ""
 
 #: main.py:55
 msgid "Weight"
-msgstr "Weight"
+msgstr ""
 
 #: main.py:56
 msgid "Speed"
-msgstr "Speed"
+msgstr ""
 
 #: main.py:57
 msgid "Force"
-msgstr "Force"
+msgstr ""
 
 #: main.py:58
 msgid "Fuel Consumption"
-msgstr "Fuel Consumption"
+msgstr ""
 
 #: main.py:59
 msgid "Numeral System"
-msgstr "Numeral System"
+msgstr ""
 
 #: main.py:60
 msgid "Pressure"
-msgstr "Pressure"
+msgstr ""
 
 #: main.py:61
 msgid "Energy"
-msgstr "Energy"
+msgstr ""
 
 #: main.py:62
 msgid "Power"
-msgstr "Power"
+msgstr ""
 
 #: main.py:63
 msgid "Angles"
-msgstr "Angles"
+msgstr ""
 
 #: main.py:64
 msgid "Shoe size"
-msgstr "Shoe size"
+msgstr ""
 
 #: main.py:65
 msgid "Digital data"
-msgstr "Digital data"
+msgstr ""
 
 #: main.py:130
 msgid "Language:"
-msgstr "Language:"
+msgstr ""
 
 #: main.py:135
 msgid "English"
-msgstr "English"
+msgstr ""
 
 #: main.py:136
 msgid "German"
-msgstr "German"
+msgstr ""
 
 #: main.py:137
 msgid "French"
-msgstr "French"
+msgstr ""
 
 #: main.py:138
 msgid "Spanish"
-msgstr "Spanish"
+msgstr ""
 
 #: main.py:139
 msgid "Italian"
-msgstr "Italian"
+msgstr ""
 
 #: main.py:140
 msgid "Russian"
-msgstr "Russian"
+msgstr ""
 
 #: main.py:165
 msgid "Appearance:"
-msgstr "Appearance:"
+msgstr ""
 
 #: main.py:169 main.py:183
 msgid "Light"
-msgstr "Light"
+msgstr ""
 
 #: main.py:169 main.py:184
 msgid "Dark"
-msgstr "Dark"
+msgstr ""
 
 #: main.py:169 main.py:185
 msgid "System"
-msgstr "System"
+msgstr ""
 
 #: main.py:193
 msgid "About"
-msgstr "About"
+msgstr ""
 
 #: main.py:224
 msgid "For any inquiries or issues, please contact:\n"
-msgstr "For any inquiries or issues, please contact:\n"
+msgstr ""
+

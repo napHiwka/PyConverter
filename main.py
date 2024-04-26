@@ -6,11 +6,12 @@ from scripts.ctk_stuff import CTkWindowSeparator
 
 
 class LeftPanel(ctk.CTkScrollableFrame):
-    def __init__(self, parent, right_panel_entries, setting_toggle):
+    def __init__(self, parent, right_panel_entries, setting_toggle, walk_widgets):
         super().__init__(parent)
         self._configure_grid()
         self._create_widgets()
         self.setting_toggle = setting_toggle
+        self.walk_widgets = walk_widgets
         self.unit_updater = UnitConversionUpdater(right_panel_entries)
 
     def _configure_grid(self):
@@ -23,7 +24,6 @@ class LeftPanel(ctk.CTkScrollableFrame):
         self._create_label("PyConverter", LARGE_FONT, pady=0)  # Title creation
         self._create_settings_button()
         self._add_conversion_buttons()
-        # self._create_appearance_mode_optionmenu()
 
     def _create_label(self, text, font=SMALL_FONT, row=0, column=0, **grid_kwargs):
         """Create a label with given text, font, row, column and grid_kwargs."""
@@ -84,15 +84,30 @@ class LeftPanel(ctk.CTkScrollableFrame):
         """Toggle between the settings window and the right panel."""
         self.setting_toggle()
 
+    def update_ui(self):
+        """Update the UI with the new language for the LeftPanel."""
+        print("Updating UI for LeftPanel")  # Confirm update_ui is called
+        for widget in self.walk_widgets(self):
+            if isinstance(widget, ctk.CTkLabel) or isinstance(widget, ctk.CTkButton):
+                # Update the text based on the widget's original text attribute
+                original_text = getattr(widget, "_original_text", widget.cget("text"))
+                translated_text = _(original_text)
+                widget.configure(text=translated_text)
+                # Save the original text if it hasn't been saved yet
+                if not hasattr(widget, "_original_text"):
+                    setattr(widget, "_original_text", original_text)
+
 
 class SettingsPanel(ctk.CTkFrame):
-    def __init__(self, parent):
+    def __init__(self, parent, walk_widgets, change_language_method):
         super().__init__(parent)
         self.configure(fg_color="transparent")
         self._configure_grid()
-        self._create_widgets()
-        self.change_language()  # Set the initial language based on the default value
+        self.change_language = change_language_method
+        self.walk_widgets = walk_widgets
+        self.language_variable = ctk.StringVar(value="en")
         self.about_window = None
+        self._create_widgets()
 
     def _configure_grid(self):
         self.grid_columnconfigure(0, uniform="B")
@@ -128,7 +143,9 @@ class SettingsPanel(ctk.CTkFrame):
             ("it", _("Italian")),
             ("ru", _("Russian")),
         )
-        self.language_variable = ctk.StringVar(value=language_options[0][0])
+        self.language_variable.set(
+            language_options[0][0]
+        )  # Set default language to English
 
         # Create a dictionary to map language names to codes
         self.language_name_to_code = {name: code for code, name in language_options}
@@ -138,28 +155,27 @@ class SettingsPanel(ctk.CTkFrame):
             values=[name for code, name in language_options],
             variable=self.language_variable,
             dropdown_font=SMALLEST_FONT,
-            command=lambda name: self.change_language(self.language_name_to_code[name]),
         ).grid(row=1, column=1, sticky="nw", pady=(5, 0), padx=(20, 0))
 
-    def change_language(self, lang_code=None):
-        """Change the language to the selected language."""
-        if lang_code is None:
-            lang_code = self.language_variable.get()
-        print("Changing language to", lang_code)
+        self.language_variable.trace_add("write", self._on_language_change)
 
-        localedir = "locales"  # Path to locales directory
-        domain = "base"  # Name of the .po/.mo files
-        translation = gettext.translation(
-            domain, localedir=localedir, languages=[lang_code], fallback=False
-        )
-        translation.install()
-        global _
-        _ = translation.gettext
-        self.update_ui()  # Call a method to update the UI with the new language
+    def _on_language_change(self, *args):
+        lang_code = self.language_variable.get()
+        print("Language variable changed to:", lang_code)
+        self.change_language(lang_code)
 
     def update_ui(self):
-        """Update the UI with the new language."""
-        pass
+        """Update the UI with the new language for the SettingsPanel."""
+        print("Updating UI for SettingsPanel")
+        for widget in self.walk_widgets(self):
+            if isinstance(widget, ctk.CTkLabel) or isinstance(widget, ctk.CTkButton):
+                # Update the text based on the widget's original text attribute
+                original_text = getattr(widget, "_original_text", widget.cget("text"))
+                translated_text = _(original_text)
+                widget.configure(text=translated_text)
+                # Save the original text if it hasn't been saved yet
+                if not hasattr(widget, "_original_text"):
+                    setattr(widget, "_original_text", original_text)
 
     def _create_appearance_mode_optionmenu(self):
         """Create an option menu for appearance mode."""
@@ -253,11 +269,12 @@ class AboutWindow(ctk.CTkToplevel):
 
 
 class RightPanel(ctk.CTkScrollableFrame):
-    def __init__(self, parent):
+    def __init__(self, parent, walk_widgets):
         super().__init__(parent)
         self.configure(fg_color="transparent")
         self._configure_grid()
         self.entries = self._create_entries()
+        self.walk_widgets = walk_widgets
 
     def _configure_grid(self):
         """Configures the grid for the RightPanel with specified weights and uniform."""
@@ -310,6 +327,19 @@ class RightPanel(ctk.CTkScrollableFrame):
         symbol.grid(row=row + 1, column=column + 1, sticky="w", padx=(5, 0))
         return symbol
 
+    def update_ui(self):
+        """Update the UI with the new language for the RightPanel."""
+        print("Updating UI for RightPanel")
+        for widget in self.walk_widgets(self):
+            if isinstance(widget, ctk.CTkLabel):
+                original_text = getattr(widget, "_original_text", widget.cget("text"))
+                if original_text:  # Check that original_text is not empty
+                    translated_text = _(original_text)
+                    widget.configure(text=translated_text)
+                # Save the original text if it hasn't been saved yet
+                if not hasattr(widget, "_original_text"):
+                    setattr(widget, "_original_text", original_text)
+
 
 class MainConverter(ctk.CTk):
     def __init__(self):
@@ -317,6 +347,7 @@ class MainConverter(ctk.CTk):
         self.title("Converter")
         self.setup_gettext()
         self._setup_ui()
+        self.change_language()
         self.mainloop()
 
     def setup_gettext(self):
@@ -355,15 +386,17 @@ class MainConverter(ctk.CTk):
         self.grid_columnconfigure(1, weight=3)
         self.grid_rowconfigure(0, weight=1)
 
-        self.right_panel = RightPanel(self)
+        self.right_panel = RightPanel(self, self.walk_widgets)
         self.right_panel.grid(row=0, column=1, padx=5, sticky="nsew")
 
-        self.settings_panel = SettingsPanel(self)
+        self.settings_panel = SettingsPanel(
+            self, self.walk_widgets, self.change_language
+        )
         self.settings_panel.grid(row=0, column=1, padx=5, sticky="nsew")
         self.settings_panel.grid_remove()
 
         self.left_panel = LeftPanel(
-            self, self.right_panel.entries, self.toggle_settings
+            self, self.right_panel.entries, self.toggle_settings, self.walk_widgets
         )
         self.left_panel.grid(row=0, column=0, sticky="nsw")
 
@@ -377,6 +410,32 @@ class MainConverter(ctk.CTk):
             # If the settings panel is not visible, hide the right panel and show the settings panel
             self.right_panel.grid_remove()
             self.settings_panel.grid()
+
+    def change_language(self, lang_code=None):
+        print("Changing language to", lang_code)
+        if lang_code is None:
+            lang_code = self.settings_panel.language_variable.get()
+        localedir = "locales"
+        domain = "base"
+        translation = gettext.translation(
+            domain, localedir=localedir, languages=[lang_code], fallback=True
+        )
+        translation.install()
+        global _
+        _ = translation.gettext
+        print("Translation object:", translation)  # Print the translation object
+
+        # Update the UI for all panels
+        self.left_panel.update_ui()
+        self.right_panel.update_ui()
+        self.settings_panel.update_ui()
+
+    def walk_widgets(self, parent):
+        """Generator function to walk through all child widgets of a given parent widget."""
+        for child in parent.winfo_children():
+            yield child
+            if child.winfo_children():
+                yield from self.walk_widgets(child)
 
 
 if __name__ == "__main__":

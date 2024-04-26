@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-26 18:34+0300\n"
-"PO-Revision-Date: 2024-04-26 18:46+0300\n"
+"PO-Revision-Date: 2024-04-26 18:49+0300\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,115 +17,115 @@ msgstr ""
 "X-Generator: Poedit 2.2\n"
 "Last-Translator: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: en\n"
+"Language: de\n"
 
 #: main.py:39 main.py:123
 msgid "Settings"
-msgstr "Settings"
+msgstr "Einstellungen"
 
 #: main.py:50
 msgid "Temperature"
-msgstr "Temperature"
+msgstr "Temperatur"
 
 #: main.py:51
 msgid "Area"
-msgstr "Area"
+msgstr "Bereich"
 
 #: main.py:52
 msgid "Length"
-msgstr "Length"
+msgstr "Länge"
 
 #: main.py:53
 msgid "Volume"
-msgstr "Volume"
+msgstr "Band"
 
 #: main.py:54
 msgid "Time"
-msgstr "Time"
+msgstr "Zeit"
 
 #: main.py:55
 msgid "Weight"
-msgstr "Weight"
+msgstr "Gewicht"
 
 #: main.py:56
 msgid "Speed"
-msgstr "Speed"
+msgstr "Geschwindigkeit"
 
 #: main.py:57
 msgid "Force"
-msgstr "Force"
+msgstr "Kraft"
 
 #: main.py:58
 msgid "Fuel Consumption"
-msgstr "Fuel Consumption"
+msgstr "Kraftstoffverbrauch"
 
 #: main.py:59
 msgid "Numeral System"
-msgstr "Numeral System"
+msgstr "Ziffernsystem"
 
 #: main.py:60
 msgid "Pressure"
-msgstr "Pressure"
+msgstr "Druck"
 
 #: main.py:61
 msgid "Energy"
-msgstr "Energy"
+msgstr "Energie"
 
 #: main.py:62
 msgid "Power"
-msgstr "Power"
+msgstr "Strom"
 
 #: main.py:63
 msgid "Angles"
-msgstr "Angles"
+msgstr "Winkel"
 
 #: main.py:64
 msgid "Shoe size"
-msgstr "Shoe size"
+msgstr "Schuhgröße"
 
 #: main.py:65
 msgid "Digital data"
-msgstr "Digital data"
+msgstr "Digitale Daten"
 
 #: main.py:130
 msgid "Language:"
-msgstr "Language:"
+msgstr "Sprache:"
 
 #: main.py:135
 msgid "English"
-msgstr "English"
+msgstr "Englisch"
 
 #: main.py:136
 msgid "German"
-msgstr "German"
+msgstr "Deutsch"
 
 #: main.py:137
 msgid "French"
-msgstr "French"
+msgstr "Französisch"
 
 #: main.py:138
 msgid "Spanish"
-msgstr "Spanish"
+msgstr "Spanisch"
 
 #: main.py:139
 msgid "Italian"
-msgstr "Italian"
+msgstr "Italienisch"
 
 #: main.py:140
 msgid "Russian"
-msgstr "Russian"
+msgstr "Russisch"
 
 #: main.py:165
 msgid "Appearance:"
-msgstr "Appearance:"
+msgstr "Erscheinungsbild:"
 
 #: main.py:169 main.py:183
 msgid "Light"
-msgstr "Light"
+msgstr "Licht"
 
 #: main.py:169 main.py:184
 msgid "Dark"
-msgstr "Dark"
+msgstr "Dunkelheit"
 
 #: main.py:169 main.py:185
 msgid "System"
@@ -133,8 +133,8 @@ msgstr "System"
 
 #: main.py:193
 msgid "About"
-msgstr "About"
+msgstr "Über"
 
 #: main.py:224
 msgid "For any inquiries or issues, please contact:\n"
-msgstr "For any inquiries or issues, please contact:\n"
+msgstr "Bei Fragen oder Problemen wenden Sie sich bitte an:\n"
