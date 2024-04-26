@@ -1,8 +1,9 @@
 import customtkinter as ctk
 import gettext
-from scripts.settings import *
-from scripts.unit_conversion_updater import UnitConversionUpdater
-from scripts.ctk_stuff import CTkWindowSeparator
+
+from src.utils.unit_conversion_updater import UnitConversionUpdater
+from src.utils.ctk_separator import CTkWindowSeparator
+from src.utils.settings import *
 
 
 class LeftPanel(ctk.CTkScrollableFrame):
@@ -415,7 +416,7 @@ class MainConverter(ctk.CTk):
         print("Changing language to", lang_code)
         if lang_code is None:
             lang_code = self.settings_panel.language_variable.get()
-        localedir = "locales"
+        localedir = "src/locales"
         domain = "base"
         translation = gettext.translation(
             domain, localedir=localedir, languages=[lang_code], fallback=True

@@ -8,12 +8,12 @@ class UnitConversionParser:
         sets the default category to the first key in the dictionary.
         """
         self.unit_files = {
-            "temperature": "data/temperature_units.yaml",
-            "area": "data/area_units.yaml",
-            "length": "data/length_units.yaml",
-            "volume": "data/volume_units.yaml",
-            "time": "data/time_units.yaml",
-            "weight": "data/weight_units.yaml",
+            "temperature": "src/data/temperature_units.yaml",
+            "area": "src/data/area_units.yaml",
+            "length": "src/data/length_units.yaml",
+            "volume": "src/data/volume_units.yaml",
+            "time": "src/data/time_units.yaml",
+            "weight": "src/data/weight_units.yaml",
         }
         self.default_category = next(
             iter(self.unit_files)

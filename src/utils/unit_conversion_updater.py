@@ -1,6 +1,6 @@
 import numexpr
 import customtkinter as ctk
-from scripts.unit_conversion_parser import UnitConversionParser
+from src.utils.unit_conversion_parser import UnitConversionParser
 
 
 class UnitConversionUpdater:

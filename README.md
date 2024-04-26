@@ -9,7 +9,7 @@ This program is a unit converter with a graphical user interface that enables us
 # README.md
 
 - en [English](README.md)
-- ru [Русский](readme/README_ru.md)
+- ru [Русский](docs/README_ru.md)
 
 ---
 
