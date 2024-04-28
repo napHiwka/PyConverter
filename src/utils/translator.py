@@ -11,6 +11,7 @@ class Translator:
         self.domain = domain
         self.localedir = localedir
         self.default_lang = default_lang
+        self.current_lang = None
         self.translation = None
         self.setup_gettext()
 
@@ -20,12 +21,14 @@ class Translator:
         self.translation = gettext.translation(
             self.domain, self.localedir, languages=[self.default_lang], fallback=True
         )
+        self.current_lang = self.default_lang
         self.translation.install()
 
     def change_language(self, lang_code):
         self.translation = gettext.translation(
             self.domain, self.localedir, languages=[lang_code], fallback=True
         )
+        self.current_lang = lang_code
         self.translation.install()
 
     def gettext(self, message):
