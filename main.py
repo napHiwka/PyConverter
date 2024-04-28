@@ -71,7 +71,7 @@ class MainConverter(ctk.CTk):
 
     def change_language_on_panels(self, lang_code=None):
         if lang_code is None:
-            lang_code = self.settings_panel.current_lang.get()
+            lang_code = self.settings_panel.current_lang_code
         translator.change_language(lang_code)
 
         self.left_panel.update_ui()
@@ -168,14 +168,18 @@ class SettingsPanel(ctk.CTkFrame):
         ("it", "Italian"),
         ("ru", "Russian"),
     )
-    TRANSLATED_LANGUAGE_NAMES = {code: name for code, name in LANGUAGE_OPTIONS}
+    TRANSLATED_LANGUAGE_NAMES = {code: _(name) for code, name in LANGUAGE_OPTIONS}
     APPEARANCE_OPTIONS = (_("Light"), (_("Dark")), (_("System")))
 
     def __init__(self, parent, change_language_method):
         super().__init__(parent)
         self.change_language = change_language_method
 
-        self.current_lang = ctk.StringVar(value=self.LANGUAGE_OPTIONS[0][1])
+        self.current_lang_code = self.LANGUAGE_OPTIONS[0][0]
+        self.current_lang_name = ctk.StringVar(
+            value=self.TRANSLATED_LANGUAGE_NAMES[self.current_lang_code]
+        )
+        self.language_codes = {_(name): code for code, name in self.LANGUAGE_OPTIONS}
         self.current_appearance = ctk.StringVar(value=self.APPEARANCE_OPTIONS[2])
         self.about_window = None
         self.configure(fg_color="transparent")
@@ -210,23 +214,23 @@ class SettingsPanel(ctk.CTkFrame):
 
         ctk.CTkOptionMenu(
             self,
-            values=[_(name) for code, name in self.LANGUAGE_OPTIONS],
-            variable=self.current_lang,
+            values=list(self.TRANSLATED_LANGUAGE_NAMES.values()),
+            variable=self.current_lang_name,
             dropdown_font=SMALLEST_FONT,
         ).grid(row=1, column=1, sticky="nw", pady=(5, 0), padx=(20, 0))
 
-        self.current_lang.trace_add("write", self._on_language_change)
+        self.current_lang_name.trace_add("write", self._on_language_change)
 
     def _on_language_change(self, *args):
-        selected_lang_name = self.current_lang.get()
+        selected_lang_name = self.current_lang_name.get()
+        self.current_lang_code = self.language_codes.get(selected_lang_name, "en")
+        self.change_language(self.current_lang_code)
         self.TRANSLATED_LANGUAGE_NAMES = {
             code: _(name) for code, name in self.LANGUAGE_OPTIONS
         }
-        for code, translated_name in self.TRANSLATED_LANGUAGE_NAMES.items():
-            if translated_name == selected_lang_name:
-                lang_code = code
-                break
-        self.change_language(lang_code)  # Change the language
+        self.current_lang_name.set(
+            self.TRANSLATED_LANGUAGE_NAMES[self.current_lang_code]
+        )
 
     def update_ui(self):
         """Update the UI with the new language for the SettingsPanel."""
@@ -238,16 +242,13 @@ class SettingsPanel(ctk.CTkFrame):
                     setattr(widget, "_original_text", original_text)
                 widget.configure(text=_(original_text))
             elif isinstance(widget, ctk.CTkOptionMenu):
-                if widget.cget("variable") == self.current_lang:
-                    translated_values = [
-                        _(name) for code, name in self.LANGUAGE_OPTIONS
+                if widget.cget("variable") == self.current_lang_name:
+                    translated_values = list(self.TRANSLATED_LANGUAGE_NAMES.values())
+                    translated_variable = self.TRANSLATED_LANGUAGE_NAMES[
+                        self.current_lang_code
                     ]
-
-                    # translated_variable = _(self.current_lang.get())
-                    print("Original value:", self.current_lang.get())
-                    # print("Translated value:", translated_variable)
-                    widget.configure(values=tuple(translated_values))
-                    # widget.set(translated_variable)
+                    widget.configure(values=translated_values)
+                    widget.set(translated_variable)
                 elif widget.cget("variable") == self.current_appearance:
                     pass
 
