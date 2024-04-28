@@ -136,7 +136,10 @@ class LeftPanel(ctk.CTkScrollableFrame):
         button = ctk.CTkButton(
             self,
             text=text,
+            fg_color="transparent",
+            border_color="red",
             font=SMALL_FONT,
+            corner_radius=10,
             command=lambda t=text: self._button_event(t),
         )
         button.grid(row=row, column=0, padx=20, pady=3)
@@ -169,7 +172,12 @@ class SettingsPanel(ctk.CTkFrame):
         ("ru", "Russian"),
     )
     TRANSLATED_LANGUAGE_NAMES = {code: _(name) for code, name in LANGUAGE_OPTIONS}
-    APPEARANCE_OPTIONS = (_("Light"), (_("Dark")), (_("System")))
+    APPEARANCE_OPTIONS = ("Light", "Dark", "System")
+    APPEARANCE_OPTIONS_TRANSLATED = {
+        "Light": _("Light"),
+        "Dark": _("Dark"),
+        "System": _("System"),
+    }
 
     def __init__(self, parent, change_language_method):
         super().__init__(parent)
@@ -180,7 +188,10 @@ class SettingsPanel(ctk.CTkFrame):
             value=self.TRANSLATED_LANGUAGE_NAMES[self.current_lang_code]
         )
         self.language_codes = {_(name): code for code, name in self.LANGUAGE_OPTIONS}
-        self.current_appearance = ctk.StringVar(value=self.APPEARANCE_OPTIONS[2])
+        self.current_appearance = ctk.StringVar(
+            value=_("System")
+        )  # Use translated value
+        self.appearance_options = {_(name): name for name in self.APPEARANCE_OPTIONS}
         self.about_window = None
         self.configure(fg_color="transparent")
         self._configure_grid()
@@ -250,7 +261,37 @@ class SettingsPanel(ctk.CTkFrame):
                     widget.configure(values=translated_values)
                     widget.set(translated_variable)
                 elif widget.cget("variable") == self.current_appearance:
-                    pass
+                    self._update_appearance_options_translated()
+                    self._update_appearance_options()
+
+    def _update_appearance_options_translated(self):
+        """Update the translated appearance options dictionary."""
+        self.APPEARANCE_OPTIONS_TRANSLATED = {
+            option: _(option) for option in self.APPEARANCE_OPTIONS
+        }
+
+        # Update the appearance option menu with the new translated values
+        appearance_option_menu = self._get_appearance_option_menu()
+        if appearance_option_menu:
+            translated_values = list(self.APPEARANCE_OPTIONS_TRANSLATED.values())
+            appearance_option_menu.configure(values=translated_values)
+            appearance_option_menu.set(
+                _(self.current_appearance.get())
+            )  # Use translated value
+
+    def _update_appearance_options(self):
+        """Update the appearance options dictionary with the translated values."""
+        self.appearance_options = {_(name): name for name in self.APPEARANCE_OPTIONS}
+
+    def _get_appearance_option_menu(self):
+        """Get the appearance option menu widget."""
+        for widget in walk_widgets(self):
+            if (
+                isinstance(widget, ctk.CTkOptionMenu)
+                and widget.cget("variable") == self.current_appearance
+            ):
+                return widget
+        return None
 
     def _create_appearance_mode_optionmenu(self):
         """Create an option menu for appearance mode."""
@@ -260,14 +301,16 @@ class SettingsPanel(ctk.CTkFrame):
 
         ctk.CTkOptionMenu(
             self,
-            values=self.APPEARANCE_OPTIONS,
+            values=list(self.APPEARANCE_OPTIONS_TRANSLATED.values()),
             variable=self.current_appearance,
             dropdown_font=SMALLEST_FONT,
             command=self._change_appearance_mode,
         ).grid(row=2, column=1, sticky="nw", pady=(5, 0), padx=(20, 0))
 
     def _change_appearance_mode(self, *args):
-        new_mode = self.current_appearance.get()
+        translated_mode = self.current_appearance.get()
+        # Use the translated value to get the original English value
+        new_mode = self.appearance_options[translated_mode]
         ctk.set_appearance_mode(new_mode)
 
     def _create_about_button(self):
