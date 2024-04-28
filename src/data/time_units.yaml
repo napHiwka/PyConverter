@@ -136,7 +136,7 @@ time_units:
     to_millennium: "{val} / 8760000"
 
   - name: Days
-    symbol: days
+    symbol: 
     to_seconds: "{val} * 86400"
     to_deciseconds: "{val} * 864000"
     to_centiseconds: "{val} * 8640000"
@@ -153,7 +153,7 @@ time_units:
     to_millennium: "{val} / 365000"
 
   - name: Weeks
-    symbol: weeks
+    symbol: 
     to_seconds: "{val} * 604800"
     to_deciseconds: "{val} * 6048000"
     to_centiseconds: "{val} * 60480000"
@@ -170,7 +170,7 @@ time_units:
     to_millennium: "{val} / 52142.9"
 
   - name: Years 365
-    symbol: years
+    symbol: 
     to_seconds: "{val} * 31536000"
     to_deciseconds: "{val} * 315360000"
     to_centiseconds: "{val} * 3153600000"
@@ -187,7 +187,7 @@ time_units:
     to_millennium: "{val} / 1000"
 
   - name: Lustrum
-    symbol: lustrum
+    symbol: 
     to_seconds: "{val} * 157680000"
     to_deciseconds: "{val} * 1576800000"
     to_centiseconds: "{val} * 15768000000"
@@ -204,7 +204,7 @@ time_units:
     to_millennium: "{val} / 200"
 
   - name: Decades
-    symbol: decades
+    symbol: 
     to_seconds: "{val} * 315360000"
     to_deciseconds: "{val} * 3153600000"
     to_centiseconds: "{val} * 31536000000"
@@ -221,7 +221,7 @@ time_units:
     to_millennium: "{val} / 100"
 
   - name: Centuries
-    symbol: centuries
+    symbol: 
     to_seconds: "{val} * 3153600000"
     to_deciseconds: "{val} * 31536000000"
     to_centiseconds: "{val} * 315360000000"
@@ -238,7 +238,7 @@ time_units:
     to_millennium: "{val} / 10"
 
   - name: Millennium
-    symbol: millennium
+    symbol: 
     to_seconds: "{val} * 31536000000"
     to_deciseconds: "{val} * 315360000000"
     to_centiseconds: "{val} * 3153600000000"

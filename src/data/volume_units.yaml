@@ -40,7 +40,7 @@ volume_units:
     to_cubic_millimeters: "{val} * 1e+6"
 
   - name: Imperial Gallons
-    symbol: gal (UK)
+    symbol: gal
     to_cubic_meters: "{val} * 0.00454609"
     to_liters: "{val} * 4.54609"
     to_us_gallons: "{val} * 1.20095"
@@ -60,7 +60,7 @@ volume_units:
     to_cubic_millimeters: "{val} * 4.54609e+6"
 
   - name: US Gallons
-    symbol: gal (US)
+    symbol: gal
     to_cubic_meters: "{val} * 0.00378541"
     to_liters: "{val} * 3.78541"
     to_imperial_gallons: "{val} * 0.832674"
@@ -80,7 +80,7 @@ volume_units:
     to_cubic_millimeters: "{val} * 3.78541e+6"
 
   - name: Imperial Pints
-    symbol: pt (UK)
+    symbol: pt
     to_cubic_meters: "{val} * 0.000568261"
     to_liters: "{val} * 0.568261"
     to_imperial_gallons: "{val} * 0.125"
@@ -100,7 +100,7 @@ volume_units:
     to_cubic_millimeters: "{val} * 568261"
 
   - name: Imperial Fluid Ounces
-    symbol: fl oz (UK)
+    symbol: fl oz
     to_cubic_meters: "{val} * 2.84131e-5"
     to_liters: "{val} * 0.0284131"
     to_imperial_gallons: "{val} * 0.00625"
@@ -120,7 +120,7 @@ volume_units:
     to_cubic_millimeters: "{val} * 28413.1"
 
   - name: Imperial Gill
-    symbol: gi (UK)
+    symbol: gi
     to_cubic_meters: "{val} * 0.000142065"
     to_liters: "{val} * 0.142065"
     to_imperial_gallons: "{val} * 0.03125"
@@ -140,7 +140,7 @@ volume_units:
     to_cubic_millimeters: "{val} * 142065"
 
   - name: US Pints
-    symbol: pt (US)
+    symbol: pt
     to_cubic_meters: "{val} * 0.000473176"
     to_liters: "{val} * 0.473176"
     to_imperial_gallons: "{val} * 0.104032"
@@ -160,7 +160,7 @@ volume_units:
     to_cubic_millimeters: "{val} * 473176"
 
   - name: US Fluid Ounces
-    symbol: fl oz (US)
+    symbol: fl oz
     to_cubic_meters: "{val} * 2.95735e-5"
     to_liters: "{val} * 0.0295735"
     to_imperial_gallons: "{val} * 0.00650527"
@@ -180,7 +180,7 @@ volume_units:
     to_cubic_millimeters: "{val} * 29573.5"
 
   - name: US Gill
-    symbol: gi (US)
+    symbol: gi
     to_cubic_meters: "{val} * 0.000118294"
     to_liters: "{val} * 0.118294"
     to_imperial_gallons: "{val} * 0.0260213"
@@ -220,7 +220,7 @@ volume_units:
     to_cubic_millimeters: "{val} * 1000"
 
   - name: Tablespoons US
-    symbol: tbsp (US)
+    symbol: tbsp
     to_cubic_meters: "{val} * 1.47868e-5"
     to_liters: "{val} * 0.0147868"
     to_imperial_gallons: "{val} * 0.00000325263"
@@ -240,7 +240,7 @@ volume_units:
     to_cubic_millimeters: "{val} * 14786.8"
 
   - name: Australian Tablespoons
-    symbol: tbsp (AU)
+    symbol: tbsp
     to_cubic_meters: "{val} * 1.49903e-5"
     to_liters: "{val} * 0.0149903"
     to_imperial_gallons: "{val} * 0.00000329719"

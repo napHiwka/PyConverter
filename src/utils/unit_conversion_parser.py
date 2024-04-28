@@ -32,7 +32,7 @@ class UnitConversionParser:
         if category is None:
             category = self.default_category
 
-        category_key = self._translate_category(category)
+        category_key = category.lower()
         unit_data = self._load_unit_data(category_key)
         units = unit_data.get(f"{category_key}_units", [])
         return {
@@ -42,26 +42,6 @@ class UnitConversionParser:
             for unit in units
         }
 
-    def _translate_category(self, category):  # TODO: implement
-        """
-        Translates category name to English equivalent if in Russian. Temporary solution.
-
-        Args:
-            category (str): The category name to translate.
-
-        Returns:
-            str: The English equivalent of the category name.
-        """
-        translation_map = {
-            "температура": "temperature",
-            "площадь": "area",
-            "длина": "length",
-            "объём": "volume",
-            "время": "time",
-            "вес": "weight",
-        }
-        return translation_map.get(category.lower(), category.lower())
-
     def _load_unit_data(self, category_key):
         """
         Loads unit data from the file corresponding to the given category key.
@@ -70,15 +50,14 @@ class UnitConversionParser:
             category_key (str): The key representing the category of units.
 
         Raises:
-            FileNotFoundError: If no file path is found for the given category key.
             ValueError: If there is an error parsing the YAML file.
 
         Returns:
             dict: A dictionary containing the unit data.
         """
-        file_path = self.unit_files.get(category_key)
-        if not file_path:
-            raise FileNotFoundError(f"No file path found for '{category_key}'.")
+        file_path = self.unit_files.get(
+            category_key, self.unit_files.get(self.default_category)
+        )
         try:
             with open(file_path, "r", encoding="utf-8") as f:
                 return yaml.safe_load(f)

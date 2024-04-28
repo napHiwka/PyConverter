@@ -56,7 +56,7 @@ area_units:
     to_are: "{val} * 0.0009290304"
 
   - name: Square Feet US survey
-    symbol: ft² (US survey)
+    symbol: ft²
     to_square_meters: "{val} * 0.0929034116"
     to_square_centimeters: "{val} * 929.03041667"
     to_square_inches: "{val} * 144"

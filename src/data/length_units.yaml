@@ -80,7 +80,7 @@ length_units:
     to_parsecs: "{val} * 9.8748871498e-20"
 
   - name: Feet US survey
-    symbol: ft (US survey)
+    symbol: ft
     to_meters: "{val} * 0.304800609601"
     to_centimeters: "{val} * 30.4800609601"
     to_inches: "{val} * 12.0000024001"

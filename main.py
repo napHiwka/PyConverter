@@ -138,6 +138,8 @@ class LeftPanel(ctk.CTkScrollableFrame):
             text=text,
             fg_color="transparent",
             border_color="red",
+            text_color=("#000000", "#FFFFFF"),
+            hover_color="#15905b",
             font=SMALL_FONT,
             corner_radius=10,
             command=lambda t=text: self._button_event(t),
@@ -188,9 +190,7 @@ class SettingsPanel(ctk.CTkFrame):
             value=self.TRANSLATED_LANGUAGE_NAMES[self.current_lang_code]
         )
         self.language_codes = {_(name): code for code, name in self.LANGUAGE_OPTIONS}
-        self.current_appearance = ctk.StringVar(
-            value=_("System")
-        )  # Use translated value
+        self.current_appearance = ctk.StringVar(value=_("System"))
         self.appearance_options = {_(name): name for name in self.APPEARANCE_OPTIONS}
         self.about_window = None
         self.configure(fg_color="transparent")
@@ -423,7 +423,7 @@ class RightPanel(ctk.CTkScrollableFrame):
             text="",
             height=20,
             font=SMALLEST_FONT,
-            text_color=("gray52", "gray62"),
+            text_color=("#000000", "gray62"),
         )
         label.grid(row=row, column=column, padx=(0, 5), pady=10, sticky="se")
         return label
