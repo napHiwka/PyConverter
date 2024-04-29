@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-29 14:10+0300\n"
+"POT-Creation-Date: 2024-04-29 23:16+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,7 +38,7 @@ msgid "Time"
 msgstr ""
 
 #: main.py:89
-msgid "Weight"
+msgid "Mass"
 msgstr ""
 
 #: main.py:90
@@ -83,6 +83,30 @@ msgstr ""
 
 #: main.py:125 main.py:215
 msgid "Settings"
+msgstr ""
+
+#: main.py:169
+msgid "English"
+msgstr ""
+
+#: main.py:170
+msgid "German"
+msgstr ""
+
+#: main.py:171
+msgid "French"
+msgstr ""
+
+#: main.py:172
+msgid "Spanish"
+msgstr ""
+
+#: main.py:173
+msgid "Italian"
+msgstr ""
+
+#: main.py:174
+msgid "Russian"
 msgstr ""
 
 #: main.py:179
@@ -255,7 +279,7 @@ msgstr ""
 msgid "Astronomical Units"
 msgstr ""
 
-msgid "Light-years"
+msgid "Light years"
 msgstr ""
 
 msgid "Parsec"

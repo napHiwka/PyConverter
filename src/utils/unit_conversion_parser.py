@@ -13,7 +13,7 @@ class UnitConversionParser:
             "length": "src/data/length_units.yaml",
             "volume": "src/data/volume_units.yaml",
             "time": "src/data/time_units.yaml",
-            "weight": "src/data/weight_units.yaml",
+            "mass": "src/data/mass_units.yaml",
         }
         self.default_category = next(
             iter(self.unit_files)

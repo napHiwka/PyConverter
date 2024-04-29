@@ -122,7 +122,7 @@ class LeftPanel(ctk.CTkScrollableFrame):
 
     def _create_settings_button(self):
         settings_button = ctk.CTkButton(
-            self, text=_("Settings"), font=SMALL_FONT, command=self._open_settings
+            self, text=(_("Settings")), font=SMALL_FONT, command=self._open_settings
         )
         settings_button.grid(row=1, column=0, padx=0, pady=5)
         separator = CTkWindowSeparator(self, size=3, length=80, color="#878787")
@@ -166,12 +166,12 @@ class LeftPanel(ctk.CTkScrollableFrame):
 
 class SettingsPanel(ctk.CTkFrame):
     LANGUAGE_OPTIONS = (
-        ("en", "English"),
-        ("de", "German"),
-        ("fr", "French"),
-        ("es", "Spanish"),
-        ("it", "Italian"),
-        ("ru", "Russian"),
+        ("en", _("English")),
+        ("de", _("German")),
+        ("fr", _("French")),
+        ("es", _("Spanish")),
+        ("it", _("Italian")),
+        ("ru", _("Russian")),
     )
     TRANSLATED_LANGUAGE_NAMES = {code: _(name) for code, name in LANGUAGE_OPTIONS}
     APPEARANCE_OPTIONS = ("Light", "Dark", "System")

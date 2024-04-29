@@ -4,8 +4,8 @@ time_units:
     to_deciseconds: "{val} * 10"
     to_centiseconds: "{val} * 100"
     to_milliseconds: "{val} * 1000"
-    to_microseconds: "{val} * 1e+6"
-    to_nanoseconds: "{val} * 1e+9"
+    to_microseconds: "{val} * 1000000"
+    to_nanoseconds: "{val} * 1000000000"
     to_minutes: "{val} / 60"
     to_hours: "{val} / 3600"
     to_days: "{val} / 86400"
@@ -119,7 +119,7 @@ time_units:
     to_millennium: "{val} / 525600000"
 
   - name: Hours
-    symbol: hr
+    symbol: h
     to_seconds: "{val} * 3600"
     to_deciseconds: "{val} * 36000"
     to_centiseconds: "{val} * 360000"
@@ -136,7 +136,7 @@ time_units:
     to_millennium: "{val} / 8760000"
 
   - name: Days
-    symbol: 
+    symbol: d
     to_seconds: "{val} * 86400"
     to_deciseconds: "{val} * 864000"
     to_centiseconds: "{val} * 8640000"
@@ -170,7 +170,7 @@ time_units:
     to_millennium: "{val} / 52142.9"
 
   - name: Years 365
-    symbol: 
+    symbol: a
     to_seconds: "{val} * 31536000"
     to_deciseconds: "{val} * 315360000"
     to_centiseconds: "{val} * 3153600000"
@@ -221,7 +221,7 @@ time_units:
     to_millennium: "{val} / 100"
 
   - name: Centuries
-    symbol: 
+    symbol: c.
     to_seconds: "{val} * 3153600000"
     to_deciseconds: "{val} * 31536000000"
     to_centiseconds: "{val} * 315360000000"
