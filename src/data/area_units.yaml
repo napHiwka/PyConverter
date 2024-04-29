@@ -3,43 +3,44 @@ area_units:
     symbol: m²
     to_square_centimeters: "{val} * 10000"
     to_square_inches: "{val} * 1550.0031"
-    to_square_feet: "{val} * 10.763910417"
-    to_square_feet_us_survey: "{val} * 10.00000000"
+    to_square_feet: "{val} * 10.76391042"
+    to_square_feet_us_survey: "{val} * 10.76386736"
     to_square_millimeters: "{val} * 1000000"
     to_hectares: "{val} * 0.0001"
     to_square_kilometers: "{val} * 0.000001"
-    to_square_yard: "{val} * 1.1959900463"
-    to_square_miles: "{val} * 3.8610215859e-7"
-    to_acres: "{val} * 0.00024710538"
+    to_square_yard: "{val} * 1.195990046"
+    to_square_miles: "{val} * 3.861021585e-7"
+    to_acres: "{val} * 0.0002471053815"
     to_are: "{val} * 0.01"
+
 
   - name: Square Centimeters
     symbol: cm²
     to_square_meters: "{val} * 0.0001"
     to_square_inches: "{val} * 0.15500031"
-    to_square_feet: "{val} * 0.0010763910417"
-    to_square_feet_us_survey: "{val} * 0.001"
+    to_square_feet: "{val} * 0.001076391042"
+    to_square_feet_us_survey: "{val} * 0.001076386736"
     to_square_millimeters: "{val} * 100"
     to_hectares: "{val} * 1e-8"
     to_square_kilometers: "{val} * 1e-10"
-    to_square_yard: "{val} * 0.00011959900463"
-    to_square_miles: "{val} * 3.8610215859e-11"
-    to_acres: "{val} * 2.4710538e-8"
+    to_square_yard: "{val} * 0.0001195990046"
+    to_square_miles: "{val} * 3.861021585e-11"
+    to_acres: "{val} * 2.471053815e-8"
     to_are: "{val} * 0.000001"
 
   - name: Square Inches
     symbol: in²
     to_square_meters: "{val} * 0.00064516"
     to_square_centimeters: "{val} * 6.4516"
-    to_square_feet: "{val} * 0.0069444444444"
-    to_square_feet_us_survey: "{val} * 0.0064516"
+    to_square_feet: "{val} * 0.006944444444"
+    to_square_feet_us_survey: "{val} * 0.006944416667"
     to_square_millimeters: "{val} * 645.16"
     to_hectares: "{val} * 6.4516e-8"
     to_square_kilometers: "{val} * 6.4516e-10"
-    to_square_yard: "{val} * 0.00077160493827"
+    to_square_yard: "{val} * 0.0007716049383"
     to_square_miles: "{val} * 2.490976686e-10"
-    to_acres: "{val} * 1.59422508e-7"
-    to_are: "{val} * 6.4516e-6"
+    to_acres: "{val} * 1.594225079e-7"
+    to_are: "{val} * 0.0000064516"
 
   - name: Square Feet
     symbol: ft²
@@ -81,7 +82,7 @@ area_units:
     to_square_yard: "{val} * 0.0000011959900463"
     to_square_miles: "{val} * 3.8610215859e-13"
     to_acres: "{val} * 2.4710538e-10"
-    to_are: "{val} * 1e-8"
+    to_are: "{val} * 0.00000001"
 
   - name: Hectares
     symbol: ha
@@ -97,17 +98,17 @@ area_units:
     to_acres: "{val} * 2.4710538"
     to_are: "{val} * 100"
 
-  - name: Square kilometers
+  - name: Square Kilometers
     symbol: km²
     to_square_meters: "{val} * 1000000"
     to_square_centimeters: "{val} * 10000000000"
-    to_square_inches: "{val} * 1550003100"
-    to_square_feet: "{val} * 10763910.41671"
-    to_square_feet_us_survey: "{val} * 10000000"
+    to_square_inches: "{val} * 1.55e+10"
+    to_square_feet: "{val} * 1.0764e+7"
+    to_square_feet_us_survey: "{val} * 1.00e+7"
     to_square_millimeters: "{val} * 1000000000000"
     to_hectares: "{val} * 100"
-    to_square_yard: "{val} * 1195990.0463"
-    to_square_miles: "{val} * 0.38610215859"
+    to_square_yard: "{val} * 1.196e+6"
+    to_square_miles: "{val} * 0.3861"
     to_acres: "{val} * 247.10538147"
     to_are: "{val} * 10000"
 

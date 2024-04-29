@@ -86,7 +86,7 @@ class LeftPanel(ctk.CTkScrollableFrame):
         (_("Length")),
         (_("Volume")),
         (_("Time")),
-        (_("Weight")),
+        (_("Mass")),
         (_("Speed")),
         (_("Force")),
         (_("Fuel Consumption")),
@@ -112,7 +112,7 @@ class LeftPanel(ctk.CTkScrollableFrame):
         self.grid_rowconfigure(0, weight=1)
 
     def _create_widgets(self):
-        self._create_label("PyConverter", LARGE_FONT, pady=0)
+        self._create_label("PyConvert", LARGE_FONT, pady=0)
         self._create_settings_button()
         self._add_conversion_buttons()
 
@@ -403,7 +403,7 @@ class RightPanel(ctk.CTkScrollableFrame):
         """Creates entries for the RightPanel and returns them as a list of tuples.
         Each tuple contains an entry, its symbol, its text, and its variable."""
         entries_list = [
-            (self._create_entry(r, c)) for r in range(0, 16, 2) for c in [0, 2]
+            (self._create_entry(r, c)) for r in range(0, 18, 2) for c in [0, 2]
         ]
         return entries_list
 

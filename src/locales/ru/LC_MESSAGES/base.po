@@ -45,7 +45,7 @@ msgstr "Время"
 
 #: main.py:55
 msgid "Weight"
-msgstr "Вес"
+msgstr "Масса"
 
 #: main.py:56
 msgid "Speed"
