@@ -14,6 +14,7 @@ class UnitConversionParser:
             "volume": "src/data/volume_units.yaml",
             "time": "src/data/time_units.yaml",
             "mass": "src/data/mass_units.yaml",
+            "speed": "src/data/speed_units.yaml",
         }
         self.default_category = next(
             iter(self.unit_files)

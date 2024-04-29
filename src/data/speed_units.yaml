@@ -1,0 +1,51 @@
+speed_units:
+  - name: Meters per Second
+    symbol: m/s
+    to_kilometers_per_hour: "{val} * 3.6"
+    to_miles_per_hour: "{val} * 2.236936292"
+    to_knots: "{val} * 1.943844492"
+    to_minutes_per_kilometer: "{val} * 16.66666667"
+    to_feet_per_second: "{val} * 3.280839895"
+
+  
+  - name: Kilometers per Hour
+    symbol: km/h
+    to_meters_per_second: "{val} * 0.2777777778"
+    to_miles_per_hour: "{val} * 0.6213711922"
+    to_knots: "{val} * 0.5399568035"
+    to_minutes_per_kilometer: "{val} * 60"
+    to_feet_per_second: "{val} * 0.9113444153"
+
+  - name: Miles per Hour
+    symbol: mph
+    to_meters_per_second: "{val} * 0.44704"
+    to_kilometers_per_hour: "{val} * 1.609344"
+    to_knots: "{val} * 0.8689762419"
+    to_minutes_per_kilometer: "{val} * 37.28227153"
+    to_feet_per_second: "{val} * 1.466666667"
+
+  
+  - name: Knots
+    symbol: knots
+    to_meters_per_second: "{val} * 0.5144444444"
+    to_kilometers_per_hour: "{val} * 1.852"
+    to_miles_per_hour: "{val} * 1.150779448"
+    to_minutes_per_kilometer: "{val} * 32.39740821"
+    to_feet_per_second: "{val} * 1.687809857"
+
+  
+  - name: Minutes per Kilometer
+    symbol: min/km
+    to_meters_per_second: "{val} * 16.66666667"
+    to_kilometers_per_hour: "{val} * 60"
+    to_miles_per_hour: "{val} * 37.28227153"
+    to_knots: "{val} * 32.39740821"
+    to_feet_per_second: "{val} * 54.68066492"
+  
+  - name: Feet per Second
+    symbol: ft/s
+    to_meters_per_second: "{val} * 0.3048"
+    to_kilometers_per_hour: "{val} * 1.09728"
+    to_miles_per_hour: "{val} * 0.6818181818"
+    to_knots: "{val} * 0.5924838013"
+    to_minutes_per_kilometer: "{val} * 54.68066492"
