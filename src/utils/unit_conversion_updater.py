@@ -52,7 +52,7 @@ class UnitConversionUpdater:
                     e, unit_name, entry_string_var
                 ),
             )
-            unit_name_label.configure(text=unit_name)
+            unit_name_label.configure(text=_(unit_name))
             unit_symbol_label.configure(text=self.unit_formulas[unit_name]["symbol"])
 
     def _create_entry_components(self):

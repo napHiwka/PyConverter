@@ -1,0 +1,99 @@
+digital_data_units:
+  - name: Bit
+    symbol: bit
+    to_byte: "{val} * 0.125"
+    to_kilobyte: "{val} * 0.000125"
+    to_megabyte: "{val} * 1.25e-7"
+    to_gigabyte: "{val} * 1.25e-10"
+    to_terabyte: "{val} * 1.25e-13"
+    to_exabyte: "{val} * 1.25e-16"
+    to_zettabyte: "{val} * 1.25e-19"
+    to_yottabyte: "{val} * 1.25e-22"
+
+  - name: Byte
+    symbol: B
+    to_bit: "{val} * 8"
+    to_kilobyte: "{val} * 0.000976563"
+    to_megabyte: "{val} * 9.53674e-7"
+    to_gigabyte: "{val} * 9.31323e-10"
+    to_terabyte: "{val} * 9.09495e-13"
+    to_exabyte: "{val} * 8.88178e-16"
+    to_zettabyte: "{val} * 8.67362e-19"
+    to_yottabyte: "{val} * 8.47033e-22"
+
+  - name: Kilobyte
+    symbol: KB
+    to_bit: "{val} * 8192"
+    to_byte: "{val} * 1024"
+    to_megabyte: "{val} * 0.000976563"
+    to_gigabyte: "{val} * 9.53674e-7"
+    to_terabyte: "{val} * 9.31323e-10"
+    to_exabyte: "{val} * 9.09495e-13"
+    to_zettabyte: "{val} * 8.88178e-16"
+    to_yottabyte: "{val} * 8.67362e-19"
+
+  - name: Megabyte
+    symbol: MB
+    to_bit: "{val} * 8.389e+6"
+    to_byte: "{val} * 1.04858e+6"
+    to_kilobyte: "{val} * 1024"
+    to_gigabyte: "{val} * 0.000976563"
+    to_terabyte: "{val} * 9.53674e-7"
+    to_exabyte: "{val} * 9.31323e-10"
+    to_zettabyte: "{val} * 9.09495e-13"
+    to_yottabyte: "{val} * 8.88178e-16"
+
+  - name: Gigabyte
+    symbol: GB
+    to_bit: "{val} * 8.59e+9"
+    to_byte: "{val} * 1.07374e+9"
+    to_kilobyte: "{val} * 1.04858e+6"
+    to_megabyte: "{val} * 1024"
+    to_terabyte: "{val} * 0.000976563"
+    to_exabyte: "{val} * 9.53674e-7"
+    to_zettabyte: "{val} * 9.31323e-10"
+    to_yottabyte: "{val} * 9.09495e-13"
+
+  - name: Terabyte
+    symbol: TB
+    to_bit: "{val} * 8.796e+12"
+    to_byte: "{val} * 1.09951e+12"
+    to_kilobyte: "{val} * 1.07374e+9"
+    to_megabyte: "{val} * 1.04858e+6"
+    to_gigabyte: "{val} * 1024"
+    to_exabyte: "{val} * 0.000976563"
+    to_zettabyte: "{val} * 9.53674e-7"
+    to_yottabyte: "{val} * 9.31323e-10"
+
+  - name: Exabyte
+    symbol: EB
+    to_bit: "{val} * 8.995e+15"
+    to_byte: "{val} * 1.1259e+15"
+    to_kilobyte: "{val} * 1.09951e+12"
+    to_megabyte: "{val} * 1.07374e+9"
+    to_gigabyte: "{val} * 1.04858e+6"
+    to_terabyte: "{val} * 1024"
+    to_zettabyte: "{val} * 0.000976563"
+    to_yottabyte: "{val} * 9.53674e-7"
+
+  - name: Zettabyte
+    symbol: ZB
+    to_bit: "{val} * 9.094e+18"
+    to_byte: "{val} * 1.13744e+18"
+    to_kilobyte: "{val} * 1.1259e+15"
+    to_megabyte: "{val} * 1.09951e+12"
+    to_gigabyte: "{val} * 1.07374e+9"
+    to_terabyte: "{val} * 1.04858e+6"
+    to_exabyte: "{val} * 1024"
+    to_yottabyte: "{val} * 0.000976563"
+
+  - name: Yottabyte
+    symbol: YB
+    to_bit: "{val} * 9.295e+21"
+    to_byte: "{val} * 1.16415e+21"
+    to_kilobyte: "{val} * 1.13744e+18"
+    to_megabyte: "{val} * 1.1259e+15"
+    to_gigabyte: "{val} * 1.09951e+12"
+    to_terabyte: "{val} * 1.07374e+9"
+    to_exabyte: "{val} * 1.04858e+6"
+    to_zettabyte: "{val} * 1024"

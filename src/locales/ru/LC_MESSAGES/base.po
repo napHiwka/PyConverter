@@ -7,443 +7,591 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-29 23:16+0300\n"
-"PO-Revision-Date: 2024-04-30 00:01+0300\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: ru\n"
+"POT-Creation-Date: 2024-04-30 18:23+0300\n"
+"PO-Revision-Date: 2024-04-30 20:13+0300\n"
+"Last-Translator: \n"
 "Language-Team: ru <LL@li.org>\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Generated-By: Babel 2.14.0\n"
+"X-Generator: Poedit 2.2\n"
 
 #: main.py:84
 msgid "Temperature"
-msgstr ""
+msgstr "Температура"
 
 #: main.py:85
 msgid "Area"
-msgstr ""
+msgstr "Площадь"
 
 #: main.py:86
 msgid "Length"
-msgstr ""
+msgstr "Длина"
 
 #: main.py:87
 msgid "Volume"
-msgstr ""
+msgstr "Объем"
 
 #: main.py:88
 msgid "Time"
-msgstr ""
+msgstr "Время"
 
 #: main.py:89
 msgid "Mass"
-msgstr ""
+msgstr "Масса"
 
 #: main.py:90
 msgid "Speed"
-msgstr ""
+msgstr "Скорость"
 
 #: main.py:91
 msgid "Force"
-msgstr ""
+msgstr "Сила"
 
 #: main.py:92
 msgid "Fuel Consumption"
-msgstr ""
+msgstr "Расход топлива"
 
 #: main.py:93
-msgid "Numeral System"
-msgstr ""
+msgid "Numeral Systems"
+msgstr "Система счисления"
 
 #: main.py:94
 msgid "Pressure"
-msgstr ""
+msgstr "Давление"
 
 #: main.py:95
 msgid "Energy"
-msgstr ""
+msgstr "Энергия"
 
 #: main.py:96
 msgid "Power"
-msgstr ""
+msgstr "Мощность"
 
 #: main.py:97
 msgid "Angles"
-msgstr ""
+msgstr "Углы"
 
 #: main.py:98
-msgid "Shoe size"
-msgstr ""
-
-#: main.py:99
 msgid "Digital data"
-msgstr ""
+msgstr "Цифровые данные"
 
-#: main.py:125 main.py:215
+#: main.py:124 main.py:214
 msgid "Settings"
-msgstr ""
+msgstr "Настройки"
+
+#: main.py:168
+msgid "English"
+msgstr "Английский"
 
 #: main.py:169
-msgid "English"
-msgstr ""
+msgid "German"
+msgstr "Немецкий"
 
 #: main.py:170
-msgid "German"
-msgstr ""
+msgid "French"
+msgstr "Français"
 
 #: main.py:171
-msgid "French"
-msgstr ""
+msgid "Spanish"
+msgstr "Espaöol"
 
 #: main.py:172
-msgid "Spanish"
-msgstr ""
+msgid "Italian"
+msgstr "Italiano"
 
 #: main.py:173
-msgid "Italian"
-msgstr ""
-
-#: main.py:174
 msgid "Russian"
-msgstr ""
+msgstr "Русский"
+
+#: main.py:178
+msgid "Light"
+msgstr "Светлый"
 
 #: main.py:179
-msgid "Light"
-msgstr ""
-
-#: main.py:180
 msgid "Dark"
-msgstr ""
+msgstr "Темный"
 
-#: main.py:181 main.py:193
+#: main.py:180 main.py:192
 msgid "System"
-msgstr ""
+msgstr "Система"
 
-#: main.py:222
+#: main.py:221
 msgid "Language:"
-msgstr ""
+msgstr "Язык:"
 
-#: main.py:298
+#: main.py:297
 msgid "Appearance:"
-msgstr ""
+msgstr "Внешний вид:"
 
-#: main.py:320 main.py:342
+#: main.py:319 main.py:341
 msgid "About"
-msgstr ""
+msgstr "О программе"
 
-#: main.py:358
+#: main.py:357
 msgid ""
 "MIT License\n"
 "\n"
 "Copyright (c) 2024 napHiwka\n"
 "\n"
 "Permission is hereby granted, free of charge, to any person obtaining a "
-"copyof this software and associated documentation files (the "
-"\"Software\"), to dealin the Software without restriction, including "
-"without limitation the rightsto use, copy, modify, merge, publish, "
-"distribute, sublicense, and/or sellcopies of the Software, and to permit "
-"persons to whom the Software isfurnished to do so, subject to the "
-"following conditions:\n"
+"copyof this software and associated documentation files (the \"Software\"), "
+"to dealin the Software without restriction, including without limitation the "
+"rightsto use, copy, modify, merge, publish, distribute, sublicense, and/or "
+"sellcopies of the Software, and to permit persons to whom the Software "
+"isfurnished to do so, subject to the following conditions:\n"
 "\n"
-"The above copyright notice and this permission notice shall be included "
-"in allcopies or substantial portions of the Software.\n"
+"The above copyright notice and this permission notice shall be included in "
+"allcopies or substantial portions of the Software.\n"
 "\n"
-"THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS"
-" ORIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF "
-"MERCHANTABILITY,FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN "
-"NO EVENT SHALL THEAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, "
-"DAMAGES OR OTHERLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR "
-"OTHERWISE, ARISING FROM,OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE "
-"USE OR OTHER DEALINGS IN THESOFTWARE.\n"
+"THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS "
+"ORIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,"
+"FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL "
+"THEAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR "
+"OTHERLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING "
+"FROM,OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS "
+"IN THESOFTWARE.\n"
 "\n"
 msgstr ""
+"Лицензия MIT\n"
+"\n"
+"Авторское право (c) 2024 napHiwka\n"
+"\n"
+"Настоящим предоставляется бесплатное разрешение любому лицу, получающему "
+"копию данного программного обеспечения и связанных с ним файлов документации "
+"(\"Программное обеспечение\"), на работу с Программным обеспечением без "
+"ограничений, включая, помимо прочего, права на использование, копирование, "
+"модификацию, объединение, публикацию, распространение, сублицензирование и/"
+"или продажу копий Программного обеспечения. Программное обеспечение и "
+"разрешать лицам, которым предоставляется Программное обеспечение, делать это "
+"при соблюдении следующих условий:\n"
+"\n"
+"Вышеуказанное уведомление об авторских правах и данное уведомление о "
+"разрешении должны быть включены во все копии или существенные части "
+"Программного обеспечения.\n"
+"\n"
+"ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ ПРЕДОСТАВЛЯЕТСЯ \"КАК ЕСТЬ\", БЕЗ КАКИХ-ЛИБО "
+"ГАРАНТИЙ, ЯВНЫХ ИЛИ ПОДРАЗУМЕВАЕМЫХ, ВКЛЮЧАЯ, НО НЕ ОГРАНИЧИВАЯСЬ ИМИ, "
+"ГАРАНТИИ ТОВАРНОЙ ПРИГОДНОСТИ, ПРИГОДНОСТИ ДЛЯ ОПРЕДЕЛЕННОЙ ЦЕЛИ И "
+"НЕНАРУШЕНИЯ АВТОРСКИХ ПРАВ. НИ ПРИ КАКИХ ОБСТОЯТЕЛЬСТВАХ АВТОРЫ ИЛИ "
+"ПРАВООБЛАДАТЕЛИ НЕ НЕСУТ ОТВЕТСТВЕННОСТИ ЗА КАКИЕ-ЛИБО ПРЕТЕНЗИИ, УЩЕРБ ИЛИ "
+"ИНУЮ НЕНАДЕЖНОСТЬ, БУДЬ ТО В РЕЗУЛЬТАТЕ ДЕЙСТВИЯ ДОГОВОРА, ГРАЖДАНСКОГО "
+"ПРАВОНАРУШЕНИЯ ИЛИ ИНЫМ ОБРАЗОМ, ВОЗНИКАЮЩИЕ В РЕЗУЛЬТАТЕ ИСПОЛЬЗОВАНИЯ "
+"ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ ИЛИ В СВЯЗИ С НИМ.\n"
+"\n"
 
-#: main.py:383
+#: main.py:382
 msgid "For any inquiries or issues, please contact:\n"
-msgstr ""
+msgstr "По любым вопросам, пожалуйста, обращайтесь:\n"
 
-# Temperature
-#: Data Unit
 msgid "Celsius"
-msgstr ""
+msgstr "Градусы Цельсия"
 
 msgid "Fahrenheit"
-msgstr ""
+msgstr "Фаренгейты"
 
 msgid "Kelvin"
-msgstr ""
+msgstr "Кельвины"
 
 msgid "Rankine"
-msgstr ""
+msgstr "Градусы Ранкина"
 
 msgid "Reaumur"
-msgstr ""
+msgstr "Градусы Реомюра"
 
 msgid "Romer"
-msgstr ""
+msgstr "Градусы Рёмера"
 
 msgid "Newton"
-msgstr ""
+msgstr "Ньютоны"
 
 msgid "Delisle"
-msgstr ""
+msgstr "Градусы Делиля"
 
-# Area
 msgid "Square Meters"
-msgstr ""
+msgstr "Квадратные Метры"
 
 msgid "Square Centimeters"
-msgstr ""
+msgstr "Квадратные Сантиметры"
 
 msgid "Square Inches"
-msgstr ""
+msgstr "Квадратные Дюймы"
 
 msgid "Square Feet"
-msgstr ""
+msgstr "Квадратные Футы"
 
 msgid "Square Feet US survey"
-msgstr ""
+msgstr "Квадратные Футы (США)"
 
 msgid "Square Millimeters"
-msgstr ""
+msgstr "Квадратные Миллиметры"
 
 msgid "Hectares"
-msgstr ""
+msgstr "Гектары"
 
 msgid "Square Kilometers"
-msgstr ""
+msgstr "Квадратные Километры"
 
 msgid "Square Yard"
-msgstr ""
+msgstr "Квадратные Ярды"
 
 msgid "Square Miles"
-msgstr ""
+msgstr "Квадратные Мили"
 
 msgid "Acres"
-msgstr ""
+msgstr "Акры"
 
 msgid "Are"
-msgstr ""
+msgstr "Ары"
 
-# Length
 msgid "Meters"
-msgstr ""
+msgstr "Метры"
 
 msgid "Centimeters"
-msgstr ""
+msgstr "Сантиметры"
 
 msgid "Inches"
-msgstr ""
+msgstr "Дюймы"
 
 msgid "Feet"
-msgstr ""
+msgstr "Футы"
 
 msgid "Feet US survey"
-msgstr ""
+msgstr "Футы (США)"
 
 msgid "Mils"
-msgstr ""
+msgstr "Тысячная дюйма"
 
 msgid "Nautical miles"
-msgstr ""
+msgstr "Морские мили"
 
 msgid "Yards"
-msgstr ""
+msgstr "Ярды"
 
 msgid "Miles"
-msgstr ""
+msgstr "Миль"
 
 msgid "Millimeters"
-msgstr ""
+msgstr "Миллиметры"
 
 msgid "Micrometers"
-msgstr ""
+msgstr "Микрометры"
 
 msgid "Nanometers"
-msgstr ""
+msgstr "Нанометры"
 
 msgid "Angstrom"
-msgstr ""
+msgstr "Ангстрем"
 
 msgid "Picometers"
-msgstr ""
+msgstr "Пикометры"
 
 msgid "Kilometers"
-msgstr ""
+msgstr "Километры"
 
 msgid "Astronomical Units"
-msgstr ""
+msgstr "Астрономические единицы"
 
 msgid "Light years"
-msgstr ""
+msgstr "Световых лет"
 
 msgid "Parsec"
-msgstr ""
+msgstr "Парсек"
 
-# Volume
 msgid "Cubic Meters"
-msgstr ""
+msgstr "Кубические Метры"
 
 msgid "Liters"
-msgstr ""
+msgstr "Литры"
 
 msgid "Imperial Gallons"
-msgstr ""
+msgstr "Британские Галлоны"
 
 msgid "US Gallons"
-msgstr ""
+msgstr "Галлоны США"
 
 msgid "Imperial Pints"
-msgstr ""
+msgstr "Британские Пинты"
 
 msgid "Imperial Fluid Ounces"
-msgstr ""
+msgstr "Британские жидкие унции"
 
 msgid "Imperial Gill"
-msgstr ""
+msgstr "Британские Джилли"
 
 msgid "US Pints"
-msgstr ""
+msgstr "Пинты США"
 
 msgid "US Fluid Ounces"
-msgstr ""
+msgstr "Жидкие унции США"
 
 msgid "US Gill"
-msgstr ""
+msgstr "Джилл США"
 
 msgid "Milliliters"
-msgstr ""
+msgstr "Миллилитры"
 
 msgid "Tablespoons US"
-msgstr ""
+msgstr "Столовые ложки США"
 
 msgid "Australian Tablespoons"
-msgstr ""
+msgstr "Австралийские столовые ложки"
 
 msgid "Cups"
-msgstr ""
+msgstr "Стаканы"
 
 msgid "Cubic Centimeters"
-msgstr ""
+msgstr "Кубические Сантиметры"
 
 msgid "Cubic Inches"
-msgstr ""
+msgstr "Кубические Дюймы"
 
 msgid "Cubic Feet"
-msgstr ""
+msgstr "Кубические Футы"
 
 msgid "Cubic Millimeters"
-msgstr ""
+msgstr "Кубические Миллиметры"
 
-# Time
 msgid "Seconds"
-msgstr ""
+msgstr "Секунды"
 
 msgid "Decisecond"
-msgstr ""
+msgstr "Десятых секунды"
 
 msgid "Centiseconds"
-msgstr ""
+msgstr "Сотых секунды"
 
 msgid "Milliseconds"
-msgstr ""
+msgstr "Миллисекунды"
 
 msgid "Microseconds"
-msgstr ""
+msgstr "Микросекунды"
 
 msgid "Nanoseconds"
-msgstr ""
+msgstr "Наносекунды"
 
 msgid "Minutes"
-msgstr ""
+msgstr "Минуты"
 
 msgid "Hours"
-msgstr ""
+msgstr "Часы"
 
 msgid "Days"
-msgstr ""
+msgstr "Дни"
 
 msgid "Weeks"
-msgstr ""
+msgstr "Недели"
 
 msgid "Years 365"
-msgstr ""
+msgstr "Годы (365)"
 
 msgid "Lustrum"
-msgstr ""
+msgstr "Пятилетие"
 
 msgid "Decades"
-msgstr ""
+msgstr "Десятилетия"
 
 msgid "Centuries"
-msgstr ""
+msgstr "Века"
 
 msgid "Millennium"
-msgstr ""
+msgstr "Тысячелетие"
 
-# Mass
 msgid "Grams"
-msgstr ""
+msgstr "Граммы"
 
 msgid "Ettograms"
-msgstr ""
+msgstr "Эттограммы"
 
 msgid "Kilograms"
-msgstr ""
+msgstr "Килограммы"
 
 msgid "Pounds"
-msgstr ""
+msgstr "Фунты стерлингов"
 
 msgid "Ounces"
-msgstr ""
+msgstr "Унции"
 
 msgid "Stones"
-msgstr ""
+msgstr "Камни"
 
 msgid "Quintals"
-msgstr ""
+msgstr "Центнеры"
 
 msgid "Tons"
-msgstr ""
+msgstr "Тонны"
 
 msgid "Centigrams"
-msgstr ""
+msgstr "Сантиметры"
 
 msgid "Milligrams"
-msgstr ""
+msgstr "Миллиграммы"
 
 msgid "Unified Atomic Mass Unit"
-msgstr ""
+msgstr "Унифицированная атомная единица массы"
 
 msgid "Carats"
-msgstr ""
+msgstr "Караты"
 
 msgid "Pennyweights"
-msgstr ""
+msgstr "Пеннивейт"
 
 msgid "Troy Ounces"
-msgstr ""
+msgstr "Тройские унции"
 
-# Speed
 msgid "Meters per Second"
-msgstr ""
+msgstr "Метров в секунду"
 
 msgid "Kilometers per Hour"
-msgstr ""
+msgstr "Километров в час"
 
 msgid "Miles per Hour"
-msgstr ""
+msgstr "Миль в час"
 
 msgid "Knots"
-msgstr ""
+msgstr "Узлы"
 
 msgid "Minutes per Kilometer"
-msgstr ""
+msgstr "Минут на километр"
 
 msgid "Feet per Second"
-msgstr ""
+msgstr "Футов в секунду"
 
+msgid "Dyne"
+msgstr "Дины"
+
+msgid "Pound-force"
+msgstr "Фунт силы"
+
+msgid "Kilogram-force"
+msgstr "Киллограмм силы"
+
+msgid "Poundal"
+msgstr "Фунталы"
+
+msgid "Kilometers per liter"
+msgstr "Километров на литр"
+
+msgid "Liters per 100 km"
+msgstr "Литров на 100 км"
+
+msgid "Miles per US Gallon"
+msgstr "Мили на Галлон США"
+
+msgid "Miles per imperial Gallon"
+msgstr "Миль на Британский Галлон"
+
+msgid "Decimal"
+msgstr "Десятичные"
+
+msgid "Hexadecimal"
+msgstr "Шестнадцатеричные"
+
+msgid "Octal"
+msgstr "Восьмеричные"
+
+msgid "Binary"
+msgstr "Двоичные"
+
+msgid "Pascal"
+msgstr "Паскаль"
+
+msgid "Bar"
+msgstr "Бар"
+
+msgid "Millibar"
+msgstr "Миллибар"
+
+msgid "Atmosphere"
+msgstr "Атмосфера"
+
+msgid "Pounds per Square Inch"
+msgstr "Фунтов на квадратный дюйм"
+
+msgid "Torricelli"
+msgstr "Торричелли"
+
+msgid "Inches of Mercury"
+msgstr "Дюймы ртутного столба"
+
+msgid "Hectopascal"
+msgstr "Гектопаскаль"
+
+msgid "Joule"
+msgstr "Джоули"
+
+msgid "Calories"
+msgstr "Калории"
+
+msgid "Kilocalories"
+msgstr "Килокалории"
+
+msgid "Kilowatt hour"
+msgstr "Киловатт-час"
+
+msgid "Electron volt"
+msgstr "Электронвольт"
+
+msgid "Foot pound"
+msgstr "Фут-фунт"
+
+msgid "Watt"
+msgstr "Ватты"
+
+msgid "Milliwatt"
+msgstr "Милливатты"
+
+msgid "Kilowatt"
+msgstr "Килловаты"
+
+msgid "Megawatt"
+msgstr "Мегатватты"
+
+msgid "Gigawatt"
+msgstr "Гигаватты"
+
+msgid "European horsepower"
+msgstr "Европейская лошадиная сила"
+
+msgid "Imperial horsepower"
+msgstr "Британская конная сила"
+
+msgid "Degree"
+msgstr "Градусы"
+
+msgid "Gradian"
+msgstr "Градианы"
+
+msgid "Radians"
+msgstr "Радианы"
+
+msgid "Bit"
+msgstr "Биты"
+
+msgid "Byte"
+msgstr "Байты"
+
+msgid "Kilobyte"
+msgstr "Килобайты"
+
+msgid "Megabyte"
+msgstr "Мегабайты"
+
+msgid "Gigabyte"
+msgstr "Гигабайты"
+
+msgid "Terabyte"
+msgstr "Терабайты"
+
+msgid "Exabyte"
+msgstr "Эксабайты"
+
+msgid "Zettabyte"
+msgstr "Зеттабайты"
+
+msgid "Yottabyte"
+msgstr "Иоттабайты"

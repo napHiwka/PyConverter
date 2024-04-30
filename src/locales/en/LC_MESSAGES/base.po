@@ -1,14 +1,10 @@
-# English translations for PROJECT.
-# Copyright (C) 2024 ORGANIZATION
-# This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
-#
+# Digital Data
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-29 23:16+0300\n"
-"PO-Revision-Date: 2024-04-30 00:00+0300\n"
+"PO-Revision-Date: 2024-04-30 18:18+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
 "Language-Team: en <LL@li.org>\n"
@@ -185,6 +181,7 @@ msgstr ""
 msgid "Romer"
 msgstr ""
 
+# Force
 msgid "Newton"
 msgstr ""
 
@@ -444,5 +441,146 @@ msgid "Minutes per Kilometer"
 msgstr ""
 
 msgid "Feet per Second"
+msgstr ""
+
+msgid "Dyne"
+msgstr ""
+
+msgid "Pound-force"
+msgstr ""
+
+msgid "Kilogram-force"
+msgstr ""
+
+msgid "Poundal"
+msgstr ""
+
+# Fuel Consumption
+msgid "Kilometers per liter"
+msgstr ""
+
+msgid "Liters per 100 km"
+msgstr ""
+
+msgid "Miles per US Gallon"
+msgstr ""
+
+msgid "Miles per imperial Gallon"
+msgstr ""
+
+# Numeral System
+msgid "Decimal"
+msgstr ""
+
+msgid "Hexadecimal"
+msgstr ""
+
+msgid "Octal"
+msgstr ""
+
+msgid "Binary"
+msgstr ""
+
+# Pressure
+msgid "Pascal"
+msgstr ""
+
+msgid "Bar"
+msgstr ""
+
+msgid "Millibar"
+msgstr ""
+
+msgid "Atmosphere"
+msgstr ""
+
+msgid "Pounds per Square Inch"
+msgstr ""
+
+msgid "Torricelli"
+msgstr ""
+
+msgid "Inches of Mercury"
+msgstr ""
+
+msgid "Hectopascal"
+msgstr ""
+
+# Energy
+msgid "Joule"
+msgstr ""
+
+msgid "Calories"
+msgstr ""
+
+msgid "Kilocalories"
+msgstr ""
+
+msgid "Kilowatt hour"
+msgstr ""
+
+msgid "Electron volt"
+msgstr ""
+
+msgid "Foot pound"
+msgstr ""
+
+# Power
+msgid "Watt"
+msgstr ""
+
+msgid "Milliwatt"
+msgstr ""
+
+msgid "Kilowatt"
+msgstr ""
+
+msgid "Megawatt"
+msgstr ""
+
+msgid "Gigawatt"
+msgstr ""
+
+msgid "European horsepower"
+msgstr ""
+
+msgid "Imperial horsepower"
+msgstr ""
+
+# Angles
+msgid "Degree"
+msgstr ""
+
+msgid "Gradian"
+msgstr ""
+
+msgid "Radians"
+msgstr ""
+
+msgid "Bit"
+msgstr ""
+
+msgid "Byte"
+msgstr ""
+
+msgid "Kilobyte"
+msgstr ""
+
+msgid "Megabyte"
+msgstr ""
+
+msgid "Gigabyte"
+msgstr ""
+
+msgid "Terabyte"
+msgstr ""
+
+msgid "Exabyte"
+msgstr ""
+
+msgid "Zettabyte"
+msgstr ""
+
+msgid "Yottabyte"
 msgstr ""
 

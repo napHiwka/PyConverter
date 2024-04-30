@@ -7,442 +7,567 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-29 23:16+0300\n"
-"PO-Revision-Date: 2024-04-30 00:01+0300\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: fr\n"
+"POT-Creation-Date: 2024-04-30 18:23+0300\n"
+"PO-Revision-Date: 2024-04-30 20:09+0300\n"
+"Last-Translator: \n"
 "Language-Team: fr <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Generated-By: Babel 2.14.0\n"
+"X-Generator: Poedit 2.2\n"
 
 #: main.py:84
 msgid "Temperature"
-msgstr ""
+msgstr "Température"
 
 #: main.py:85
 msgid "Area"
-msgstr ""
+msgstr "Superficie"
 
 #: main.py:86
 msgid "Length"
-msgstr ""
+msgstr "Distance"
 
 #: main.py:87
 msgid "Volume"
-msgstr ""
+msgstr "Volume"
 
 #: main.py:88
 msgid "Time"
-msgstr ""
+msgstr "Temps"
 
 #: main.py:89
 msgid "Mass"
-msgstr ""
+msgstr "Masse"
 
 #: main.py:90
 msgid "Speed"
-msgstr ""
+msgstr "Vitesse"
 
 #: main.py:91
 msgid "Force"
-msgstr ""
+msgstr "Force"
 
 #: main.py:92
 msgid "Fuel Consumption"
-msgstr ""
+msgstr "Consommation de carburant"
 
 #: main.py:93
-msgid "Numeral System"
-msgstr ""
+msgid "Numeral Systems"
+msgstr "Systémes numériques"
 
 #: main.py:94
 msgid "Pressure"
-msgstr ""
+msgstr "Pression"
 
 #: main.py:95
 msgid "Energy"
-msgstr ""
+msgstr "Energie"
 
 #: main.py:96
 msgid "Power"
-msgstr ""
+msgstr "Puissance"
 
 #: main.py:97
 msgid "Angles"
-msgstr ""
+msgstr "Angles"
 
 #: main.py:98
-msgid "Shoe size"
-msgstr ""
-
-#: main.py:99
 msgid "Digital data"
-msgstr ""
+msgstr "Données numériques"
 
-#: main.py:125 main.py:215
+#: main.py:124 main.py:214
 msgid "Settings"
-msgstr ""
+msgstr "Paramétres"
+
+#: main.py:168
+msgid "English"
+msgstr "English"
 
 #: main.py:169
-msgid "English"
-msgstr ""
+msgid "German"
+msgstr "Deutsch"
 
 #: main.py:170
-msgid "German"
-msgstr ""
+msgid "French"
+msgstr "Frangais"
 
 #: main.py:171
-msgid "French"
-msgstr ""
+msgid "Spanish"
+msgstr "Espaöol"
 
 #: main.py:172
-msgid "Spanish"
-msgstr ""
+msgid "Italian"
+msgstr "Italiano"
 
 #: main.py:173
-msgid "Italian"
-msgstr ""
-
-#: main.py:174
 msgid "Russian"
-msgstr ""
+msgstr "Русский"
+
+#: main.py:178
+msgid "Light"
+msgstr "Clair"
 
 #: main.py:179
-msgid "Light"
-msgstr ""
-
-#: main.py:180
 msgid "Dark"
-msgstr ""
+msgstr "Sombre"
 
-#: main.py:181 main.py:193
+#: main.py:180 main.py:192
 msgid "System"
-msgstr ""
+msgstr "Système"
 
-#: main.py:222
+#: main.py:221
 msgid "Language:"
-msgstr ""
+msgstr "Langue:"
 
-#: main.py:298
+#: main.py:297
 msgid "Appearance:"
-msgstr ""
+msgstr "Apparence:"
 
-#: main.py:320 main.py:342
+#: main.py:319 main.py:341
 msgid "About"
-msgstr ""
+msgstr "Ä propos"
 
-#: main.py:358
+#: main.py:357
 msgid ""
 "MIT License\n"
 "\n"
 "Copyright (c) 2024 napHiwka\n"
 "\n"
 "Permission is hereby granted, free of charge, to any person obtaining a "
-"copyof this software and associated documentation files (the "
-"\"Software\"), to dealin the Software without restriction, including "
-"without limitation the rightsto use, copy, modify, merge, publish, "
-"distribute, sublicense, and/or sellcopies of the Software, and to permit "
-"persons to whom the Software isfurnished to do so, subject to the "
-"following conditions:\n"
+"copyof this software and associated documentation files (the \"Software\"), "
+"to dealin the Software without restriction, including without limitation the "
+"rightsto use, copy, modify, merge, publish, distribute, sublicense, and/or "
+"sellcopies of the Software, and to permit persons to whom the Software "
+"isfurnished to do so, subject to the following conditions:\n"
 "\n"
-"The above copyright notice and this permission notice shall be included "
-"in allcopies or substantial portions of the Software.\n"
+"The above copyright notice and this permission notice shall be included in "
+"allcopies or substantial portions of the Software.\n"
 "\n"
-"THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS"
-" ORIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF "
-"MERCHANTABILITY,FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN "
-"NO EVENT SHALL THEAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, "
-"DAMAGES OR OTHERLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR "
-"OTHERWISE, ARISING FROM,OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE "
-"USE OR OTHER DEALINGS IN THESOFTWARE.\n"
+"THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS "
+"ORIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,"
+"FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL "
+"THEAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR "
+"OTHERLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING "
+"FROM,OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS "
+"IN THESOFTWARE.\n"
 "\n"
 msgstr ""
 
-#: main.py:383
+#: main.py:382
 msgid "For any inquiries or issues, please contact:\n"
-msgstr ""
+msgstr "Pour toute question ou problème, veuillez contacter:\n"
 
-# Temperature
-#: Data Unit
 msgid "Celsius"
-msgstr ""
+msgstr "Celsius (Centigrade)"
 
 msgid "Fahrenheit"
-msgstr ""
+msgstr "Fahrenheit"
 
 msgid "Kelvin"
-msgstr ""
+msgstr "Kelvin"
 
 msgid "Rankine"
-msgstr ""
+msgstr "Rankine"
 
 msgid "Reaumur"
-msgstr ""
+msgstr "Réaumur"
 
 msgid "Romer"
-msgstr ""
+msgstr "Romer"
 
 msgid "Newton"
-msgstr ""
+msgstr "Newton"
 
 msgid "Delisle"
-msgstr ""
+msgstr "Delisle"
 
-# Area
 msgid "Square Meters"
-msgstr ""
+msgstr "Mètres Carrés"
 
 msgid "Square Centimeters"
-msgstr ""
+msgstr "Centimètres Carrés"
 
 msgid "Square Inches"
-msgstr ""
+msgstr "Pouces Carrés"
 
 msgid "Square Feet"
-msgstr ""
+msgstr "Pieds Carrés"
 
 msgid "Square Feet US survey"
-msgstr ""
+msgstr "Pieds carrés (US survey)"
 
 msgid "Square Millimeters"
-msgstr ""
+msgstr "Millimètres Carrés"
 
 msgid "Hectares"
-msgstr ""
+msgstr "Hectares"
 
 msgid "Square Kilometers"
-msgstr ""
+msgstr "Kilometres carrés"
 
 msgid "Square Yard"
-msgstr ""
+msgstr "Yards carrés"
 
 msgid "Square Miles"
-msgstr ""
+msgstr "Miles carrés"
 
 msgid "Acres"
-msgstr ""
+msgstr "Acres"
 
 msgid "Are"
-msgstr ""
+msgstr "Are"
 
-# Length
 msgid "Meters"
-msgstr ""
+msgstr "Mètres"
 
 msgid "Centimeters"
-msgstr ""
+msgstr "Centimètres"
 
 msgid "Inches"
-msgstr ""
+msgstr "Pouces"
 
 msgid "Feet"
-msgstr ""
+msgstr "Pieds"
 
 msgid "Feet US survey"
-msgstr ""
+msgstr "Pieds (US survey)"
 
 msgid "Mils"
-msgstr ""
+msgstr "Mils"
 
 msgid "Nautical miles"
-msgstr ""
+msgstr "Miles nautiques"
 
 msgid "Yards"
-msgstr ""
+msgstr "Yards"
 
 msgid "Miles"
-msgstr ""
+msgstr "Milles"
 
 msgid "Millimeters"
-msgstr ""
+msgstr "Millimètres"
 
 msgid "Micrometers"
-msgstr ""
+msgstr "Micromètres"
 
 msgid "Nanometers"
-msgstr ""
+msgstr "Nanomètres"
 
 msgid "Angstrom"
-msgstr ""
+msgstr "Angstrom"
 
 msgid "Picometers"
-msgstr ""
+msgstr "Picomètres"
 
 msgid "Kilometers"
-msgstr ""
+msgstr "Kilomètres"
 
 msgid "Astronomical Units"
-msgstr ""
+msgstr "Unités Astronomiques"
 
 msgid "Light years"
-msgstr ""
+msgstr "Années-lumiéres"
 
 msgid "Parsec"
-msgstr ""
+msgstr "Parsec"
 
-# Volume
 msgid "Cubic Meters"
-msgstr ""
+msgstr "Mètres Cubes"
 
 msgid "Liters"
-msgstr ""
+msgstr "Litres"
 
 msgid "Imperial Gallons"
-msgstr ""
+msgstr "Gallons Impériaux"
 
 msgid "US Gallons"
-msgstr ""
+msgstr "Gallons Américains"
 
 msgid "Imperial Pints"
-msgstr ""
+msgstr "Pintes Impériales"
 
 msgid "Imperial Fluid Ounces"
-msgstr ""
+msgstr "Onces Liquides Impériales"
 
 msgid "Imperial Gill"
-msgstr ""
+msgstr "Branchie Impériale"
 
 msgid "US Pints"
-msgstr ""
+msgstr "Pintes Américaines"
 
 msgid "US Fluid Ounces"
-msgstr ""
+msgstr "Onces Liquides Américaines"
 
 msgid "US Gill"
-msgstr ""
+msgstr "Gill US"
 
 msgid "Milliliters"
-msgstr ""
+msgstr "Millilitres"
 
 msgid "Tablespoons US"
-msgstr ""
+msgstr "Cuillères å soupe US"
 
 msgid "Australian Tablespoons"
-msgstr ""
+msgstr "Cuillères à Soupe Australiennes"
 
 msgid "Cups"
-msgstr ""
+msgstr "Tasses US"
 
 msgid "Cubic Centimeters"
-msgstr ""
+msgstr "Centimètres Cubes"
 
 msgid "Cubic Inches"
-msgstr ""
+msgstr "Pouces Cubes"
 
 msgid "Cubic Feet"
-msgstr ""
+msgstr "Pieds Cubes"
 
 msgid "Cubic Millimeters"
-msgstr ""
+msgstr "Millimètres Cubes"
 
-# Time
 msgid "Seconds"
-msgstr ""
+msgstr "Secondes"
 
 msgid "Decisecond"
-msgstr ""
+msgstr "Décisecondes"
 
 msgid "Centiseconds"
-msgstr ""
+msgstr "Centisecondes"
 
 msgid "Milliseconds"
-msgstr ""
+msgstr "Millisecondes"
 
 msgid "Microseconds"
-msgstr ""
+msgstr "Microsecondes"
 
 msgid "Nanoseconds"
-msgstr ""
+msgstr "Nanosecondes"
 
 msgid "Minutes"
-msgstr ""
+msgstr "Minutes"
 
 msgid "Hours"
-msgstr ""
+msgstr "Heures"
 
 msgid "Days"
-msgstr ""
+msgstr "Jours"
 
 msgid "Weeks"
-msgstr ""
+msgstr "Semaines"
 
 msgid "Years 365"
-msgstr ""
+msgstr "Années (365)"
 
 msgid "Lustrum"
-msgstr ""
+msgstr "Lustre"
 
 msgid "Decades"
-msgstr ""
+msgstr "Décennies"
 
 msgid "Centuries"
-msgstr ""
+msgstr "Siècles"
 
 msgid "Millennium"
-msgstr ""
+msgstr "Millénaire"
 
-# Mass
 msgid "Grams"
-msgstr ""
+msgstr "Grammes"
 
 msgid "Ettograms"
-msgstr ""
+msgstr "Hectogramme"
 
 msgid "Kilograms"
-msgstr ""
+msgstr "Kilogrammes"
 
 msgid "Pounds"
-msgstr ""
+msgstr "Livres"
 
 msgid "Ounces"
-msgstr ""
+msgstr "Onces"
 
 msgid "Stones"
-msgstr ""
+msgstr "Stone"
 
 msgid "Quintals"
-msgstr ""
+msgstr "Quintaux"
 
 msgid "Tons"
-msgstr ""
+msgstr "Tonnes"
 
 msgid "Centigrams"
-msgstr ""
+msgstr "Centigrammes"
 
 msgid "Milligrams"
-msgstr ""
+msgstr "Milligrammes"
 
 msgid "Unified Atomic Mass Unit"
-msgstr ""
+msgstr "Unité de Masse Atomique Unifiée"
 
 msgid "Carats"
-msgstr ""
+msgstr "Carats"
 
 msgid "Pennyweights"
-msgstr ""
+msgstr "Pennyweight"
 
 msgid "Troy Ounces"
-msgstr ""
+msgstr "Onces Troy"
 
-# Speed
 msgid "Meters per Second"
-msgstr ""
+msgstr "Mètres par Seconde"
 
 msgid "Kilometers per Hour"
-msgstr ""
+msgstr "Kilomètres par Heure"
 
 msgid "Miles per Hour"
-msgstr ""
+msgstr "Miles par Heure"
 
 msgid "Knots"
-msgstr ""
+msgstr "Nœuds"
 
 msgid "Minutes per Kilometer"
-msgstr ""
+msgstr "Minutes par Kilomètre"
 
 msgid "Feet per Second"
-msgstr ""
+msgstr "Pieds par Seconde"
 
+msgid "Dyne"
+msgstr "Dyne"
+
+msgid "Pound-force"
+msgstr "Livre-force"
+
+msgid "Kilogram-force"
+msgstr "Kilogramme-force"
+
+msgid "Poundal"
+msgstr "Poundal"
+
+msgid "Kilometers per liter"
+msgstr "Kilometres par litre"
+
+msgid "Liters per 100 km"
+msgstr "Litres par 100 km"
+
+msgid "Miles per US Gallon"
+msgstr "Miles par gallon américain"
+
+msgid "Miles per imperial Gallon"
+msgstr "Miles par gallon impérial"
+
+msgid "Decimal"
+msgstr "Décimal"
+
+msgid "Hexadecimal"
+msgstr "Hexadécimal"
+
+msgid "Octal"
+msgstr "Octal"
+
+msgid "Binary"
+msgstr "Binaire"
+
+msgid "Pascal"
+msgstr "Pascal"
+
+msgid "Bar"
+msgstr "Bar"
+
+msgid "Millibar"
+msgstr "Millibar"
+
+msgid "Atmosphere"
+msgstr "Atmosphére"
+
+msgid "Pounds per Square Inch"
+msgstr "Livres par pouce carré"
+
+msgid "Torricelli"
+msgstr "Torricelli"
+
+msgid "Inches of Mercury"
+msgstr "Pouces de mercure"
+
+msgid "Hectopascal"
+msgstr "Hectopascal"
+
+msgid "Joule"
+msgstr "Joule"
+
+msgid "Calories"
+msgstr "Calorie"
+
+msgid "Kilocalories"
+msgstr "Kilocalorie"
+
+msgid "Kilowatt hour"
+msgstr "Kilowatt heure"
+
+msgid "Electron volt"
+msgstr "Électronvolt"
+
+msgid "Foot pound"
+msgstr "Pied-livre"
+
+msgid "Watt"
+msgstr "Watt"
+
+msgid "Milliwatt"
+msgstr "Milliwatt"
+
+msgid "Kilowatt"
+msgstr "Kilowatt"
+
+msgid "Megawatt"
+msgstr "Mégawatt"
+
+msgid "Gigawatt"
+msgstr "Giga Watt"
+
+msgid "European horsepower"
+msgstr "Cheval vapeur européen"
+
+msgid "Imperial horsepower"
+msgstr "Cheval vapeur imperial"
+
+msgid "Degree"
+msgstr "Degré"
+
+msgid "Gradian"
+msgstr "Gradian"
+
+msgid "Radians"
+msgstr "Radians"
+
+msgid "Bit"
+msgstr "Bit"
+
+msgid "Byte"
+msgstr "Byte"
+
+msgid "Kilobyte"
+msgstr "Kilobit"
+
+msgid "Megabyte"
+msgstr "Mégabit"
+
+msgid "Gigabyte"
+msgstr "Gigabit"
+
+msgid "Terabyte"
+msgstr "Térabit"
+
+msgid "Exabyte"
+msgstr "Exabit"
+
+msgid "Zettabyte"
+msgstr "Zettabyte"
+
+msgid "Yottabyte"
+msgstr "Yottabyte"
+
+#~ msgid "Shoe size"
+#~ msgstr "Pointure"

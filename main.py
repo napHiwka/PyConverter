@@ -98,7 +98,13 @@ class LeftPanel(ctk.CTkScrollableFrame):
         (_("Digital data")),
     ]
 
-    def __init__(self, parent, setting_panel, setting_toggle, right_panel_entries):
+    def __init__(
+        self,
+        parent,
+        setting_panel,
+        setting_toggle,
+        right_panel_entries,
+    ):
         super().__init__(parent)
         self.setting_panel = setting_panel
         self.setting_toggle = setting_toggle
@@ -444,13 +450,12 @@ class RightPanel(ctk.CTkScrollableFrame):
     def update_ui(self):
         """Update the UI with the new language for the RightPanel."""
         for widget in walk_widgets(self):
-            if isinstance(widget, ctk.CTkLabel):
+            if isinstance(widget, (ctk.CTkLabel, ctk.CTkButton)):
                 original_text = getattr(widget, "_original_text", None)
-                if original_text:
-                    if original_text is None:
-                        original_text = widget.cget("text")
-                        setattr(widget, "_original_text", original_text)
-                    widget.configure(text=_(original_text))
+                if original_text is None:
+                    original_text = widget.cget("text")
+                    setattr(widget, "_original_text", original_text)
+                widget.configure(text=_(original_text))
 
 
 if __name__ == "__main__":
