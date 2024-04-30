@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-30 18:23+0300\n"
-"PO-Revision-Date: 2024-04-30 20:13+0300\n"
+"PO-Revision-Date: 2024-04-30 20:28+0300\n"
 "Last-Translator: \n"
 "Language-Team: ru <LL@li.org>\n"
 "Language: ru\n"
@@ -86,11 +86,11 @@ msgstr "Настройки"
 
 #: main.py:168
 msgid "English"
-msgstr "Английский"
+msgstr "English"
 
 #: main.py:169
 msgid "German"
-msgstr "Немецкий"
+msgstr "Deutsch"
 
 #: main.py:170
 msgid "French"
@@ -98,7 +98,7 @@ msgstr "Français"
 
 #: main.py:171
 msgid "Spanish"
-msgstr "Espaöol"
+msgstr "Español"
 
 #: main.py:172
 msgid "Italian"

@@ -23,7 +23,6 @@ class MainConverter(ctk.CTk):
         super().__init__()
         self.title("Converter")
         self._setup_ui()
-        self.change_language_on_panels()
         self.mainloop()
 
     def _setup_ui(self):
@@ -452,7 +451,7 @@ class RightPanel(ctk.CTkScrollableFrame):
         for widget in walk_widgets(self):
             if isinstance(widget, (ctk.CTkLabel, ctk.CTkButton)):
                 original_text = getattr(widget, "_original_text", None)
-                if original_text is None:
+                if original_text:
                     original_text = widget.cget("text")
                     setattr(widget, "_original_text", original_text)
                 widget.configure(text=_(original_text))

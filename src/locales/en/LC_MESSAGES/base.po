@@ -4,8 +4,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-29 23:16+0300\n"
-"PO-Revision-Date: 2024-04-30 18:18+0300\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2024-04-30 20:30+0300\n"
 "Language: en\n"
 "Language-Team: en <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -13,6 +12,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.14.0\n"
+"Last-Translator: \n"
+"X-Generator: Poedit 2.2\n"
 
 #: main.py:84
 msgid "Temperature"
@@ -84,27 +85,27 @@ msgstr ""
 
 #: main.py:169
 msgid "English"
-msgstr ""
+msgstr "English"
 
 #: main.py:170
 msgid "German"
-msgstr ""
+msgstr "Deutsch"
 
 #: main.py:171
 msgid "French"
-msgstr ""
+msgstr "Français"
 
 #: main.py:172
 msgid "Spanish"
-msgstr ""
+msgstr "Español"
 
 #: main.py:173
 msgid "Italian"
-msgstr ""
+msgstr "Italiano"
 
 #: main.py:174
 msgid "Russian"
-msgstr ""
+msgstr "Русский"
 
 #: main.py:179
 msgid "Light"
@@ -137,18 +138,18 @@ msgid ""
 "Copyright (c) 2024 napHiwka\n"
 "\n"
 "Permission is hereby granted, free of charge, to any person obtaining a "
-"copyof this software and associated documentation files (the "
-"\"Software\"), to dealin the Software without restriction, including "
-"without limitation the rightsto use, copy, modify, merge, publish, "
-"distribute, sublicense, and/or sellcopies of the Software, and to permit "
-"persons to whom the Software isfurnished to do so, subject to the "
-"following conditions:\n"
+"copyof this software and associated documentation files (the \"Software"
+"\"), to dealin the Software without restriction, including without "
+"limitation the rightsto use, copy, modify, merge, publish, distribute, "
+"sublicense, and/or sellcopies of the Software, and to permit persons to "
+"whom the Software isfurnished to do so, subject to the following "
+"conditions:\n"
 "\n"
 "The above copyright notice and this permission notice shall be included "
 "in allcopies or substantial portions of the Software.\n"
 "\n"
-"THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS"
-" ORIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF "
+"THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, "
+"EXPRESS ORIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF "
 "MERCHANTABILITY,FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN "
 "NO EVENT SHALL THEAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, "
 "DAMAGES OR OTHERLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR "
@@ -583,4 +584,3 @@ msgstr ""
 
 msgid "Yottabyte"
 msgstr ""
-
