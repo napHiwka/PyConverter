@@ -40,7 +40,7 @@ volume_units:
     to_cubic_millimeters: "{val} * 1000000"
 
   - name: Imperial Gallons
-    symbol: gal
+    symbol: imp gal
     to_cubic_meters: "{val} * 0.00454609"
     to_liters: "{val} * 4.54609"
     to_us_gallons: "{val} * 1.200949926"
@@ -60,7 +60,7 @@ volume_units:
     to_cubic_millimeters: "{val} * 4546090"
 
   - name: US Gallons
-    symbol: gal
+    symbol: US gal
     to_cubic_meters: "{val} * 0.003785411784"
     to_liters: "{val} * 3.785411784"
     to_imperial_gallons: "{val} * 0.8326741846"
@@ -80,7 +80,7 @@ volume_units:
     to_cubic_millimeters: "{val} * 3785411.784"
 
   - name: Imperial Pints
-    symbol: pt
+    symbol: imp pt
     to_cubic_meters: "{val} * 0.00056826125"
     to_liters: "{val} * 0.56826125"
     to_imperial_gallons: "{val} * 0.125"
@@ -100,7 +100,7 @@ volume_units:
     to_cubic_millimeters: "{val} * 568261.25"
 
   - name: Imperial Fluid Ounces
-    symbol: fl oz
+    symbol: imp fl oz
     to_cubic_meters: "{val} * 0.0000284130625"
     to_liters: "{val} * 0.0284130625"
     to_imperial_gallons: "{val} * 0.00625"
@@ -120,7 +120,7 @@ volume_units:
     to_cubic_millimeters: "{val} * 28413.0625"
 
   - name: Imperial Gill
-    symbol: gi.
+    symbol: imp. gi.
     to_cubic_meters: "{val} * 0.0001420653125"
     to_liters: "{val} * 0.1420653125"
     to_imperial_gallons: "{val} * 0.03125"
@@ -140,7 +140,7 @@ volume_units:
     to_cubic_millimeters: "{val} * 142065.3125"
 
   - name: US Pints
-    symbol: pt
+    symbol: US pt
     to_cubic_meters: "{val} * 0.000473176473"
     to_liters: "{val} * 0.473176473"
     to_imperial_gallons: "{val} * 0.1040842731"
@@ -160,7 +160,7 @@ volume_units:
     to_cubic_millimeters: "{val} * 473176.473"
 
   - name: US Fluid Ounces
-    symbol: fl oz
+    symbol: US fl oz
     to_cubic_meters: "{val} * 0.00002957352956"
     to_liters: "{val} * 0.02957352956"
     to_imperial_gallons: "{val} * 0.006505267067"
@@ -180,7 +180,7 @@ volume_units:
     to_cubic_millimeters: "{val} * 29573.52956"
 
   - name: US Gill
-    symbol: liq. gi
+    symbol: US liq. gi
     to_cubic_meters: "{val} * 0.0001182941183"
     to_liters: "{val} * 0.1182941182"
     to_imperial_gallons: "{val} * 0.02602106827"

@@ -32,7 +32,7 @@ class MainConverter(ctk.CTk):
         self._setup_panels()
 
     def _setup_window(self):
-        self.geometry("800x500")
+        self.geometry("835x500")
         self.resizable(0, 0)
 
     def _setup_appearance(self):
@@ -90,7 +90,7 @@ class LeftPanel(ctk.CTkScrollableFrame):
         (_("Speed")),
         (_("Force")),
         (_("Fuel Consumption")),
-        (_("Numeral System")),
+        (_("Numeral Systems")),
         (_("Pressure")),
         (_("Energy")),
         (_("Power")),
@@ -393,9 +393,9 @@ class RightPanel(ctk.CTkScrollableFrame):
 
     def _configure_grid(self):
         """Configures the grid for the RightPanel with specified weights and uniform."""
-        self.grid_columnconfigure(0, weight=25, uniform="C")
+        self.grid_columnconfigure(0, weight=20, uniform="C")
         self.grid_columnconfigure(1, weight=5, uniform="C")
-        self.grid_columnconfigure(2, weight=25, uniform="C")
+        self.grid_columnconfigure(2, weight=20, uniform="C")
         self.grid_columnconfigure(3, weight=5, uniform="C")
         self.grid_rowconfigure(tuple(range(8)), weight=1, uniform="C")
 
@@ -425,21 +425,21 @@ class RightPanel(ctk.CTkScrollableFrame):
             font=SMALLEST_FONT,
             text_color=("#000000", "gray62"),
         )
-        label.grid(row=row, column=column, padx=(0, 5), pady=10, sticky="se")
+        label.grid(row=row, column=column, padx=12, pady=10, sticky="se")
         return label
 
     def _create_ctk_entry(self, row, column, entry_var):
         """Creates a CTkEntry at the given row and column, and returns it."""
         entry = ctk.CTkEntry(
-            self, width=220, height=40, justify="right", textvariable=entry_var
+            self, width=220, height=45, justify="right", textvariable=entry_var
         )
-        entry.grid(row=row + 1, column=column, sticky="nse")
+        entry.grid(row=row + 1, column=column, sticky="nsw")
         return entry
 
     def _create_symbol(self, row, column):
         """Creates a symbol at the given row and column, and returns it."""
-        symbol = ctk.CTkLabel(self, text="", font=SMALL_FONT, width=10)
-        symbol.grid(row=row + 1, column=column + 1, sticky="w", padx=(5, 0))
+        symbol = ctk.CTkLabel(self, text="", font=SMALLEST_FONT, width=10)
+        symbol.grid(row=row + 1, column=column + 1, sticky="w")
         return symbol
 
     def update_ui(self):

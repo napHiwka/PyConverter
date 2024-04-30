@@ -7,7 +7,6 @@ speed_units:
     to_minutes_per_kilometer: "{val} * 16.66666667"
     to_feet_per_second: "{val} * 3.280839895"
 
-  
   - name: Kilometers per Hour
     symbol: km/h
     to_meters_per_second: "{val} * 0.2777777778"
@@ -24,7 +23,6 @@ speed_units:
     to_minutes_per_kilometer: "{val} * 37.28227153"
     to_feet_per_second: "{val} * 1.466666667"
 
-  
   - name: Knots
     symbol: knots
     to_meters_per_second: "{val} * 0.5144444444"
@@ -33,7 +31,6 @@ speed_units:
     to_minutes_per_kilometer: "{val} * 32.39740821"
     to_feet_per_second: "{val} * 1.687809857"
 
-  
   - name: Minutes per Kilometer
     symbol: min/km
     to_meters_per_second: "{val} * 16.66666667"

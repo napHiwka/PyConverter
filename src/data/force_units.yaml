@@ -1,0 +1,35 @@
+force_units:
+  - name: Newton
+    symbol: N
+    to_dyne: "{val} * 100000"
+    to_pound-force: "{val} * 0.2248089431"
+    to_kilogram-force: "{val} * 0.1019716213"
+    to_poundal: "{val} * 7.233013851"
+  
+  - name: Dyne
+    symbol: dyn
+    to_newton: "{val} * 0.00001"
+    to_pound-force: "{val} * 0.000002248089431"
+    to_kilogram-force: "{val} * 0.000001019716213"
+    to_poundal: "{val} * 0.00007233013851"
+
+  - name: Pound-force
+    symbol: lbf
+    to_newton: "{val} * 4.448221615"
+    to_dyne: "{val} * 444822.1615"
+    to_kilogram-force: "{val} * 0.45359237"
+    to_poundal: "{val} * 32.17404856"
+
+  - name: Kilogram-force
+    symbol: kgf
+    to_newton: "{val} * 9.80665"
+    to_dyne: "{val} * 980665"
+    to_pound_force: "{val} * 2.204622622"
+    to_poundal: "{val} * 70.93163528"
+
+  - name: Poundal
+    symbol: pdl
+    to_newton: "{val} * 0.1382549544"
+    to_dyne: "{val} * 13825.49544"
+    to_pound-force: "{val} * 0.03108095017"
+    to_kilogram-force: "{val} * 0.01409808185"

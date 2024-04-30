@@ -15,6 +15,9 @@ class UnitConversionParser:
             "time": "src/data/time_units.yaml",
             "mass": "src/data/mass_units.yaml",
             "speed": "src/data/speed_units.yaml",
+            "force": "src/data/force_units.yaml",
+            "fuel_consumption": "src/data/fuel_consumption_units.yaml",
+            "numeral_systems": "src/data/numeral_systems_units.yaml",
         }
         self.default_category = next(
             iter(self.unit_files)
@@ -33,7 +36,7 @@ class UnitConversionParser:
         if category is None:
             category = self.default_category
 
-        category_key = category.lower()
+        category_key = category.lower().replace(" ", "_")
         unit_data = self._load_unit_data(category_key)
         units = unit_data.get(f"{category_key}_units", [])
         return {
@@ -71,4 +74,4 @@ if __name__ == "__main__":
     import pprint
 
     converter = UnitConversionParser()
-    pprint.pprint(converter.get_unit_formulas())
+    pprint.pprint(converter.get_unit_formulas("numeral_systems"))

@@ -91,11 +91,27 @@ class UnitConversionUpdater:
 
     def _update_target_entry(self, value, source_unit, target_var, target_unit):
         """Update a target entry with the converted value."""
+
         target_unit = target_unit.replace(" ", "_")
         conversion_key = "to_" + target_unit.lower()
         conversion_formula = self.unit_formulas[source_unit].get(conversion_key)
-        if conversion_formula:
-            converted_value = numexpr.evaluate(conversion_formula.format(val=value))
+
+        # Use built-in functions for basic conversions (Decimal, Hex, Oct, Bin)
+        if target_unit in ("Decimal", "Hexadecimal", "Octal", "Binary"):
+            conversion_functions = {
+                "Decimal": lambda x: str(x),
+                "Hexadecimal": lambda x: hex(int(x))[2:],
+                "Octal": lambda x: oct(int(x))[2:],
+                "Binary": lambda x: bin(int(x))[2:],
+            }
+            converted_value = conversion_functions[target_unit](value)
+        else:
+            if conversion_formula and numexpr is not None:
+                converted_value = numexpr.evaluate(conversion_formula.format(val=value))
+            else:
+                converted_value = None
+
+        if converted_value is not None:
             target_var.set(str(converted_value))
         else:
             target_var.set("")

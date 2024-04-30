@@ -1,0 +1,24 @@
+fuel_consumption_units:
+  - name: Kilometers per liter
+    symbol: km/l
+    to_liters_per_100_km: "100 / {val}"
+    to_miles_per_us_gallon: "{val} * 2.352145834"
+    to_miles_per_imperial_gallon: "{val} * 2.824809364"
+
+  - name: Liters per 100 km
+    symbol: L/100km
+    to_kilometers_per_liter: "100 / {val}"
+    to_miles_per_us_gallon: "235.2145834 / {val}"
+    to_miles_per_imperial_gallon: "282.4809364 / {val}"
+
+  - name: Miles per US Gallon
+    symbol: mpg
+    to_kilometers_per_liter: "{val} * 0.4251437074"
+    to_liters_per_100_km: "235.2145834 / {val}"
+    to_miles_per_imperial_gallon: "{val} * 1.200949926"
+
+  - name: Miles per imperial Gallon
+    symbol: mpg
+    to_kilometers_per_liter: "{val} * 0.3540061899"
+    to_liters_per_100_km: "282.4809364 / {val}"
+    to_miles_per_us_gallon: "{val} * 0.8326741846"

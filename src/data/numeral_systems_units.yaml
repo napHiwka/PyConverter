@@ -1,0 +1,12 @@
+numeral_systems_units:
+  - name: Decimal
+    symbol: 10
+    
+  - name: Hexadecimal
+    symbol: 16
+
+  - name: Octal
+    symbol: 8
+
+  - name: Binary
+    symbol: 2
