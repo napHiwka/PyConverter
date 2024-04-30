@@ -41,11 +41,12 @@ class MainConverter(ctk.CTk):
     def _setup_panels(self):
         self.right_panel = RightPanel(self)
         self.settings_panel = SettingsPanel(self, self.change_language_on_panels)
-        self.left_panel = LeftPanel(
-            self,
-            self.settings_panel,
-            self.toggle_settings,
+        self.unit_updater = UnitConversionUpdater(
             self.right_panel.entries,
+            self.settings_panel.remove_trailing_zeros_switch,
+        )
+        self.left_panel = LeftPanel(
+            self, self.settings_panel, self.toggle_settings, self.unit_updater
         )
 
         self._layout_panels()
@@ -102,12 +103,12 @@ class LeftPanel(ctk.CTkScrollableFrame):
         parent,
         setting_panel,
         setting_toggle,
-        right_panel_entries,
+        unit_updater,
     ):
         super().__init__(parent)
         self.setting_panel = setting_panel
         self.setting_toggle = setting_toggle
-        self.unit_updater = UnitConversionUpdater(right_panel_entries)
+        self.unit_updater = unit_updater
         self._configure_grid()
         self._create_widgets()
 
@@ -209,9 +210,9 @@ class SettingsPanel(ctk.CTkFrame):
     def _create_widgets(self):
         self._create_settings_label()
         self._create_language_optionmenu()
-        # self._crete_rm_trailing_zeros()  # TODO: Implement
         self._create_appearance_mode_optionmenu()
         self._create_about_button()
+        self._create_rm_trailing_zeros()
 
     def _create_settings_label(self):
         ctk.CTkLabel(
@@ -338,11 +339,25 @@ class SettingsPanel(ctk.CTkFrame):
             self.about_window.lift()  # Bring the About window to the top if it already exists
             self.about_window.focus()  # Focus the About window if it already exists
 
+    def _create_rm_trailing_zeros(self):
+        self.remove_trailing_zeros_switch = ctk.CTkSwitch(
+            self,
+            text="Remove Trailing Zeros",
+            command=self._toggle_remove_trailing_zeros,
+        )
+        self.remove_trailing_zeros_switch.grid(
+            row=4, column=0, sticky="nw", pady=(10, 0), padx=(20, 0)
+        )
+        self.remove_trailing_zeros = False  # Default value
+
+    def _toggle_remove_trailing_zeros(self):
+        self.remove_trailing_zeros = self.remove_trailing_zeros_switch.get()
+
 
 class AboutWindow(ctk.CTkToplevel):
     def __init__(self, parent):
         super().__init__(parent)
-        self.geometry("550x400")
+        self.geometry("600x420")
         self.title(_("About"))
         self._configure_grid()
         self._create_content()
@@ -353,7 +368,11 @@ class AboutWindow(ctk.CTkToplevel):
 
     def _create_content(self):
         info_label = ctk.CTkLabel(
-            self, text=self._get_license_text(), wraplength=500, justify="left"
+            self,
+            text=self._get_license_text(),
+            wraplength=550,
+            justify="left",
+            font=("Source Sans Pro", 12),
         )
         info_label.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
 

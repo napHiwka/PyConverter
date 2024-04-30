@@ -4,11 +4,12 @@ from src.utils.unit_conversion_parser import UnitConversionParser
 
 
 class UnitConversionUpdater:
-    def __init__(self, entries_list):
+    def __init__(self, entries_list, remove_trailing_zeros_switch):
         self.entries = entries_list
         self.converter = UnitConversionParser()
         self.unit_formulas = self.converter.get_unit_formulas()
         self.entry_components = self._create_entry_components()
+        self.remove_trailing_zeros_switch = remove_trailing_zeros_switch
         self._load_default_category()
 
     def _load_default_category(self):
@@ -111,8 +112,15 @@ class UnitConversionUpdater:
             else:
                 converted_value = None
 
-        if converted_value is not None:
-            target_var.set(str(converted_value))
+        if self.remove_trailing_zeros_switch and isinstance(converted_value, float):
+            formatted_value = (
+                ("{0:.20f}".format(converted_value)).rstrip("0").rstrip(".")
+            )
+        else:
+            formatted_value = str(converted_value)
+
+        if formatted_value is not None:
+            target_var.set(formatted_value)
         else:
             target_var.set("")
 
