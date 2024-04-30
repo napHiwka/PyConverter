@@ -1,0 +1,80 @@
+pressure_units:
+  - name: Pascal
+    symbol: Pa
+    to_bar: "{val} * 0.00001"
+    to_millibar: "{val} * 0.01"
+    to_atmosphere: "{val} * 0.000009869232667"
+    to_pounds_per_square_inch: "{val} * 0.0001450377377"
+    to_torricelli: "{val} * 0.007500616827"
+    to_inches_of_mercury: "{val} * 0.0002952998751"
+    to_hectopascal: "{val} * 0.01"
+
+  - name: Bar
+    symbol: bar
+    to_pascal: "{val} * 100000"
+    to_millibar: "{val} * 1000"
+    to_atmosphere: "{val} * 0.9869232667"
+    to_pounds_per_square_inch: "{val} * 14.50377377"
+    to_torricelli: "{val} * 750.0616827"
+    to_inches_of_mercury: "{val} * 29.52998751"
+    to_hectopascal: "{val} * 1000"
+
+  - name: Millibar
+    symbol: mbar
+    to_pascal: "{val} * 100"
+    to_bar: "{val} * 0.001"
+    to_atmosphere: "{val} * 0.0009869232667"
+    to_pounds_per_square_inch: "{val} * 0.01450377377"
+    to_torricelli: "{val} * 0.7500616827"
+    to_inches_of_mercury: "{val} * 0.02952998751"
+    to_hectopascal: "{val}"
+
+  - name: Atmosphere
+    symbol: atm
+    to_pascal: "{val} * 101325"
+    to_bar: "{val} * 1.01325"
+    to_millibar: "{val} * 1013.25"
+    to_pounds_per_square_inch: "{val} * 14.69594878"
+    to_torricelli: "{val} * 760"
+    to_inches_of_mercury: "{val} * 29.92125984"
+    to_hectopascal: "{val} * 1013.25"
+
+  - name: Pounds per Square Inch
+    symbol: psi
+    to_pascal: "{val} * 6894.757293"
+    to_bar: "{val} * 0.06894757293"
+    to_millibar: "{val} * 68.94757293"
+    to_atmosphere: "{val} * 0.06804596391"
+    to_torricelli: "{val} * 51.71493257"
+    to_inches_of_mercury: "{val} * 2.036020967"
+    to_hectopascal: "{val} * 68.94757293"
+
+  - name: Torricelli
+    symbol: Torr
+    to_pascal: "{val} * 133.3223684"
+    to_bar: "{val} * 0.001333223684"
+    to_millibar: "{val} * 1.333223684"
+    to_atmosphere: "{val} * 0.001315789474"
+    to_pounds_per_square_inch: "{val} * 0.0193367747"
+    to_inches_of_mercury: "{val} * 0.03937007874"
+    to_hectopascal: "{val} * 1.333223684"
+
+  - name: Inches of Mercury
+    symbol: inHg
+    to_pascal: "{val} * 3386.388158"
+    to_bar: "{val} * 0.03386388158"
+    to_millibar: "{val} * 33.86388158"
+    to_atmosphere: "{val} * 0.03342105263"
+    to_pounds_per_square_inch: "{val} * 0.4911540775"
+    to_torricelli: "{val} * 25.4"
+    to_hectopascal: "{val} * 33.86388158"
+
+  - name: Hectopascal
+    symbol: hPa
+    to_pascal: "{val} * 100"
+    to_bar: "{val} * 0.001"
+    to_millibar: "{val}"
+    to_atmosphere: "{val} * 0.0009869232667"
+    to_pounds_per_square_inch: "{val} * 0.01450377377"
+    to_torricelli: "{val} * 0.7500616827"
+    to_inches_of_mercury: "{val} * 0.02952998751"

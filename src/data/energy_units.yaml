@@ -1,0 +1,48 @@
+energy_units:
+  - name: Joule
+    symbol: J
+    to_calories: "{val} * 0.2388459"
+    to_kilocalories: "{val} * 0.0002388459"
+    to_kilowatt_hour: "{val} * 2.777777778e-7"
+    to_electron_volt: "{val} * 6.241509752e+18"
+    to_foot_pound: "{val} * 0.7375621493"
+
+  - name: Calories
+    symbol: cal
+    to_joules: "{val} * 4.186799941"
+    to_kilocalories: "{val} * 0.001"
+    to_kilowatt_hour: "{val} * 0.000001162999984"
+    to_electron_volt: "{val} * 2.613195266e+19"
+    to_foot_pound: "{val} * 3.088025163"
+
+  - name: Kilocalories
+    symbol: kcal
+    to_joules: "{val} * 4186.799941"
+    to_calories: "{val} * 1000"
+    to_kilowatt_hour: "{val} * 0.001162999984"
+    to_electron_volt: "{val} * 2.613195266e+22"
+    to_foot_pound: "{val} * 3088.025163"
+
+  - name: Kilowatt hour
+    symbol: kWh
+    to_joules: "{val} * 3600000"
+    to_calories: "{val} * 859845.24"
+    to_kilocalories: "{val} * 859.84524"
+    to_electron_volt: "{val} * 2.246943511e+25"
+    to_foot_pound: "{val} * 2655223.737"
+
+  - name: Electron volt
+    symbol: eV
+    to_joules: "{val} * 1.60217646e-19"
+    to_calories: "{val} * 3.826732785e-20"
+    to_kilocalories: "{val} * 3.826732785e-23"
+    to_kilowatt_hour: "{val} * 4.450490167e-26"
+    to_foot_pound: "{val} * 1.181704713e-19"
+
+  - name: Foot pound
+    symbol: ft⋅lbf
+    to_joules: "{val} * 1.355817948"
+    to_calories: "{val} * 0.3238315581"
+    to_kilocalories: "{val} * 0.0003238315581"
+    to_kilowatt_hour: "{val} * 3.766160968e-7"
+    to_electron_volt: "{val} * 8.462350947e+18"

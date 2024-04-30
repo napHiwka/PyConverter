@@ -95,7 +95,6 @@ class LeftPanel(ctk.CTkScrollableFrame):
         (_("Energy")),
         (_("Power")),
         (_("Angles")),
-        (_("Shoe size")),
         (_("Digital data")),
     ]
 

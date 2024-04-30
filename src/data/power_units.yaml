@@ -1,0 +1,63 @@
+power_units:
+  - name: Watt
+    symbol: W
+    to_milliwatt: "{val} * 1000"
+    to_kilowatt: "{val} * 0.001"
+    to_megawatt: "{val} * 0.000001"
+    to_gigawatt: "{val} * 1e-9"
+    to_european_horsepower: "{val} * 0.001359621617"
+    to_imperial_horsepower: "{val} * 0.00134102209"
+
+  - name: Milliwatt
+    symbol: mW
+    to_watt: "{val} * 0.001"
+    to_kilowatt: "{val} * 0.000001"
+    to_megawatt: "{val} * 1e-9"
+    to_gigawatt: "{val} * 1e-12"
+    to_european_horsepower: "{val} * 0.000001359621617"
+    to_imperial_horsepower: "{val} * 0.00000134102209"
+
+  - name: Kilowatt
+    symbol: kW
+    to_watt: "{val} * 1000"
+    to_milliwatt: "{val} * 1000000"
+    to_megawatt: "{val} * 0.001"
+    to_gigawatt: "{val} * 0.000001"
+    to_european_horsepower: "{val} * 1.359621617"
+    to_imperial_horsepower: "{val} * 1.34102209"
+
+  - name: Megawatt
+    symbol: MW
+    to_watt: "{val} * 1000000"
+    to_milliwatt: "{val} * 1000000000"
+    to_kilowatt: "{val} * 1000"
+    to_gigawatt: "{val} * 0.001"
+    to_european_horsepower: "{val} * 1359.621617"
+    to_imperial_horsepower: "{val} * 1341.02209"
+
+  - name: Gigawatt
+    symbol: GW
+    to_watt: "{val} * 1000000000"
+    to_milliwatt: "{val} * 1e+12"
+    to_kilowatt: "{val} * 1000000"
+    to_megawatt: "{val} * 1000"
+    to_european_horsepower: "{val} * 1359621.617"
+    to_imperial_horsepower: "{val} * 1341022.09"
+
+  - name: European horsepower
+    symbol: hp
+    to_watt: "{val} * 735.49875"
+    to_milliwatt: "{val} * 735498.75"
+    to_kilowatt: "{val} * 0.73549875"
+    to_megawatt: "{val} * 0.00073549875"
+    to_gigawatt: "{val} * 7.3549875e-7"
+    to_imperial_horsepower: "{val} * 0.9863200706"
+
+  - name: Imperial horsepower
+    symbol: hp
+    to_watt: "{val} * 745.6998716"
+    to_milliwatt: "{val} * 745699.8716"
+    to_kilowatt: "{val} * 0.7456998716"
+    to_megawatt: "{val} * 0.0007456998716"
+    to_gigawatt: "{val} * 7.456998716e-7"
+    to_european_horsepower: "{val} * 1.013869665"

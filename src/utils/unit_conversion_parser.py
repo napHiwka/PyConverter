@@ -18,6 +18,11 @@ class UnitConversionParser:
             "force": "src/data/force_units.yaml",
             "fuel_consumption": "src/data/fuel_consumption_units.yaml",
             "numeral_systems": "src/data/numeral_systems_units.yaml",
+            "pressure": "src/data/pressure_units.yaml",
+            "energy": "src/data/energy_units.yaml",
+            "power": "src/data/power_units.yaml",
+            "angles": "src/data/angles_units.yaml",
+            "digital_data": "src/data/digital_data_units.yaml",
         }
         self.default_category = next(
             iter(self.unit_files)
@@ -74,4 +79,4 @@ if __name__ == "__main__":
     import pprint
 
     converter = UnitConversionParser()
-    pprint.pprint(converter.get_unit_formulas("numeral_systems"))
+    pprint.pprint(converter.get_unit_formulas())
