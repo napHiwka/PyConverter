@@ -112,10 +112,14 @@ class UnitConversionUpdater:
             else:
                 converted_value = None
 
-        if self.remove_trailing_zeros_switch and isinstance(converted_value, float):
-            formatted_value = (
-                ("{0:.20f}".format(converted_value)).rstrip("0").rstrip(".")
-            )
+        if self.remove_trailing_zeros_switch.get():
+            # Check if the converted value is an integer
+            if isinstance(converted_value, float) and converted_value.is_integer():
+                formatted_value = str(int(converted_value))
+            else:
+                formatted_value = (
+                    ("{0:.20f}".format(converted_value)).rstrip("0").rstrip(".")
+                )
         else:
             formatted_value = str(converted_value)
 

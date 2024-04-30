@@ -233,7 +233,7 @@ class SettingsPanel(ctk.CTkFrame):
             values=list(self.TRANSLATED_LANGUAGE_NAMES.values()),
             variable=self.current_lang_name,
             dropdown_font=SMALLEST_FONT,
-        ).grid(row=1, column=1, sticky="nw", pady=(5, 0), padx=(20, 0))
+        ).grid(row=1, column=1, sticky="nw", pady=(10, 0), padx=(20, 0))
 
         self.current_lang_name.trace_add("write", self._on_language_change)
 
@@ -310,13 +310,31 @@ class SettingsPanel(ctk.CTkFrame):
             variable=self.current_appearance,
             dropdown_font=SMALLEST_FONT,
             command=self._change_appearance_mode,
-        ).grid(row=2, column=1, sticky="nw", pady=(5, 0), padx=(20, 0))
+        ).grid(row=2, column=1, sticky="nw", pady=(10, 0), padx=(20, 0))
 
     def _change_appearance_mode(self, *args):
         translated_mode = self.current_appearance.get()
         # Use the translated value to get the original English value
         new_mode = self.appearance_options[translated_mode]
         ctk.set_appearance_mode(new_mode)
+
+    def _create_rm_trailing_zeros(self):
+        ctk.CTkLabel(self, text=_("Remove trailing zeros"), font=SMALL_FONT).grid(
+            row=4, column=0, sticky="nw", pady=(10, 0), padx=(20, 0)
+        )
+
+        self.remove_trailing_zeros_switch = ctk.CTkSwitch(
+            self,
+            text="",
+            command=self._toggle_remove_trailing_zeros,
+        )
+        self.remove_trailing_zeros_switch.grid(
+            row=4, column=1, pady=(10, 0), sticky="nw", padx=(20, 0)
+        )
+        self.remove_trailing_zeros = False  # Default value
+
+    def _toggle_remove_trailing_zeros(self):
+        self.remove_trailing_zeros = self.remove_trailing_zeros_switch.get()
 
     def _create_about_button(self):
         """Create an about button."""
@@ -325,7 +343,7 @@ class SettingsPanel(ctk.CTkFrame):
             text=(_("About")),
             font=SMALL_FONT,
             command=self._open_about,
-        ).grid(row=3, column=0, sticky="nw", pady=(10, 0), padx=(20, 0))
+        ).grid(row=7, column=0, sticky="nw", pady=(10, 0), padx=(20, 0))
 
     def _open_about(self):
         if self.about_window is None or not self.about_window.winfo_exists():
@@ -338,20 +356,6 @@ class SettingsPanel(ctk.CTkFrame):
         else:
             self.about_window.lift()  # Bring the About window to the top if it already exists
             self.about_window.focus()  # Focus the About window if it already exists
-
-    def _create_rm_trailing_zeros(self):
-        self.remove_trailing_zeros_switch = ctk.CTkSwitch(
-            self,
-            text="Remove Trailing Zeros",
-            command=self._toggle_remove_trailing_zeros,
-        )
-        self.remove_trailing_zeros_switch.grid(
-            row=4, column=0, sticky="nw", pady=(10, 0), padx=(20, 0)
-        )
-        self.remove_trailing_zeros = False  # Default value
-
-    def _toggle_remove_trailing_zeros(self):
-        self.remove_trailing_zeros = self.remove_trailing_zeros_switch.get()
 
 
 class AboutWindow(ctk.CTkToplevel):
