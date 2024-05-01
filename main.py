@@ -1,4 +1,5 @@
 import customtkinter as ctk
+import tkinter as tk
 
 from src.utils.unit_conversion_updater import UnitConversionUpdater
 from src.utils.translator import Translator
@@ -474,6 +475,26 @@ class RightPanel(ctk.CTkScrollableFrame):
             self, width=220, height=45, justify="right", textvariable=entry_var
         )
         entry.grid(row=row + 1, column=column, sticky="nsw")
+
+        # Create a popup menu for the entry
+        popup_menu = tk.Menu(self, tearoff=0)
+
+        # Set the background color of the popup menu based on the appearance mode
+        if ctk.get_appearance_mode() == "Dark":
+            popup_menu.config(bg="#2b2b2b", fg="white")
+        else:
+            popup_menu.config(bg="white", fg="black")
+
+        popup_menu.add_command(
+            label=_("Copy"), command=lambda e=entry: self.copy_to_clipboard(e)
+        )
+        popup_menu.add_command(
+            label=_("Paste"), command=lambda e=entry: self.paste_from_clipboard(e)
+        )
+
+        # Bind the right-click event to the entry to show the popup menu
+        entry.bind("<Button-3>", lambda event, menu=popup_menu: self.popup(event, menu))
+
         return entry
 
     def _create_symbol(self, row, column):
@@ -481,6 +502,32 @@ class RightPanel(ctk.CTkScrollableFrame):
         symbol = ctk.CTkLabel(self, text="", font=SMALLEST_FONT, width=10)
         symbol.grid(row=row + 1, column=column + 1, sticky="w")
         return symbol
+
+    def popup(self, event, menu):
+        """Shows the popup menu at the cursor's position."""
+        try:
+            menu.tk_popup(event.x_root, event.y_root)
+        finally:
+            menu.grab_release()
+
+    def copy_to_clipboard(self, entry):
+        """Copies the selected text from the entry to the clipboard."""
+        selected_text = entry.selection_get()
+        self.clipboard_clear()
+        self.clipboard_append(selected_text)
+
+    def paste_from_clipboard(self, entry):
+        """Pastes the text from the clipboard into the entry."""
+        try:
+            entry.delete("0", "end")
+            entry.event_generate(
+                "<KeyPress>", keysym="v", state="0x0004"
+            )  # Simulate Ctrl+V
+            entry.event_generate(
+                "<KeyRelease>", keysym="v", state="0x0004"
+            )  # Simulate Ctrl+V release
+        except tk.TclError:
+            pass  # No text in clipboard or other error
 
     def update_ui(self):
         """Update the UI with the new language for the RightPanel."""
