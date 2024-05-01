@@ -6,6 +6,7 @@ from src.utils.ctk_separator import CTkWindowSeparator
 from src.utils.widget_walker import walk_widgets
 from src.utils.settings import (
     LARGE_FONT,
+    SETTING_FONT,
     SMALL_FONT,
     SMALLEST_FONT,
     APPEARANCE_MODE,
@@ -44,6 +45,7 @@ class MainConverter(ctk.CTk):
         self.unit_updater = UnitConversionUpdater(
             self.right_panel.entries,
             self.settings_panel.remove_trailing_zeros_switch,
+            self.settings_panel.current_significant_number,
         )
         self.left_panel = LeftPanel(
             self, self.settings_panel, self.toggle_settings, self.unit_updater
@@ -197,6 +199,8 @@ class SettingsPanel(ctk.CTkFrame):
         self.language_codes = {_(name): code for code, name in self.LANGUAGE_OPTIONS}
         self.current_appearance = ctk.StringVar(value=_("System"))
         self.appearance_options = {_(name): name for name in self.APPEARANCE_OPTIONS}
+        self.remove_trailing_zeros = ctk.BooleanVar(value=True)
+        self.current_significant_number = ctk.IntVar(value=10)
         self.about_window = None
         self.configure(fg_color="transparent")
         self._configure_grid()
@@ -211,8 +215,9 @@ class SettingsPanel(ctk.CTkFrame):
         self._create_settings_label()
         self._create_language_optionmenu()
         self._create_appearance_mode_optionmenu()
-        self._create_about_button()
         self._create_rm_trailing_zeros()
+        self._create_significant_number_options()
+        self._create_about_button()
 
     def _create_settings_label(self):
         ctk.CTkLabel(
@@ -225,7 +230,7 @@ class SettingsPanel(ctk.CTkFrame):
         ctk.CTkLabel(
             self,
             text=(_("Language:")),
-            font=SMALL_FONT,
+            font=SETTING_FONT,
         ).grid(row=1, column=0, sticky="nw", pady=(10, 0), padx=(20, 0))
 
         ctk.CTkOptionMenu(
@@ -300,7 +305,7 @@ class SettingsPanel(ctk.CTkFrame):
 
     def _create_appearance_mode_optionmenu(self):
         """Create an option menu for appearance mode."""
-        ctk.CTkLabel(self, text=_("Appearance:"), font=SMALL_FONT).grid(
+        ctk.CTkLabel(self, text=_("Appearance:"), font=SETTING_FONT).grid(
             row=2, column=0, sticky="nw", pady=(10, 0), padx=(20, 0)
         )
 
@@ -318,23 +323,31 @@ class SettingsPanel(ctk.CTkFrame):
         new_mode = self.appearance_options[translated_mode]
         ctk.set_appearance_mode(new_mode)
 
-    def _create_rm_trailing_zeros(self):
-        ctk.CTkLabel(self, text=_("Remove trailing zeros"), font=SMALL_FONT).grid(
+    def _create_significant_number_options(self):
+        ctk.CTkLabel(self, text=_("Significant number:"), font=SETTING_FONT).grid(
             row=4, column=0, sticky="nw", pady=(10, 0), padx=(20, 0)
+        )
+
+        ctk.CTkOptionMenu(
+            self,
+            variable=self.current_significant_number,
+            values=["4", "6", "8", "10", "12", "14", "16"],
+            dropdown_font=SMALLEST_FONT,
+        ).grid(row=4, column=1, sticky="nw", pady=(10, 0), padx=(20, 0))
+
+    def _create_rm_trailing_zeros(self):
+        ctk.CTkLabel(self, text=_("Remove trailing zeros"), font=SETTING_FONT).grid(
+            row=5, column=0, sticky="nw", pady=(10, 0), padx=(20, 0)
         )
 
         self.remove_trailing_zeros_switch = ctk.CTkSwitch(
             self,
             text="",
-            command=self._toggle_remove_trailing_zeros,
+            variable=self.remove_trailing_zeros,
         )
         self.remove_trailing_zeros_switch.grid(
-            row=4, column=1, pady=(10, 0), sticky="nw", padx=(20, 0)
+            row=5, column=1, pady=(10, 0), sticky="nw", padx=(20, 0)
         )
-        self.remove_trailing_zeros = False  # Default value
-
-    def _toggle_remove_trailing_zeros(self):
-        self.remove_trailing_zeros = self.remove_trailing_zeros_switch.get()
 
     def _create_about_button(self):
         """Create an about button."""

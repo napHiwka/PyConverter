@@ -4,12 +4,13 @@ from src.utils.unit_conversion_parser import UnitConversionParser
 
 
 class UnitConversionUpdater:
-    def __init__(self, entries_list, remove_trailing_zeros_switch):
+    def __init__(self, entries_list, remove_trailing_zeros_switch, significant_number):
         self.entries = entries_list
         self.converter = UnitConversionParser()
         self.unit_formulas = self.converter.get_unit_formulas()
         self.entry_components = self._create_entry_components()
         self.remove_trailing_zeros_switch = remove_trailing_zeros_switch
+        self.significant_number = significant_number
         self._load_default_category()
 
     def _load_default_category(self):
@@ -96,6 +97,7 @@ class UnitConversionUpdater:
         target_unit = target_unit.replace(" ", "_")
         conversion_key = "to_" + target_unit.lower()
         conversion_formula = self.unit_formulas[source_unit].get(conversion_key)
+        significant_number = self.significant_number.get()
 
         # Use built-in functions for basic conversions (Decimal, Hex, Oct, Bin)
         if target_unit in ("Decimal", "Hexadecimal", "Octal", "Binary"):
@@ -113,15 +115,13 @@ class UnitConversionUpdater:
                 converted_value = None
 
         if self.remove_trailing_zeros_switch.get():
-            # Check if the converted value is an integer
-            if isinstance(converted_value, float) and converted_value.is_integer():
-                formatted_value = str(int(converted_value))
-            else:
-                formatted_value = (
-                    ("{0:.20f}".format(converted_value)).rstrip("0").rstrip(".")
-                )
+            formatted_value = ("{0:." + str(significant_number) + "g}").format(
+                converted_value
+            )
         else:
-            formatted_value = str(converted_value)
+            formatted_value = ("{0:." + str(significant_number) + "f}").format(
+                converted_value
+            )
 
         if formatted_value is not None:
             target_var.set(formatted_value)
