@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-30 18:23+0300\n"
-"PO-Revision-Date: 2024-04-30 22:27+0300\n"
+"PO-Revision-Date: 2024-05-05 23:27+0300\n"
 "Last-Translator: \n"
 "Language-Team: it <LL@li.org>\n"
 "Language: it\n"
@@ -126,6 +126,12 @@ msgstr "Tema"
 #: main.py:319 main.py:341
 msgid "About"
 msgstr "About"
+
+msgid "Remove trailing zeros"
+msgstr "Rimuovi gli zero finali"
+
+msgid "Significant number:"
+msgstr "Cifre significative:"
 
 #: main.py:357
 msgid ""

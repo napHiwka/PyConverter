@@ -131,6 +131,12 @@ msgstr ""
 msgid "About"
 msgstr ""
 
+msgid "Remove trailing zeros"
+msgstr ""
+
+msgid "Significant number:"
+msgstr ""
+
 #: main.py:358
 msgid ""
 "MIT License\n"

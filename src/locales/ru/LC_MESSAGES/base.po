@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-30 18:23+0300\n"
-"PO-Revision-Date: 2024-04-30 20:28+0300\n"
+"PO-Revision-Date: 2024-05-05 23:27+0300\n"
 "Last-Translator: \n"
 "Language-Team: ru <LL@li.org>\n"
 "Language: ru\n"
@@ -131,6 +131,12 @@ msgstr "Внешний вид:"
 #: main.py:319 main.py:341
 msgid "About"
 msgstr "О программе"
+
+msgid "Remove trailing zeros"
+msgstr "Удалить конечные нули"
+
+msgid "Significant number:"
+msgstr "Значимые цифры:"
 
 #: main.py:357
 msgid ""
