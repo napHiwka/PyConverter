@@ -33,7 +33,7 @@ class MainConverter(ctk.CTk):
         self._setup_panels()
 
     def _setup_window(self):
-        self.geometry("835x500")
+        self.geometry("860x520")
         self.resizable(0, 0)
 
     def _setup_appearance(self):
@@ -59,7 +59,7 @@ class MainConverter(ctk.CTk):
         self.grid_columnconfigure(1, weight=3)
         self.grid_rowconfigure(0, weight=1)
 
-        self.left_panel.grid(row=0, column=0, sticky="nsw")
+        self.left_panel.grid(row=0, column=0, padx=(0, 20), sticky="nsw")
         self.right_panel.grid(row=0, column=1, padx=5, sticky="nsew")
         self.settings_panel.grid(row=0, column=1, padx=5, sticky="nsew")
         self.settings_panel.grid_remove()
@@ -116,6 +116,7 @@ class LeftPanel(ctk.CTkScrollableFrame):
         self._create_widgets()
 
     def _configure_grid(self):
+        self.configure(width=210)
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=1)
 
@@ -152,7 +153,7 @@ class LeftPanel(ctk.CTkScrollableFrame):
             corner_radius=10,
             command=lambda t=text: self._button_event(t),
         )
-        button.grid(row=row, column=0, padx=20, pady=3)
+        button.grid(row=row, column=0, padx=0, pady=3)
 
     def _button_event(self, category_type):
         if self.setting_panel.winfo_ismapped():
@@ -208,8 +209,8 @@ class SettingsPanel(ctk.CTkFrame):
         self._create_widgets()
 
     def _configure_grid(self):
-        self.grid_columnconfigure(0, uniform="B")
-        self.grid_columnconfigure(1, uniform="B")
+        self.grid_columnconfigure(0, weight=1, uniform="B")
+        self.grid_columnconfigure(1, weight=1, uniform="B")
         self.grid_rowconfigure(tuple(range(5)), weight=0)
 
     def _create_widgets(self):
