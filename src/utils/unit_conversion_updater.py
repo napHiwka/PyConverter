@@ -83,7 +83,11 @@ class UnitConversionUpdater:
     def update_related_unit_entries(self, event, source_unit, source_entry_var):
         """Update all related unit entries based on the value of the source entry."""
         try:
-            value = float(source_entry_var.get())
+            if source_unit == "Hexadecimal":
+                value = int(source_entry_var.get(), 16)  # Convert hex string to int
+            else:
+                value = float(source_entry_var.get())
+
             for _, _, _, target_var, target_unit in self.entry_components:
                 if target_unit and target_unit != source_unit:
                     self._update_target_entry(
