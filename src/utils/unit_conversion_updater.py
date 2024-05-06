@@ -1,4 +1,5 @@
 import numexpr
+import numpy as np
 import customtkinter as ctk
 from src.utils.unit_conversion_parser import UnitConversionParser
 
@@ -107,26 +108,31 @@ class UnitConversionUpdater:
                 "Octal": lambda x: oct(int(x))[2:],
                 "Binary": lambda x: bin(int(x))[2:],
             }
-            converted_value = conversion_functions[target_unit](value)
+            formatted_value = conversion_functions[target_unit](value)
         else:
             if conversion_formula and numexpr is not None:
                 converted_value = numexpr.evaluate(conversion_formula.format(val=value))
             else:
                 converted_value = None
 
-        if self.remove_trailing_zeros_switch.get():
-            formatted_value = ("{0:." + str(significant_number) + "g}").format(
-                converted_value
-            )
-        else:
-            formatted_value = ("{0:." + str(significant_number) + "f}").format(
-                converted_value
-            )
+            if isinstance(converted_value, np.ndarray):
+                # Apply formatting with or without trailing zeros based on the switch
+                if self.remove_trailing_zeros_switch.get():
+                    # Remove trailing zeros by converting to a string with 'g' format code
+                    formatted_value = ("{0:." + str(significant_number) + "g}").format(
+                        converted_value
+                    )
+                else:
+                    # Keep trailing zeros by using 'f' format code
+                    formatted_value = ("{0:." + str(significant_number) + "f}").format(
+                        converted_value
+                    )
+            else:
+                formatted_value = (
+                    str(converted_value) if converted_value is not None else ""
+                )
 
-        if formatted_value is not None:
-            target_var.set(formatted_value)
-        else:
-            target_var.set("")
+        target_var.set(formatted_value)
 
     def _clear_non_source_entries(self, source_unit):
         """Clear all non-source entries."""
