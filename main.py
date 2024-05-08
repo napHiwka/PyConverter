@@ -5,6 +5,7 @@ from src.utils.unit_conversion_updater import UnitConversionUpdater
 from src.utils.translator import Translator
 from src.utils.ctk_separator import CTkWindowSeparator
 from src.utils.widget_walker import walk_widgets
+from src.calculator import Calculator
 from src.utils.settings import (
     LARGE_FONT,
     SETTING_FONT,
@@ -51,7 +52,6 @@ class MainConverter(ctk.CTk):
         self.left_panel = LeftPanel(
             self, self.settings_panel, self.toggle_settings, self.unit_updater
         )
-
         self._layout_panels()
 
     def _layout_panels(self):
@@ -112,6 +112,7 @@ class LeftPanel(ctk.CTkScrollableFrame):
         self.setting_panel = setting_panel
         self.setting_toggle = setting_toggle
         self.unit_updater = unit_updater
+        self.calc_window = None
         self._configure_grid()
         self._create_widgets()
 
@@ -122,23 +123,26 @@ class LeftPanel(ctk.CTkScrollableFrame):
 
     def _create_widgets(self):
         self._create_label("PyConvert", LARGE_FONT, pady=0)
-        self._create_settings_button()
+        self._create_settings_calc_buttons()
         self._add_conversion_buttons()
 
     def _create_label(self, text, font, **grid_kwargs):
         label = ctk.CTkLabel(self, text=text, font=font)
         label.grid(**grid_kwargs)
 
-    def _create_settings_button(self):
+    def _create_settings_calc_buttons(self):
+        ctk.CTkButton(
+            self, text="Calculator", font=SMALL_FONT, command=self._toggle_calculator
+        ).grid(row=1, column=0, padx=0, pady=5)
         settings_button = ctk.CTkButton(
             self, text=(_("Settings")), font=SMALL_FONT, command=self._open_settings
         )
-        settings_button.grid(row=1, column=0, padx=0, pady=5)
+        settings_button.grid(row=2, column=0, padx=0, pady=5)
         separator = CTkWindowSeparator(self, size=3, length=80, color="#878787")
-        separator.grid(row=2, column=0, pady=0)
+        separator.grid(row=3, column=0, pady=0)
 
     def _add_conversion_buttons(self):
-        for row, conversion_type in enumerate(self.CONVERSION_TYPES, start=3):
+        for row, conversion_type in enumerate(self.CONVERSION_TYPES, start=4):
             self._create_button(row, conversion_type)
 
     def _create_button(self, row, text):
@@ -162,6 +166,13 @@ class LeftPanel(ctk.CTkScrollableFrame):
 
     def _open_settings(self):
         self.setting_toggle()
+
+    def _toggle_calculator(self):
+        if self.calc_window is None:
+            self.calc_window = Calculator(self)
+        else:
+            self.calc_window.window.destroy()
+            self.calc_window = None
 
     def update_ui(self):
         for widget in walk_widgets(self):
