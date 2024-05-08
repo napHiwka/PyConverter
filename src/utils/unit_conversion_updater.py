@@ -128,9 +128,11 @@ class UnitConversionUpdater:
                     )
                 else:
                     # Keep trailing zeros by using 'f' format code
-                    formatted_value = ("{0:." + str(significant_number) + "f}").format(
-                        converted_value
-                    )
+                    formatted_value = (
+                        "{0:."
+                        + str(significant_number - 3)
+                        + "f}"  # Magic number "3" for proper significant_number working
+                    ).format(converted_value)
             else:
                 formatted_value = (
                     str(converted_value) if converted_value is not None else ""
