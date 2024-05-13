@@ -139,7 +139,7 @@ class LeftPanel(ctk.CTkScrollableFrame):
         )
         settings_button.grid(row=2, column=0, padx=0, pady=5)
         separator = CTkWindowSeparator(self, size=3, length=80, color="#878787")
-        separator.grid(row=3, column=0, pady=0)
+        separator.grid(row=3, column=0, pady=(5, 0))
 
     def _add_conversion_buttons(self):
         for row, conversion_type in enumerate(self.CONVERSION_TYPES, start=4):
