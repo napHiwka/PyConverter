@@ -18,6 +18,7 @@ class Calculator:
         self.window.geometry("375x667")
         self.window.resizable(0, 0)
         self.window.title("Calculator")
+        self.window.protocol("WM_DELETE_WINDOW", self._hide_window)
 
         self.total_expression = ""
         self.current_expression = ""
@@ -221,6 +222,12 @@ class Calculator:
         for operator, symbol in self.operations.items():
             expression = expression.replace(operator, f" {symbol} ")
         self.total_label.config(text=expression)
+
+    def _hide_window(self):
+        self.window.withdraw()
+
+    def show_window(self):
+        self.window.deiconify()
 
     def update_label(self):
         self.label.config(text=self.current_expression[:11])

@@ -76,7 +76,6 @@ class MainConverter(ctk.CTk):
         if lang_code is None:
             lang_code = self.settings_panel.current_lang_code
         translator.change_language(lang_code)
-
         self.left_panel.update_ui()
         self.right_panel.update_ui()
         self.settings_panel.update_ui()
@@ -132,7 +131,7 @@ class LeftPanel(ctk.CTkScrollableFrame):
 
     def _create_settings_calc_buttons(self):
         ctk.CTkButton(
-            self, text="Calculator", font=SMALL_FONT, command=self._toggle_calculator
+            self, text=_("Calculator"), font=SMALL_FONT, command=self._toggle_calculator
         ).grid(row=1, column=0, padx=0, pady=5)
         settings_button = ctk.CTkButton(
             self, text=(_("Settings")), font=SMALL_FONT, command=self._open_settings
@@ -171,8 +170,7 @@ class LeftPanel(ctk.CTkScrollableFrame):
         if self.calc_window is None:
             self.calc_window = Calculator(self)
         else:
-            self.calc_window.window.destroy()
-            self.calc_window = None
+            self.calc_window.show_window()
 
     def update_ui(self):
         for widget in walk_widgets(self):
@@ -467,7 +465,7 @@ class RightPanel(ctk.CTkScrollableFrame):
         entry_text = self._create_label(row, column)
         entry = self._create_ctk_entry(row, column, entry_var)
         entry_symbol = self._create_symbol(row, column)
-        return (entry, entry_symbol, entry_text, entry_var)
+        return entry, entry_symbol, entry_text, entry_var
 
     def _create_label(self, row, column):
         """Creates a label at the given row and column, and returns it."""
@@ -489,25 +487,26 @@ class RightPanel(ctk.CTkScrollableFrame):
         entry.grid(row=row + 1, column=column, sticky="nsw")
 
         # Create a popup menu for the entry
+        popup_menu = self._create_popup_menu(entry)
+
+        # Bind the right-click event to the entry to show the popup menu
+        entry.bind("<Button-3>", lambda event, menu=popup_menu: self.popup(event, menu))
+
+        return entry
+
+    def _create_popup_menu(self, entry):
+        """Creates and returns a popup menu for the entry."""
         popup_menu = tk.Menu(self, tearoff=0)
-
-        # Set the background color of the popup menu based on the appearance mode
-        if ctk.get_appearance_mode() == "Dark":
-            popup_menu.config(bg="#2b2b2b", fg="white")
-        else:
-            popup_menu.config(bg="white", fg="black")
-
+        bg_color = "#2b2b2b" if ctk.get_appearance_mode() == "Dark" else "white"
+        fg_color = "white" if bg_color == "#2b2b2b" else "black"
+        popup_menu.config(bg=bg_color, fg=fg_color)
         popup_menu.add_command(
             label=_("Copy"), command=lambda e=entry: self.copy_to_clipboard(e)
         )
         popup_menu.add_command(
             label=_("Paste"), command=lambda e=entry: self.paste_from_clipboard(e)
         )
-
-        # Bind the right-click event to the entry to show the popup menu
-        entry.bind("<Button-3>", lambda event, menu=popup_menu: self.popup(event, menu))
-
-        return entry
+        return popup_menu
 
     def _create_symbol(self, row, column):
         """Creates a symbol at the given row and column, and returns it."""
@@ -522,24 +521,44 @@ class RightPanel(ctk.CTkScrollableFrame):
         finally:
             menu.grab_release()
 
-    def copy_to_clipboard(self, entry):
-        """Copies the selected text from the entry to the clipboard."""
-        selected_text = entry.selection_get()
-        self.clipboard_clear()
-        self.clipboard_append(selected_text)
+    def copy_to_clipboard(self, entry=None):
+        """Copies text from the entry to the clipboard.
+        If entry is None, it copies text from the entry associated with the popup menu.
+        """
+        if entry is None:
+            entry = self._get_entry_from_focus()
 
-    def paste_from_clipboard(self, entry):
-        """Pastes the text from the clipboard into the entry."""
-        try:
-            entry.delete("0", "end")
-            entry.event_generate(
-                "<KeyPress>", keysym="v", state="0x0004"
-            )  # Simulate Ctrl+V
-            entry.event_generate(
-                "<KeyRelease>", keysym="v", state="0x0004"
-            )  # Simulate Ctrl+V release
-        except tk.TclError:
-            pass  # No text in clipboard or other error
+        selected_text = entry.selection_get() if entry.select_present() else entry.get()
+        if selected_text:
+            self.clipboard_clear()
+            self.clipboard_append(selected_text)
+
+    def paste_from_clipboard(self, entry=None):
+        """Pastes the text from the clipboard into the entry.
+        If entry is None, it pastes text into the entry associated with the popup menu.
+        """
+        if entry is None:
+            entry = self._get_entry_from_focus()
+
+        if entry:
+            try:
+                entry.delete("0", "end")
+                entry.focus_force()
+                entry.event_generate(
+                    "<KeyPress>", keysym="v", state="0x0004"
+                )  # Simulate Ctrl+V
+                entry.event_generate(
+                    "<KeyRelease>", keysym="v", state="0x0004"
+                )  # Simulate Ctrl+V release
+            except tk.TclError:
+                pass  # No text in clipboard or other error
+
+    def _get_entry_from_focus(self):
+        """Returns the entry widget currently in focus."""
+        focused_widget = self.focus_get()
+        if isinstance(focused_widget, ctk.CTkEntry):
+            return focused_widget
+        return None
 
     def update_ui(self):
         """Update the UI with the new language for the RightPanel."""

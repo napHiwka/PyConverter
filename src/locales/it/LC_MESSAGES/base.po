@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-30 18:23+0300\n"
-"PO-Revision-Date: 2024-05-05 23:27+0300\n"
+"PO-Revision-Date: 2024-05-18 23:51+0300\n"
 "Last-Translator: \n"
 "Language-Team: it <LL@li.org>\n"
 "Language: it\n"
@@ -25,7 +25,7 @@ msgstr "Superficie"
 
 #: main.py:86
 msgid "Length"
-msgstr "tunghezza"
+msgstr "Tunghezza"
 
 #: main.py:87
 msgid "Volume"
@@ -75,6 +75,9 @@ msgstr "Angoli"
 msgid "Digital data"
 msgstr "Dati digitali"
 
+msgid "Calculator"
+msgstr "Calcolatore"
+
 #: main.py:124 main.py:214
 msgid "Settings"
 msgstr "Impostazioni"
@@ -117,11 +120,11 @@ msgstr "Sistema"
 
 #: main.py:221
 msgid "Language:"
-msgstr "Lingua"
+msgstr "Lingua:"
 
 #: main.py:297
 msgid "Appearance:"
-msgstr "Tema"
+msgstr "Tema:"
 
 #: main.py:319 main.py:341
 msgid "About"
@@ -234,7 +237,7 @@ msgid "Centimeters"
 msgstr "Centimetri"
 
 msgid "Inches"
-msgstr "pollici"
+msgstr "Pollici"
 
 msgid "Feet"
 msgstr "Piedi"

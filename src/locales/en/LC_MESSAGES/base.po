@@ -3,16 +3,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-29 23:16+0300\n"
-"PO-Revision-Date: 2024-04-30 20:30+0300\n"
-"Language: en\n"
+"POT-Creation-Date: 2024-04-30 18:23+0300\n"
+"PO-Revision-Date: 2024-05-18 23:53+0300\n"
+"Last-Translator: \n"
 "Language-Team: en <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.14.0\n"
-"Last-Translator: \n"
 "X-Generator: Poedit 2.2\n"
 
 #: main.py:84
@@ -52,7 +52,7 @@ msgid "Fuel Consumption"
 msgstr ""
 
 #: main.py:93
-msgid "Numeral System"
+msgid "Numeral Systems"
 msgstr ""
 
 #: main.py:94
@@ -72,62 +72,61 @@ msgid "Angles"
 msgstr ""
 
 #: main.py:98
-msgid "Shoe size"
-msgstr ""
-
-#: main.py:99
 msgid "Digital data"
 msgstr ""
 
-#: main.py:125 main.py:215
+msgid "Calculator"
+msgstr ""
+
+#: main.py:124 main.py:214
 msgid "Settings"
 msgstr ""
 
-#: main.py:169
+#: main.py:168
 msgid "English"
 msgstr "English"
 
-#: main.py:170
+#: main.py:169
 msgid "German"
 msgstr "Deutsch"
 
-#: main.py:171
+#: main.py:170
 msgid "French"
 msgstr "Français"
 
-#: main.py:172
+#: main.py:171
 msgid "Spanish"
 msgstr "Español"
 
-#: main.py:173
+#: main.py:172
 msgid "Italian"
 msgstr "Italiano"
 
-#: main.py:174
+#: main.py:173
 msgid "Russian"
 msgstr "Русский"
 
-#: main.py:179
+#: main.py:178
 msgid "Light"
 msgstr ""
 
-#: main.py:180
+#: main.py:179
 msgid "Dark"
 msgstr ""
 
-#: main.py:181 main.py:193
+#: main.py:180 main.py:192
 msgid "System"
 msgstr ""
 
-#: main.py:222
+#: main.py:221
 msgid "Language:"
 msgstr ""
 
-#: main.py:298
+#: main.py:297
 msgid "Appearance:"
 msgstr ""
 
-#: main.py:320 main.py:342
+#: main.py:319 main.py:341
 msgid "About"
 msgstr ""
 
@@ -137,39 +136,37 @@ msgstr ""
 msgid "Significant number:"
 msgstr ""
 
-#: main.py:358
+#: main.py:357
 msgid ""
 "MIT License\n"
 "\n"
 "Copyright (c) 2024 napHiwka\n"
 "\n"
 "Permission is hereby granted, free of charge, to any person obtaining a "
-"copyof this software and associated documentation files (the \"Software"
-"\"), to dealin the Software without restriction, including without "
-"limitation the rightsto use, copy, modify, merge, publish, distribute, "
-"sublicense, and/or sellcopies of the Software, and to permit persons to "
-"whom the Software isfurnished to do so, subject to the following "
-"conditions:\n"
+"copyof this software and associated documentation files (the \"Software\"), "
+"to dealin the Software without restriction, including without limitation the "
+"rightsto use, copy, modify, merge, publish, distribute, sublicense, and/or "
+"sellcopies of the Software, and to permit persons to whom the Software "
+"isfurnished to do so, subject to the following conditions:\n"
 "\n"
-"The above copyright notice and this permission notice shall be included "
-"in allcopies or substantial portions of the Software.\n"
+"The above copyright notice and this permission notice shall be included in "
+"allcopies or substantial portions of the Software.\n"
 "\n"
-"THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, "
-"EXPRESS ORIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF "
-"MERCHANTABILITY,FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN "
-"NO EVENT SHALL THEAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, "
-"DAMAGES OR OTHERLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR "
-"OTHERWISE, ARISING FROM,OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE "
-"USE OR OTHER DEALINGS IN THESOFTWARE.\n"
+"THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS "
+"ORIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,"
+"FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL "
+"THEAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR "
+"OTHERLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING "
+"FROM,OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS "
+"IN THESOFTWARE.\n"
 "\n"
 msgstr ""
 
-#: main.py:383
+#: main.py:382
 msgid "For any inquiries or issues, please contact:\n"
 msgstr ""
 
 # Temperature
-#: Data Unit
 msgid "Celsius"
 msgstr ""
 

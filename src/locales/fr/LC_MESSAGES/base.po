@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-30 18:23+0300\n"
-"PO-Revision-Date: 2024-05-05 23:26+0300\n"
+"PO-Revision-Date: 2024-05-18 23:51+0300\n"
 "Last-Translator: \n"
 "Language-Team: fr <LL@li.org>\n"
 "Language: fr\n"
@@ -78,6 +78,9 @@ msgstr "Angles"
 #: main.py:98
 msgid "Digital data"
 msgstr "Données numériques"
+
+msgid "Calculator"
+msgstr "Calculatrice"
 
 #: main.py:124 main.py:214
 msgid "Settings"

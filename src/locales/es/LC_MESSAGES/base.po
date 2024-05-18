@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-30 18:23+0300\n"
-"PO-Revision-Date: 2024-05-05 23:50+0300\n"
+"PO-Revision-Date: 2024-05-18 23:52+0300\n"
 "Last-Translator: \n"
 "Language-Team: es <LL@li.org>\n"
 "Language: es\n"
@@ -74,6 +74,9 @@ msgstr "Ángulos"
 #: main.py:98
 msgid "Digital data"
 msgstr "Sistema digital"
+
+msgid "Calculator"
+msgstr "Calculadora"
 
 #: main.py:124 main.py:214
 msgid "Settings"
