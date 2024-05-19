@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-30 18:23+0300\n"
-"PO-Revision-Date: 2024-05-18 23:52+0300\n"
+"PO-Revision-Date: 2024-05-20 00:35+0300\n"
 "Last-Translator: \n"
 "Language-Team: es <LL@li.org>\n"
 "Language: es\n"
@@ -135,6 +135,24 @@ msgstr "Remover decimales periodicos"
 
 msgid "Significant number:"
 msgstr "Cifras significativas:"
+
+msgid "Color theme:"
+msgstr "Tema del color:"
+
+msgid "Green"
+msgstr "Verde"
+
+msgid "Blue"
+msgstr "Azul"
+
+msgid "Dark-blue"
+msgstr "Azul oscuro"
+
+msgid "Info"
+msgstr "Info"
+
+msgid "The color theme will change after restarting the app"
+msgstr "El tema de color cambiará después de reiniciar la aplicación."
 
 #: main.py:357
 msgid ""
@@ -343,7 +361,7 @@ msgstr "Milímetros cúbicos"
 msgid "Seconds"
 msgstr "Segundos"
 
-msgid "Decisecond"
+msgid "Deciseconds"
 msgstr "Decisegundos"
 
 msgid "Centiseconds"

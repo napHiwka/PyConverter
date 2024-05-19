@@ -4,13 +4,15 @@ import configparser as cp
 import os
 
 from src.utils.unit_conversion_updater import UnitConversionUpdater
-from src.utils.translator import Translator
 from src.utils.ctk_separator import CTkWindowSeparator
 from src.utils.widget_walker import walk_widgets
+from src.CTkMessagebox import CTkMessagebox
+from src.utils.translator import Translator
 from src.calculator import Calculator
 
+
 # Constants for font styles and colors
-LARGE_FONT = ("Source Sans Pro", 22, "bold")
+LARGE_FONT = ("Source Sans Pro", 24, "bold")
 SETTING_FONT = ("Source Sans Pro", 17)
 SMALL_FONT = ("Source Sans Pro", 15)
 SMALLEST_FONT = ("Source Sans Pro", 13)
@@ -27,6 +29,7 @@ class MainConverter(ctk.CTk):
         self.title("Converter")
         self.settings = settings
         self._setup_ui()
+        self.load_settings()
         self.mainloop()
 
     def _setup_ui(self):
@@ -86,11 +89,11 @@ class MainConverter(ctk.CTk):
     def save_settings(self):
         config = cp.ConfigParser()
         config["Settings"] = {
-            "AppearanceMode": self.settings_panel.new_mode,
-            "ColorTheme": self.settings_panel.color_theme.get(),
             "Language": self.settings_panel.current_lang_code,
             "RemoveTrailingZeros": self.settings_panel.remove_trailing_zeros.get(),
             "SignificantNumber": self.settings_panel.current_significant_number.get(),
+            "AppearanceMode": self.settings_panel.new_mode,
+            "ColorTheme": self.settings_panel.color_theme.get(),
         }
         with open("settings.ini", "w") as configfile:
             config.write(configfile)
@@ -156,7 +159,7 @@ class LeftPanel(ctk.CTkScrollableFrame):
         self.grid_rowconfigure(0, weight=1)
 
     def _create_widgets(self):
-        self._create_label("PyConvert", LARGE_FONT, pady=0)
+        self._create_label("PyConvert", LARGE_FONT, pady=(0, 10), row=0)
         self._create_settings_calc_buttons()
         self._add_conversion_buttons()
 
@@ -165,14 +168,14 @@ class LeftPanel(ctk.CTkScrollableFrame):
         label.grid(**grid_kwargs)
 
     def _create_settings_calc_buttons(self):
-        self._create_button(1, _("Calculator"), self._toggle_calculator)
-        self._create_button(2, _("Settings"), self._open_settings)
+        self._create_button(2, _("Calculator"), self._toggle_calculator)
+        self._create_button(3, _("Settings"), self._open_settings)
         CTkWindowSeparator(self, size=3, length=80, color="#878787").grid(
-            row=3, column=0, pady=(5, 0)
+            row=4, column=0, pady=(5, 0)
         )
 
     def _add_conversion_buttons(self):
-        for row, conversion_type in enumerate(self.CONVERSION_TYPES, start=4):
+        for row, conversion_type in enumerate(self.CONVERSION_TYPES, start=5):
             self._create_button(
                 row,
                 conversion_type,
@@ -374,7 +377,7 @@ class SettingsPanel(ctk.CTkFrame):
         ctk.CTkOptionMenu(
             self,
             variable=self.color_theme,
-            values=["green", "blue", "dark-blue"],
+            values=("green", "blue", "dark-blue"),
             font=SMALL_FONT,
             command=self._change_color_theme,
         ).grid(row=6, column=1, sticky="nw", pady=(10, 0), padx=(20, 0))
@@ -404,16 +407,19 @@ class SettingsPanel(ctk.CTkFrame):
 
     def _change_color_theme(self, new_theme):
         self.color_theme.set(new_theme)
-        ctk.set_default_color_theme(new_theme)
-        print(new_theme)
-        self.save_settings()
+        CTkMessagebox(
+            width=320,
+            height=180,
+            title=_("Info"),
+            message=_("The color theme will change after restarting the app"),
+        )
 
-    def _get_appearance_option_menu(self):
+    def _get_option_menu(self, optionmenu):
         """Get the appearance option menu widget."""
         for widget in walk_widgets(self):
             if (
                 isinstance(widget, ctk.CTkOptionMenu)
-                and widget.cget("variable") == self.current_appearance
+                and widget.cget("variable") == optionmenu
             ):
                 return widget
         return None
@@ -425,7 +431,7 @@ class SettingsPanel(ctk.CTkFrame):
         }
 
         # Update the appearance option menu with the new translated values
-        appearance_option_menu = self._get_appearance_option_menu()
+        appearance_option_menu = self._get_option_menu(self.current_appearance)
         if appearance_option_menu:
             translated_values = list(self.APPEARANCE_OPTIONS_TRANSLATED.values())
             appearance_option_menu.configure(values=translated_values)

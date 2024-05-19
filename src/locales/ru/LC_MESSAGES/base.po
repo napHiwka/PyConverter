@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-30 18:23+0300\n"
-"PO-Revision-Date: 2024-05-18 23:50+0300\n"
+"PO-Revision-Date: 2024-05-20 00:31+0300\n"
 "Last-Translator: \n"
 "Language-Team: ru <LL@li.org>\n"
 "Language: ru\n"
@@ -140,6 +140,24 @@ msgstr "Удалить конечные нули"
 
 msgid "Significant number:"
 msgstr "Значимые цифры:"
+
+msgid "Color theme:"
+msgstr "Цветовая тема:"
+
+msgid "Green"
+msgstr "Зеленый"
+
+msgid "Blue"
+msgstr "Синий"
+
+msgid "Dark-blue"
+msgstr "Темно-синий"
+
+msgid "Info"
+msgstr "Информация"
+
+msgid "The color theme will change after restarting the app"
+msgstr "Цветовая тема поменяется после перезагрузки приложения"
 
 #: main.py:357
 msgid ""
@@ -368,7 +386,7 @@ msgstr "Кубические Миллиметры"
 msgid "Seconds"
 msgstr "Секунды"
 
-msgid "Decisecond"
+msgid "Deciseconds"
 msgstr "Десятых секунды"
 
 msgid "Centiseconds"

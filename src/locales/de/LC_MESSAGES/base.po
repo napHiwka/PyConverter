@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-30 18:23+0300\n"
-"PO-Revision-Date: 2024-05-18 23:52+0300\n"
+"PO-Revision-Date: 2024-05-20 00:36+0300\n"
 "Last-Translator: \n"
 "Language-Team: de <LL@li.org>\n"
 "Language: de\n"
@@ -135,6 +135,24 @@ msgstr "Entferne nachgestellte Nullen"
 
 msgid "Significant number:"
 msgstr "Signifikante Stellen:"
+
+msgid "Color theme:"
+msgstr "Thema Farbe:"
+
+msgid "Green"
+msgstr "Grün"
+
+msgid "Blue"
+msgstr "Blau"
+
+msgid "Dark-blue"
+msgstr "Dunkelblau"
+
+msgid "Info"
+msgstr "Infos"
+
+msgid "The color theme will change after restarting the app"
+msgstr ""
 
 #: main.py:357
 msgid ""
@@ -369,7 +387,7 @@ msgstr "Kubikmillimeter"
 msgid "Seconds"
 msgstr "Sekundens"
 
-msgid "Decisecond"
+msgid "Deciseconds"
 msgstr "Dezisekundens"
 
 msgid "Centiseconds"

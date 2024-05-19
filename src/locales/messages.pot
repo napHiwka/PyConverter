@@ -138,6 +138,24 @@ msgstr ""
 msgid "Significant number:"
 msgstr ""
 
+msgid "Color theme:"
+msgstr ""
+
+msgid "Green"
+msgstr ""
+
+msgid "Blue"
+msgstr ""
+
+msgid "Dark-blue"
+msgstr ""
+
+msgid "Info"
+msgstr ""
+
+msgid "The color theme will change after restarting the app"
+msgstr ""
+
 #: main.py:357
 msgid ""
 "MIT License\n"
@@ -340,7 +358,7 @@ msgstr ""
 msgid "Seconds"
 msgstr ""
 
-msgid "Decisecond"
+msgid "Deciseconds"
 msgstr ""
 
 msgid "Centiseconds"
