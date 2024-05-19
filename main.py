@@ -14,7 +14,6 @@ LARGE_FONT = ("Source Sans Pro", 22, "bold")
 SETTING_FONT = ("Source Sans Pro", 17)
 SMALL_FONT = ("Source Sans Pro", 15)
 SMALLEST_FONT = ("Source Sans Pro", 13)
-COLOR_THEME = "green"
 
 # Initialize translator and global translation function
 translator = Translator()
@@ -23,11 +22,11 @@ _ = translator.gettext
 
 
 class MainConverter(ctk.CTk):
-    def __init__(self):
+    def __init__(self, settings):
         super().__init__()
         self.title("Converter")
+        self.settings = settings
         self._setup_ui()
-        self.load_settings()
         self.mainloop()
 
     def _setup_ui(self):
@@ -40,9 +39,8 @@ class MainConverter(ctk.CTk):
         self.resizable(0, 0)
 
     def _setup_appearance(self):
-        appearance_mode = getattr(self, "appearance_mode", "system")
-        ctk.set_appearance_mode(appearance_mode)
-        ctk.set_default_color_theme(COLOR_THEME)
+        ctk.set_appearance_mode(self.settings["AppearanceMode"])
+        ctk.set_default_color_theme(self.settings["ColorTheme"])
 
     def _setup_panels(self):
         self.right_panel = RightPanel(self)
@@ -51,7 +49,7 @@ class MainConverter(ctk.CTk):
         )
         self.unit_updater = UnitConversionUpdater(
             self.right_panel.entries,
-            self.settings_panel.remove_trailing_zeros_switch,
+            self.settings_panel.remove_trailing_zeros,
             self.settings_panel.current_significant_number,
         )
         self.left_panel = LeftPanel(
@@ -89,7 +87,7 @@ class MainConverter(ctk.CTk):
         config = cp.ConfigParser()
         config["Settings"] = {
             "AppearanceMode": self.settings_panel.new_mode,
-            "ColorTheme": COLOR_THEME,
+            "ColorTheme": self.settings_panel.color_theme.get(),
             "Language": self.settings_panel.current_lang_code,
             "RemoveTrailingZeros": self.settings_panel.remove_trailing_zeros.get(),
             "SignificantNumber": self.settings_panel.current_significant_number.get(),
@@ -114,6 +112,11 @@ class MainConverter(ctk.CTk):
         self.appearance_mode = config.get(
             "Settings", "AppearanceMode", fallback="system"
         )
+        self.settings_panel.color_theme.set(
+            config.get("Settings", "ColorTheme", fallback="green")
+        )
+
+        # Set appearance mode and color theme
         self.settings_panel.new_mode = self.appearance_mode
         ctk.set_appearance_mode(self.appearance_mode)
         self.settings_panel.change_language(self.settings_panel.current_lang_code)
@@ -234,75 +237,208 @@ class SettingsPanel(ctk.CTkFrame):
 
     def __init__(self, parent, change_language_method, save_settings):
         super().__init__(parent)
+        # External methods
         self.change_language = change_language_method
         self.save_settings = save_settings
 
+        # Internal vars
         self.current_lang_code = self.LANGUAGE_OPTIONS[0][0]
         self.current_lang_name = ctk.StringVar(
             value=self.TRANSLATED_LANGUAGE_NAMES[self.current_lang_code]
         )
         self.language_codes = {_(name): code for code, name in self.LANGUAGE_OPTIONS}
         self.current_appearance = ctk.StringVar(value=_("System"))
-        self.appearance_options = {_(name): name for name in self.APPEARANCE_OPTIONS}
+        self.appearance_options = {
+            _(option): option for option in self.APPEARANCE_OPTIONS
+        }
         self.remove_trailing_zeros = ctk.BooleanVar(value=True)
         self.current_significant_number = ctk.IntVar(value=10)
+        self.color_theme = ctk.StringVar(value="green")
+        self.new_mode = "System"
+        self.about_window = None
+
+        # Traces for saving preferences
         self.remove_trailing_zeros.trace_add("write", self.save_settings_wrapper)
         self.current_significant_number.trace_add("write", self.save_settings_wrapper)
-        self.current_appearance.trace_add("write", self.save_settings_wrapper)
+        self.color_theme.trace_add("write", self.save_settings_wrapper)
 
-        self.new_mode = "System"
-
-        self.about_window = None
-        self.configure(fg_color="transparent")
         self._configure_grid()
         self._create_widgets()
 
     def _configure_grid(self):
+        self.configure(fg_color="transparent")
         self.grid_columnconfigure(0, weight=1, uniform="B")
         self.grid_columnconfigure(1, weight=1, uniform="B")
         self.grid_rowconfigure(tuple(range(5)), weight=0)
 
     def _create_widgets(self):
-        self._create_settings_label()
-        self._create_language_optionmenu()
-        self._create_appearance_mode_optionmenu()
-        self._create_rm_trailing_zeros()
+        self._create_label(
+            _("Settings"),
+            LARGE_FONT,
+            row=0,
+            column=0,
+            sticky="nw",
+            pady=(40, 0),
+            padx=(20, 0),
+        )
+        self._create_language_menu()
+        self._create_appearance_menu()
         self._create_significant_number_options()
+        self._create_remove_trailing_zeros_switch()
         self._create_about_button()
+        self._create_color_theme_options()
 
-    def _create_settings_label(self):
-        ctk.CTkLabel(
-            self,
-            text=(_("Settings")),
-            font=LARGE_FONT,
-        ).grid(row=0, column=0, sticky="nw", pady=(40, 0), padx=(20, 0))
+    def _create_label(self, text, font, **grid_kwargs):
+        label = ctk.CTkLabel(self, text=text, font=font)
+        label.grid(**grid_kwargs)
 
-    def _create_language_optionmenu(self):
-        ctk.CTkLabel(
-            self,
-            text=(_("Language:")),
-            font=SETTING_FONT,
-        ).grid(row=1, column=0, sticky="nw", pady=(10, 0), padx=(20, 0))
+    def _create_language_menu(self):
+        self._create_label(
+            _("Language:"),
+            SETTING_FONT,
+            row=1,
+            column=0,
+            sticky="nw",
+            pady=(10, 0),
+            padx=(20, 0),
+        )
 
         ctk.CTkOptionMenu(
             self,
-            values=list(self.TRANSLATED_LANGUAGE_NAMES.values()),
             variable=self.current_lang_name,
+            values=list(self.language_codes.keys()),
+            font=SMALL_FONT,
             dropdown_font=SMALLEST_FONT,
+            command=self._change_language,
         ).grid(row=1, column=1, sticky="nw", pady=(10, 0), padx=(20, 0))
 
-        self.current_lang_name.trace_add("write", self._on_language_change)
-
-    def _on_language_change(self, *args):
-        selected_lang_name = self.current_lang_name.get()
-        self.current_lang_code = self.language_codes.get(selected_lang_name, "en")
-        self.change_language(self.current_lang_code)
-        self.TRANSLATED_LANGUAGE_NAMES = {
-            code: _(name) for code, name in self.LANGUAGE_OPTIONS
-        }
-        self.current_lang_name.set(
-            self.TRANSLATED_LANGUAGE_NAMES[self.current_lang_code]
+    def _create_appearance_menu(self):
+        self._create_label(
+            _("Appearance:"),
+            SETTING_FONT,
+            row=2,
+            column=0,
+            sticky="nw",
+            pady=(10, 0),
+            padx=(20, 0),
         )
+
+        ctk.CTkOptionMenu(
+            self,
+            variable=self.current_appearance,
+            values=list(self.appearance_options.keys()),
+            font=SMALL_FONT,
+            dropdown_font=SMALLEST_FONT,
+            command=self._change_appearance,
+        ).grid(row=2, column=1, sticky="nw", pady=(10, 0), padx=(20, 0))
+
+    def _create_significant_number_options(self):
+        ctk.CTkLabel(self, text=_("Significant number:"), font=SETTING_FONT).grid(
+            row=4, column=0, sticky="nw", pady=(10, 0), padx=(20, 0)
+        )
+
+        ctk.CTkOptionMenu(
+            self,
+            variable=self.current_significant_number,
+            values=["4", "6", "8", "10", "12", "14", "16"],
+            font=SMALL_FONT,
+            dropdown_font=SMALLEST_FONT,
+        ).grid(row=4, column=1, sticky="nw", pady=(10, 0), padx=(20, 0))
+
+    def _create_remove_trailing_zeros_switch(self):
+        ctk.CTkLabel(self, text=_("Remove trailing zeros"), font=SETTING_FONT).grid(
+            row=5, column=0, sticky="nw", pady=(10, 0), padx=(20, 0)
+        )
+
+        ctk.CTkSwitch(
+            self,
+            text="",
+            variable=self.remove_trailing_zeros,
+        ).grid(row=5, column=1, pady=(10, 0), sticky="nw", padx=(20, 0))
+
+    def _create_about_button(self):
+        """Create an about button."""
+        ctk.CTkButton(
+            self,
+            text=(_("About")),
+            font=SMALL_FONT,
+            command=self._open_about,
+        ).grid(row=7, column=0, sticky="nw", pady=(10, 0), padx=(20, 0))
+
+    def _create_color_theme_options(self):
+        """Create a color theme menu."""
+        ctk.CTkLabel(self, text=_("Color theme:"), font=SETTING_FONT).grid(
+            row=6, column=0, sticky="nw", pady=(10, 0), padx=(20, 0)
+        )
+
+        ctk.CTkOptionMenu(
+            self,
+            variable=self.color_theme,
+            values=["green", "blue", "dark-blue"],
+            font=SMALL_FONT,
+            command=self._change_color_theme,
+        ).grid(row=6, column=1, sticky="nw", pady=(10, 0), padx=(20, 0))
+
+    def _open_about(self):
+        if self.about_window is None or not self.about_window.winfo_exists():
+            self.about_window = AboutWindow(self)
+            self.about_window.transient(
+                self
+            )  # Make the About window transient to the main window
+            self.about_window.grab_set()  # Set input focus to the About window
+            self.about_window.lift()  # Bring the About window to the top
+        else:
+            self.about_window.lift()  # Bring the About window to the top if it already exists
+            self.about_window.focus()  # Focus the About window if it already exists
+
+    def _change_language(self, lang_name):
+        self.current_lang_code = self.language_codes[lang_name]
+        self.current_lang_name.set(lang_name)
+        self.change_language(self.current_lang_code)
+        self.save_settings()
+
+    def _change_appearance(self, appearance_name):
+        self.new_mode = self.appearance_options[appearance_name]
+        ctk.set_appearance_mode(self.new_mode)
+        self.save_settings()
+
+    def _change_color_theme(self, new_theme):
+        self.color_theme.set(new_theme)
+        ctk.set_default_color_theme(new_theme)
+        print(new_theme)
+        self.save_settings()
+
+    def _get_appearance_option_menu(self):
+        """Get the appearance option menu widget."""
+        for widget in walk_widgets(self):
+            if (
+                isinstance(widget, ctk.CTkOptionMenu)
+                and widget.cget("variable") == self.current_appearance
+            ):
+                return widget
+        return None
+
+    def _update_appearance_options_translated(self):
+        """Update the translated appearance options dictionary."""
+        self.APPEARANCE_OPTIONS_TRANSLATED = {
+            option: _(option) for option in self.APPEARANCE_OPTIONS
+        }
+
+        # Update the appearance option menu with the new translated values
+        appearance_option_menu = self._get_appearance_option_menu()
+        if appearance_option_menu:
+            translated_values = list(self.APPEARANCE_OPTIONS_TRANSLATED.values())
+            appearance_option_menu.configure(values=translated_values)
+            appearance_option_menu.set(
+                _(self.current_appearance.get())
+            )  # Use translated value
+
+    def _update_appearance_options(self):
+        """Update the appearance options dictionary with the translated values."""
+        self.appearance_options = {_(name): name for name in self.APPEARANCE_OPTIONS}
+
+    def save_settings_wrapper(self, *args):
+        """Wrapper function for saving settings."""
         self.save_settings()
 
     def update_ui(self):
@@ -325,107 +461,6 @@ class SettingsPanel(ctk.CTkFrame):
                 elif widget.cget("variable") == self.current_appearance:
                     self._update_appearance_options_translated()
                     self._update_appearance_options()
-
-    def _update_appearance_options_translated(self):
-        """Update the translated appearance options dictionary."""
-        self.APPEARANCE_OPTIONS_TRANSLATED = {
-            option: _(option) for option in self.APPEARANCE_OPTIONS
-        }
-
-        # Update the appearance option menu with the new translated values
-        appearance_option_menu = self._get_appearance_option_menu()
-        if appearance_option_menu:
-            translated_values = list(self.APPEARANCE_OPTIONS_TRANSLATED.values())
-            appearance_option_menu.configure(values=translated_values)
-            appearance_option_menu.set(
-                _(self.current_appearance.get())
-            )  # Use translated value
-
-    def _update_appearance_options(self):
-        """Update the appearance options dictionary with the translated values."""
-        self.appearance_options = {_(name): name for name in self.APPEARANCE_OPTIONS}
-
-    def _get_appearance_option_menu(self):
-        """Get the appearance option menu widget."""
-        for widget in walk_widgets(self):
-            if (
-                isinstance(widget, ctk.CTkOptionMenu)
-                and widget.cget("variable") == self.current_appearance
-            ):
-                return widget
-        return None
-
-    def _create_appearance_mode_optionmenu(self):
-        """Create an option menu for appearance mode."""
-        ctk.CTkLabel(self, text=_("Appearance:"), font=SETTING_FONT).grid(
-            row=2, column=0, sticky="nw", pady=(10, 0), padx=(20, 0)
-        )
-
-        ctk.CTkOptionMenu(
-            self,
-            values=list(self.APPEARANCE_OPTIONS_TRANSLATED.values()),
-            variable=self.current_appearance,
-            dropdown_font=SMALLEST_FONT,
-            command=self._change_appearance_mode,
-        ).grid(row=2, column=1, sticky="nw", pady=(10, 0), padx=(20, 0))
-
-    def _change_appearance_mode(self, *args):
-        translated_mode = self.current_appearance.get()
-        # Use the translated value to get the original English value
-        self.new_mode = self.appearance_options[translated_mode]
-        ctk.set_appearance_mode(self.new_mode)
-        self.save_settings()
-
-    def _create_significant_number_options(self):
-        ctk.CTkLabel(self, text=_("Significant number:"), font=SETTING_FONT).grid(
-            row=4, column=0, sticky="nw", pady=(10, 0), padx=(20, 0)
-        )
-
-        ctk.CTkOptionMenu(
-            self,
-            variable=self.current_significant_number,
-            values=["4", "6", "8", "10", "12", "14", "16"],
-            dropdown_font=SMALLEST_FONT,
-        ).grid(row=4, column=1, sticky="nw", pady=(10, 0), padx=(20, 0))
-
-    def _create_rm_trailing_zeros(self):
-        ctk.CTkLabel(self, text=_("Remove trailing zeros"), font=SETTING_FONT).grid(
-            row=5, column=0, sticky="nw", pady=(10, 0), padx=(20, 0)
-        )
-
-        self.remove_trailing_zeros_switch = ctk.CTkSwitch(
-            self,
-            text="",
-            variable=self.remove_trailing_zeros,
-        )
-        self.remove_trailing_zeros_switch.grid(
-            row=5, column=1, pady=(10, 0), sticky="nw", padx=(20, 0)
-        )
-
-    def _create_about_button(self):
-        """Create an about button."""
-        ctk.CTkButton(
-            self,
-            text=(_("About")),
-            font=SMALL_FONT,
-            command=self._open_about,
-        ).grid(row=7, column=0, sticky="nw", pady=(10, 0), padx=(20, 0))
-
-    def _open_about(self):
-        if self.about_window is None or not self.about_window.winfo_exists():
-            self.about_window = AboutWindow(self)
-            self.about_window.transient(
-                self
-            )  # Make the About window transient to the main window
-            self.about_window.grab_set()  # Set input focus to the About window
-            self.about_window.lift()  # Bring the About window to the top
-        else:
-            self.about_window.lift()  # Bring the About window to the top if it already exists
-            self.about_window.focus()  # Focus the About window if it already exists
-
-    def save_settings_wrapper(self, *args):
-        """Wrapper function for saving settings."""
-        self.save_settings()
 
 
 class AboutWindow(ctk.CTkToplevel):
@@ -617,5 +652,38 @@ class RightPanel(ctk.CTkScrollableFrame):
                 widget.configure(text=_(original_text))
 
 
+def load_settings():
+    config = cp.ConfigParser()
+    if not os.path.exists("settings.ini"):
+        save_default_settings()
+    config.read("settings.ini")
+    settings = {
+        "Language": config.get("Settings", "Language", fallback="en"),
+        "RemoveTrailingZeros": config.getboolean(
+            "Settings", "RemoveTrailingZeros", fallback=True
+        ),
+        "SignificantNumber": config.getint(
+            "Settings", "SignificantNumber", fallback=10
+        ),
+        "AppearanceMode": config.get("Settings", "AppearanceMode", fallback="system"),
+        "ColorTheme": config.get("Settings", "ColorTheme", fallback="green"),
+    }
+    return settings
+
+
+def save_default_settings():
+    config = cp.ConfigParser()
+    config["Settings"] = {
+        "Language": "en",
+        "RemoveTrailingZeros": "True",
+        "SignificantNumber": "10",
+        "AppearanceMode": "system",
+        "ColorTheme": "green",
+    }
+    with open("settings.ini", "w") as configfile:
+        config.write(configfile)
+
+
 if __name__ == "__main__":
-    MainConverter()
+    settings = load_settings()
+    MainConverter(settings)
