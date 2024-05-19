@@ -1,19 +1,21 @@
 import customtkinter as ctk
 import tkinter as tk
+import configparser as cp
+import os
+
 
 from src.utils.unit_conversion_updater import UnitConversionUpdater
 from src.utils.translator import Translator
 from src.utils.ctk_separator import CTkWindowSeparator
 from src.utils.widget_walker import walk_widgets
 from src.calculator import Calculator
-from src.utils.settings import (
-    LARGE_FONT,
-    SETTING_FONT,
-    SMALL_FONT,
-    SMALLEST_FONT,
-    APPEARANCE_MODE,
-    COLOR_THEME,
-)
+
+# Constants for font styles and colors
+LARGE_FONT = ("Source Sans Pro", 22, "bold")
+SETTING_FONT = ("Source Sans Pro", 17)
+SMALL_FONT = ("Source Sans Pro", 15)
+SMALLEST_FONT = ("Source Sans Pro", 13)
+COLOR_THEME = "green"
 
 # Constants for language translations
 translator = Translator()
@@ -26,6 +28,7 @@ class MainConverter(ctk.CTk):
         super().__init__()
         self.title("Converter")
         self._setup_ui()
+        self.load_settings()
         self.mainloop()
 
     def _setup_ui(self):
@@ -38,12 +41,17 @@ class MainConverter(ctk.CTk):
         self.resizable(0, 0)
 
     def _setup_appearance(self):
-        ctk.set_appearance_mode(APPEARANCE_MODE)
+        if hasattr(self, "appearance_mode"):
+            ctk.set_appearance_mode(self.appearance_mode)
+        else:
+            ctk.set_appearance_mode("system")
         ctk.set_default_color_theme(COLOR_THEME)
 
     def _setup_panels(self):
         self.right_panel = RightPanel(self)
-        self.settings_panel = SettingsPanel(self, self.change_language_on_panels)
+        self.settings_panel = SettingsPanel(
+            self, self.change_language_on_panels, self.save_settings
+        )
         self.unit_updater = UnitConversionUpdater(
             self.right_panel.entries,
             self.settings_panel.remove_trailing_zeros_switch,
@@ -79,6 +87,44 @@ class MainConverter(ctk.CTk):
         self.left_panel.update_ui()
         self.right_panel.update_ui()
         self.settings_panel.update_ui()
+
+        # Reload the default category after language change
+        self.unit_updater._load_default_category()
+
+    def save_settings(self):
+        config = cp.ConfigParser()
+        config["Settings"] = {
+            "AppearanceMode": str(self.settings_panel.new_mode),
+            "ColorTheme": COLOR_THEME,
+            "Language": str(self.settings_panel.current_lang_code),
+            "RemoveTrailingZeros": str(self.settings_panel.remove_trailing_zeros.get()),
+            "SignificantNumber": str(
+                self.settings_panel.current_significant_number.get()
+            ),
+        }
+        with open("settings.ini", "w") as configfile:
+            config.write(configfile)
+
+    def load_settings(self):
+        config = cp.ConfigParser()
+        if not os.path.exists("settings.ini"):
+            self.save_settings()
+        config.read("settings.ini")
+        self.settings_panel.current_lang_code = config.get(
+            "Settings", "Language", fallback=self.settings_panel.current_lang_code
+        )
+        self.settings_panel.remove_trailing_zeros.set(
+            config.getboolean("Settings", "RemoveTrailingZeros", fallback=True)
+        )
+        self.settings_panel.current_significant_number.set(
+            config.getint("Settings", "SignificantNumber", fallback=10)
+        )
+        self.appearance_mode = config.get(
+            "Settings", "AppearanceMode", fallback="system"
+        )
+        self.settings_panel.new_mode = self.appearance_mode
+        ctk.set_appearance_mode(self.appearance_mode)
+        self.settings_panel.change_language(self.settings_panel.current_lang_code)
 
 
 class LeftPanel(ctk.CTkScrollableFrame):
@@ -199,9 +245,10 @@ class SettingsPanel(ctk.CTkFrame):
         "System": _("System"),
     }
 
-    def __init__(self, parent, change_language_method):
+    def __init__(self, parent, change_language_method, save_settings):
         super().__init__(parent)
         self.change_language = change_language_method
+        self.save_settings = save_settings
 
         self.current_lang_code = self.LANGUAGE_OPTIONS[0][0]
         self.current_lang_name = ctk.StringVar(
@@ -212,6 +259,12 @@ class SettingsPanel(ctk.CTkFrame):
         self.appearance_options = {_(name): name for name in self.APPEARANCE_OPTIONS}
         self.remove_trailing_zeros = ctk.BooleanVar(value=True)
         self.current_significant_number = ctk.IntVar(value=10)
+        self.remove_trailing_zeros.trace_add("write", self.save_settings_wrapper)
+        self.current_significant_number.trace_add("write", self.save_settings_wrapper)
+        self.current_appearance.trace_add("write", self.save_settings_wrapper)
+
+        self.new_mode = "System"
+
         self.about_window = None
         self.configure(fg_color="transparent")
         self._configure_grid()
@@ -263,6 +316,7 @@ class SettingsPanel(ctk.CTkFrame):
         self.current_lang_name.set(
             self.TRANSLATED_LANGUAGE_NAMES[self.current_lang_code]
         )
+        self.save_settings()
 
     def update_ui(self):
         """Update the UI with the new language for the SettingsPanel."""
@@ -331,8 +385,9 @@ class SettingsPanel(ctk.CTkFrame):
     def _change_appearance_mode(self, *args):
         translated_mode = self.current_appearance.get()
         # Use the translated value to get the original English value
-        new_mode = self.appearance_options[translated_mode]
-        ctk.set_appearance_mode(new_mode)
+        self.new_mode = self.appearance_options[translated_mode]
+        ctk.set_appearance_mode(self.new_mode)
+        self.save_settings()
 
     def _create_significant_number_options(self):
         ctk.CTkLabel(self, text=_("Significant number:"), font=SETTING_FONT).grid(
@@ -380,6 +435,10 @@ class SettingsPanel(ctk.CTkFrame):
         else:
             self.about_window.lift()  # Bring the About window to the top if it already exists
             self.about_window.focus()  # Focus the About window if it already exists
+
+    def save_settings_wrapper(self, *args):
+        """Wrapper function for saving settings."""
+        self.save_settings()
 
 
 class AboutWindow(ctk.CTkToplevel):
