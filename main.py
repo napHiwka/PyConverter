@@ -3,7 +3,6 @@ import tkinter as tk
 import configparser as cp
 import os
 
-
 from src.utils.unit_conversion_updater import UnitConversionUpdater
 from src.utils.translator import Translator
 from src.utils.ctk_separator import CTkWindowSeparator
@@ -17,7 +16,7 @@ SMALL_FONT = ("Source Sans Pro", 15)
 SMALLEST_FONT = ("Source Sans Pro", 13)
 COLOR_THEME = "green"
 
-# Constants for language translations
+# Initialize translator and global translation function
 translator = Translator()
 global _
 _ = translator.gettext
@@ -41,10 +40,8 @@ class MainConverter(ctk.CTk):
         self.resizable(0, 0)
 
     def _setup_appearance(self):
-        if hasattr(self, "appearance_mode"):
-            ctk.set_appearance_mode(self.appearance_mode)
-        else:
-            ctk.set_appearance_mode("system")
+        appearance_mode = getattr(self, "appearance_mode", "system")
+        ctk.set_appearance_mode(appearance_mode)
         ctk.set_default_color_theme(COLOR_THEME)
 
     def _setup_panels(self):
@@ -81,26 +78,21 @@ class MainConverter(ctk.CTk):
             self.settings_panel.grid()
 
     def change_language_on_panels(self, lang_code=None):
-        if lang_code is None:
-            lang_code = self.settings_panel.current_lang_code
+        lang_code = lang_code or self.settings_panel.current_lang_code
         translator.change_language(lang_code)
         self.left_panel.update_ui()
         self.right_panel.update_ui()
         self.settings_panel.update_ui()
-
-        # Reload the default category after language change
         self.unit_updater._load_default_category()
 
     def save_settings(self):
         config = cp.ConfigParser()
         config["Settings"] = {
-            "AppearanceMode": str(self.settings_panel.new_mode),
+            "AppearanceMode": self.settings_panel.new_mode,
             "ColorTheme": COLOR_THEME,
-            "Language": str(self.settings_panel.current_lang_code),
-            "RemoveTrailingZeros": str(self.settings_panel.remove_trailing_zeros.get()),
-            "SignificantNumber": str(
-                self.settings_panel.current_significant_number.get()
-            ),
+            "Language": self.settings_panel.current_lang_code,
+            "RemoveTrailingZeros": self.settings_panel.remove_trailing_zeros.get(),
+            "SignificantNumber": self.settings_panel.current_significant_number.get(),
         }
         with open("settings.ini", "w") as configfile:
             config.write(configfile)
@@ -129,30 +121,24 @@ class MainConverter(ctk.CTk):
 
 class LeftPanel(ctk.CTkScrollableFrame):
     CONVERSION_TYPES = [
-        (_("Temperature")),
-        (_("Area")),
-        (_("Length")),
-        (_("Volume")),
-        (_("Time")),
-        (_("Mass")),
-        (_("Speed")),
-        (_("Force")),
-        (_("Fuel Consumption")),
-        (_("Numeral Systems")),
-        (_("Pressure")),
-        (_("Energy")),
-        (_("Power")),
-        (_("Angles")),
-        (_("Digital data")),
+        _("Temperature"),
+        _("Area"),
+        _("Length"),
+        _("Volume"),
+        _("Time"),
+        _("Mass"),
+        _("Speed"),
+        _("Force"),
+        _("Fuel Consumption"),
+        _("Numeral Systems"),
+        _("Pressure"),
+        _("Energy"),
+        _("Power"),
+        _("Angles"),
+        _("Digital data"),
     ]
 
-    def __init__(
-        self,
-        parent,
-        setting_panel,
-        setting_toggle,
-        unit_updater,
-    ):
+    def __init__(self, parent, setting_panel, setting_toggle, unit_updater):
         super().__init__(parent)
         self.setting_panel = setting_panel
         self.setting_toggle = setting_toggle
@@ -176,31 +162,32 @@ class LeftPanel(ctk.CTkScrollableFrame):
         label.grid(**grid_kwargs)
 
     def _create_settings_calc_buttons(self):
-        ctk.CTkButton(
-            self, text=_("Calculator"), font=SMALL_FONT, command=self._toggle_calculator
-        ).grid(row=1, column=0, padx=0, pady=5)
-        settings_button = ctk.CTkButton(
-            self, text=(_("Settings")), font=SMALL_FONT, command=self._open_settings
+        self._create_button(1, _("Calculator"), self._toggle_calculator)
+        self._create_button(2, _("Settings"), self._open_settings)
+        CTkWindowSeparator(self, size=3, length=80, color="#878787").grid(
+            row=3, column=0, pady=(5, 0)
         )
-        settings_button.grid(row=2, column=0, padx=0, pady=5)
-        separator = CTkWindowSeparator(self, size=3, length=80, color="#878787")
-        separator.grid(row=3, column=0, pady=(5, 0))
 
     def _add_conversion_buttons(self):
         for row, conversion_type in enumerate(self.CONVERSION_TYPES, start=4):
-            self._create_button(row, conversion_type)
+            self._create_button(
+                row,
+                conversion_type,
+                lambda t=conversion_type: self._button_event(t),
+                fg_color="transparent",
+            )
 
-    def _create_button(self, row, text):
+    def _create_button(self, row, text, command, **kwargs):
         button = ctk.CTkButton(
             self,
             text=text,
-            fg_color="transparent",
             border_color="red",
             text_color=("#000000", "#FFFFFF"),
             hover_color="#15905b",
             font=SMALL_FONT,
             corner_radius=10,
-            command=lambda t=text: self._button_event(t),
+            command=command,
+            **kwargs,
         )
         button.grid(row=row, column=0, padx=0, pady=3)
 
