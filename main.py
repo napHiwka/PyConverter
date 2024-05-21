@@ -209,7 +209,7 @@ class LeftPanel(ctk.CTkScrollableFrame):
         if self.calc_window is None:
             self.calc_window = Calculator(self)
         else:
-            self.calc_window.show_window()
+            self.calc_window._show_window()
 
     def update_ui(self):
         for widget in walk_widgets(self):

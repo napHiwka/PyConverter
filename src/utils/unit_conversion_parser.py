@@ -76,7 +76,5 @@ class UnitConversionParser:
 
 # Debug section
 if __name__ == "__main__":
-    import pprint
-
     converter = UnitConversionParser()
-    pprint.pprint(converter.get_unit_formulas())
+    print(converter.get_unit_formulas())

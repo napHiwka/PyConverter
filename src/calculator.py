@@ -13,12 +13,14 @@ LABEL_COLOR = "#25265E"
 
 
 class Calculator:
-    def __init__(self, parent):
+    def __init__(self, parent=None):
+        self.parent = parent
         self.window = tk.Tk()
         self.window.geometry("375x667")
         self.window.resizable(0, 0)
         self.window.title("Calculator")
-        self.window.protocol("WM_DELETE_WINDOW", self._hide_window)
+        if self.parent:
+            self.window.protocol("WM_DELETE_WINDOW", self._hide_window)
 
         self.total_expression = ""
         self.current_expression = ""
@@ -226,7 +228,7 @@ class Calculator:
     def _hide_window(self):
         self.window.withdraw()
 
-    def show_window(self):
+    def _show_window(self):
         self.window.deiconify()
 
     def update_label(self):
