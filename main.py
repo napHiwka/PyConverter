@@ -40,6 +40,8 @@ class MainConverter(ctk.CTk):
     def _setup_window(self):
         self.geometry("860x520")
         self.resizable(0, 0)
+        if os.path.exists(os.path.curdir + "/src/icon/icon.ico"):
+            self.iconbitmap(bitmap="src/icon/icon.ico")
 
     def _setup_appearance(self):
         ctk.set_appearance_mode(self.settings["AppearanceMode"])
@@ -480,6 +482,8 @@ class AboutWindow(ctk.CTkToplevel):
     def _configure_grid(self):
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=1)
+        if os.path.exists(os.path.curdir + "/src/icon/icon.ico"):
+            self.after(250, lambda: self.iconbitmap("src/icon/icon.ico"))
 
     def _create_content(self):
         info_label = ctk.CTkLabel(
