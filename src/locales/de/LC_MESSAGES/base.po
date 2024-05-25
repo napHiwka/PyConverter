@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-30 18:23+0300\n"
-"PO-Revision-Date: 2024-05-20 00:36+0300\n"
+"PO-Revision-Date: 2024-05-25 20:14+0300\n"
 "Last-Translator: \n"
 "Language-Team: de <LL@li.org>\n"
 "Language: de\n"
@@ -151,8 +151,14 @@ msgstr "Dunkelblau"
 msgid "Info"
 msgstr "Infos"
 
+msgid "Copy"
+msgstr "Kopieren"
+
+msgid "Paste"
+msgstr "Einfügen"
+
 msgid "The color theme will change after restarting the app"
-msgstr ""
+msgstr "Das Farbthema ändert sich nach einem Neustart der App"
 
 #: main.py:357
 msgid ""

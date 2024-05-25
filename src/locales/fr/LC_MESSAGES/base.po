@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-30 18:23+0300\n"
-"PO-Revision-Date: 2024-05-20 00:34+0300\n"
+"PO-Revision-Date: 2024-05-25 20:13+0300\n"
 "Last-Translator: \n"
 "Language-Team: fr <LL@li.org>\n"
 "Language: fr\n"
@@ -155,8 +155,14 @@ msgstr "Bleu foncé"
 msgid "Info"
 msgstr "Info"
 
+msgid "Copy"
+msgstr "Copie"
+
+msgid "Paste"
+msgstr "Coller"
+
 msgid "The color theme will change after restarting the app"
-msgstr "Le thème de couleur change après le redémarrage de l'application."
+msgstr "Le thème de couleur change après le redémarrage de l'application"
 
 #: main.py:357
 msgid ""

@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-30 18:23+0300\n"
-"PO-Revision-Date: 2024-05-20 00:35+0300\n"
+"PO-Revision-Date: 2024-05-25 20:14+0300\n"
 "Last-Translator: \n"
 "Language-Team: en <LL@li.org>\n"
 "Language: en\n"
@@ -149,6 +149,12 @@ msgid "Dark-blue"
 msgstr ""
 
 msgid "Info"
+msgstr ""
+
+msgid "Copy"
+msgstr ""
+
+msgid "Paste"
 msgstr ""
 
 msgid "The color theme will change after restarting the app"

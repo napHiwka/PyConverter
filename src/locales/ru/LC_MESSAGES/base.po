@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-30 18:23+0300\n"
-"PO-Revision-Date: 2024-05-20 00:31+0300\n"
+"PO-Revision-Date: 2024-05-25 20:13+0300\n"
 "Last-Translator: \n"
 "Language-Team: ru <LL@li.org>\n"
 "Language: ru\n"
@@ -155,6 +155,12 @@ msgstr "Темно-синий"
 
 msgid "Info"
 msgstr "Информация"
+
+msgid "Copy"
+msgstr "Копировать"
+
+msgid "Paste"
+msgstr "Вставить"
 
 msgid "The color theme will change after restarting the app"
 msgstr "Цветовая тема поменяется после перезагрузки приложения"

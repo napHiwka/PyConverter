@@ -26,7 +26,7 @@ _ = translator.gettext
 class MainConverter(ctk.CTk):
     def __init__(self, settings):
         super().__init__()
-        self.title("Converter")
+        self.title("PyConvert")
         self.settings = settings
         self._setup_ui()
         self.load_settings()
@@ -629,14 +629,11 @@ class RightPanel(ctk.CTkScrollableFrame):
 
         if entry:
             try:
+                clipboard_text = self.clipboard_get()
+                entry.focus_set()
                 entry.delete("0", "end")
-                entry.focus_force()
-                entry.event_generate(
-                    "<KeyPress>", keysym="v", state="0x0004"
-                )  # Simulate Ctrl+V
-                entry.event_generate(
-                    "<KeyRelease>", keysym="v", state="0x0004"
-                )  # Simulate Ctrl+V release
+                entry.insert("0", clipboard_text)
+                entry.event_generate("<KeyRelease>")
             except tk.TclError:
                 pass  # No text in clipboard or other error
 
@@ -652,10 +649,17 @@ class RightPanel(ctk.CTkScrollableFrame):
         for widget in walk_widgets(self):
             if isinstance(widget, (ctk.CTkLabel, ctk.CTkButton)):
                 original_text = getattr(widget, "_original_text", None)
-                if original_text:
+                if original_text is None:
                     original_text = widget.cget("text")
                     setattr(widget, "_original_text", original_text)
                 widget.configure(text=_(original_text))
+            elif isinstance(widget, tk.Menu):
+                for index in range(widget.index("end") + 1):
+                    label = widget.entrycget(index, "label")
+                    if label == "Copy":
+                        widget.entryconfigure(index, label=_("Copy"))
+                    elif label == "Paste":
+                        widget.entryconfigure(index, label=_("Paste"))
 
 
 def load_settings():
