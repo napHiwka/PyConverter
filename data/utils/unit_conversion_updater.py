@@ -1,7 +1,7 @@
 import numexpr
 import numpy as np
 import customtkinter as ctk
-from src.utils.unit_conversion_parser import UnitConversionParser
+from data.utils.unit_conversion_parser import UnitConversionParser
 
 
 class UnitConversionUpdater:

@@ -3,12 +3,12 @@ import tkinter as tk
 import configparser as cp
 import os
 
-from src.utils.unit_conversion_updater import UnitConversionUpdater
-from src.utils.ctk_separator import CTkWindowSeparator
-from src.utils.widget_walker import walk_widgets
-from src.CTkMessagebox import CTkMessagebox
-from src.utils.translator import Translator
-from src.calculator import Calculator
+from data.utils.unit_conversion_updater import UnitConversionUpdater
+from data.utils.ctk_separator import CTkWindowSeparator
+from data.utils.widget_walker import walk_widgets
+from data.CTkMessagebox import CTkMessagebox
+from data.utils.translator import Translator
+from data.calculator import Calculator
 
 
 # Constants for font styles and colors
@@ -40,8 +40,8 @@ class MainConverter(ctk.CTk):
     def _setup_window(self):
         self.geometry("860x520")
         self.resizable(0, 0)
-        if os.path.exists(os.path.curdir + "/src/icon/icon.ico"):
-            self.iconbitmap(bitmap="src/icon/icon.ico")
+        if os.path.exists(os.path.curdir + "/data/icon/icon.ico"):
+            self.iconbitmap(bitmap="data/icon/icon.ico")
 
     def _setup_appearance(self):
         ctk.set_appearance_mode(self.settings["AppearanceMode"])
@@ -482,8 +482,8 @@ class AboutWindow(ctk.CTkToplevel):
     def _configure_grid(self):
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=1)
-        if os.path.exists(os.path.curdir + "/src/icon/icon.ico"):
-            self.after(250, lambda: self.iconbitmap("src/icon/icon.ico"))
+        if os.path.exists(os.path.curdir + "/data/icon/icon.ico"):
+            self.after(250, lambda: self.iconbitmap("data/icon/icon.ico"))
 
     def _create_content(self):
         license_text = self._get_license_text()

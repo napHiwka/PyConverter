@@ -8,21 +8,21 @@ class UnitConversionParser:
         sets the default category to the first key in the dictionary.
         """
         self.unit_files = {
-            "temperature": "src/data/temperature_units.yaml",
-            "area": "src/data/area_units.yaml",
-            "length": "src/data/length_units.yaml",
-            "volume": "src/data/volume_units.yaml",
-            "time": "src/data/time_units.yaml",
-            "mass": "src/data/mass_units.yaml",
-            "speed": "src/data/speed_units.yaml",
-            "force": "src/data/force_units.yaml",
-            "fuel_consumption": "src/data/fuel_consumption_units.yaml",
-            "numeral_systems": "src/data/numeral_systems_units.yaml",
-            "pressure": "src/data/pressure_units.yaml",
-            "energy": "src/data/energy_units.yaml",
-            "power": "src/data/power_units.yaml",
-            "angles": "src/data/angles_units.yaml",
-            "digital_data": "src/data/digital_data_units.yaml",
+            "temperature": "data/units/temperature_units.yaml",
+            "area": "data/units/area_units.yaml",
+            "length": "data/units/length_units.yaml",
+            "volume": "data/units/volume_units.yaml",
+            "time": "data/units/time_units.yaml",
+            "mass": "data/units/mass_units.yaml",
+            "speed": "data/units/speed_units.yaml",
+            "force": "data/units/force_units.yaml",
+            "fuel_consumption": "data/units/fuel_consumption_units.yaml",
+            "numeral_systems": "data/units/numeral_systems_units.yaml",
+            "pressure": "data/units/pressure_units.yaml",
+            "energy": "data/units/energy_units.yaml",
+            "power": "data/units/power_units.yaml",
+            "angles": "data/units/angles_units.yaml",
+            "digital_data": "data/units/digital_data_units.yaml",
         }
         self.default_category = next(
             iter(self.unit_files)
