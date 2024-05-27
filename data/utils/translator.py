@@ -5,7 +5,7 @@ class Translator:
     def __init__(
         self,
         domain="base",
-        localedir="src/locales",
+        localedir="data/locales",
         default_lang="en",
     ):
         self.domain = domain
