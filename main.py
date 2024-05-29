@@ -1,12 +1,12 @@
 import customtkinter as ctk
-import tkinter as tk
 import configparser as cp
+import tkinter as tk
 import os
 
 from data.utils.unit_conversion_updater import UnitConversionUpdater
 from data.utils.ctk_separator import CTkWindowSeparator
+from CTkMessagebox import CTkMessagebox
 from data.utils.widget_walker import walk_widgets
-from data.CTkMessagebox import CTkMessagebox
 from data.utils.translator import Translator
 from data.calculator import Calculator
 
